@@ -1,0 +1,16 @@
+name: Develop Pull Request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lint_and_prettier:
+    uses: ./.github/workflows/lint_and_prettier.yml
+
+  test:
+    uses: ./.github/workflows/test.yml

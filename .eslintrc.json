@@ -1,0 +1,21 @@
+{
+  "extends": ["next/core-web-vitals"],
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "semi": ["error", "never"],
+    "comma-dangle": ["error", "never"],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_$"
+      }
+    ],
+    "max-len": ["error", 100],
+    "no-param-reassign": "error",
+    "no-console": "warn",
+    "no-alert": "error",
+    "quotes": ["error", "single"],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  }
+}
