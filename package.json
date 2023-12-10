@@ -4,8 +4,8 @@
   "private": true,
   "license": "MIT",
   "keywords": [
-    "nextjs",
-    "template"
+    "digi-card",
+    "invite"
   ],
   "engines": {
     "node": ">=18.17.0"
