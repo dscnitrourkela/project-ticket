@@ -10,3 +10,6 @@ import 'firebase/database'
 
 // Initialize Firebase
 //const app = initializeApp(firebaseConfig)
+//export const auth = firebase.auth();
+//export const database = firebase.database();
+//export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
