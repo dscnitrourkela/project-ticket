@@ -1,12 +1,11 @@
 import React from 'react'
+import SignUp from './components/SignUp'
 
 const Homepage = () => {
   return (
-    <div
-      style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-    >
-      Hello there lets start building something
-    </div>
+    <>
+      <SignUp />
+    </>
   )
 }
 
