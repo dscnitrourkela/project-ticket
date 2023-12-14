@@ -11,7 +11,7 @@ const SignUp = () => {
         name:
         <input type="text" placeholder="Enter your name" />
         email:
-        <input type="text" placeholder="Enter your email" />
+        <input type="email" placeholder="Enter your email" />
         password:
         <input type="password" placeholder="Enter your password" />
       </form>
