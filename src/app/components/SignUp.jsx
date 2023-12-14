@@ -1,7 +1,8 @@
-import React from 'react'
 //import { useEffect } from 'react';
 //import { auth, database } from '../path-to-firebase-file/firebase';
 import './signup.css'
+
+import React from 'react'
 
 const SignUp = () => {
   return (

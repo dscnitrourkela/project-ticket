@@ -1,6 +1,6 @@
-// auth.js
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { ref, set } from 'firebase/database'
+
 import { auth, database } from './firebase'
 
 const signUpWithEmailAndPassword = async (email, password, displayName) => {
