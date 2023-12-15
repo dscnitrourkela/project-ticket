@@ -18,7 +18,7 @@ export const signUpWithEmailAndPassword = async (email, password, name) => {
 
     return user
   } catch (error) {
-    console.error('Error signing up:', error.message)
+    //console.error('Error signing up:', error.message)
     throw error
   }
 }

@@ -2,9 +2,10 @@
 //import { useEffect } from 'react';
 //import { auth, database } from '../path-to-firebase-file/firebase';
 import './signup.css'
-import { signUpWithEmailAndPassword } from '../../firebase/signupAuth'
 
 import React, { useState } from 'react'
+
+import { signUpWithEmailAndPassword } from '../../firebase/signupAuth'
 
 const SignUp = () => {
   const [name, setName] = useState('')
@@ -13,10 +14,10 @@ const SignUp = () => {
 
   const handleSignUp = async () => {
     try {
-      const user = await signUpWithEmailAndPassword(email, password, name)
-      window.alert('User signed up successfully:', user)
+      await signUpWithEmailAndPassword(email, password, name)
+      //window.alert('User signed up successfully:', user)
     } catch (error) {
-      window.alert('Error signing up:', error.message)
+      //window.alert('Signup error:', error.message)
     }
   }
 
@@ -32,7 +33,7 @@ const SignUp = () => {
 
   return (
     <div className="signContainer">
-      <form className="sign-form">
+      <div className="sign-form">
         <h1>User signup</h1>
         name:
         <input type="text" placeholder="Enter your name" value={name} onChange={handleNameChange} />
@@ -53,7 +54,7 @@ const SignUp = () => {
         <button type="submit" onClick={handleSignUp}>
           Sign up
         </button>
-      </form>
+      </div>
     </div>
   )
 }
