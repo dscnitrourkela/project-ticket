@@ -3,16 +3,16 @@ import { ref, set } from 'firebase/database'
 
 import { auth, database } from './firebase'
 
-const signUpWithEmailAndPassword = async (email, password, displayName) => {
+export const signUpWithEmailAndPassword = async (email, password, name) => {
   try {
-    // Create user account
+    // Creating user account
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     const user = userCredential.user
 
-    // Set additional user information in the database
+    // adding name to db
     const userRef = ref(database, `users/${user.uid}`)
     await set(userRef, {
-      displayName: displayName || null,
+      name: name || null,
       email: user.email
     })
 
@@ -22,5 +22,3 @@ const signUpWithEmailAndPassword = async (email, password, displayName) => {
     throw error
   }
 }
-
-export { signUpWithEmailAndPassword }

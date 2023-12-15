@@ -21,6 +21,13 @@
   border: 1px solid aqua;
 }
 
+.sign-form button {
+  width: 30%;
+  padding: 1vw 2vw;
+  margin: 20px auto;
+  background-color: #baeeee;
+}
+
 .sign-form h1 {
   text-align: center;
   margin: 10px;
