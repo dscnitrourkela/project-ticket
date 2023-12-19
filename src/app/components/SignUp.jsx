@@ -5,7 +5,11 @@ import './signup.css'
 
 import React, { useState } from 'react'
 
-import { signUpWithEmailAndPassword, signUpWithGoogle } from '../../firebase/signupAuth'
+import {
+  signUpWithEmailAndPassword,
+  signUpWithGitHub,
+  signUpWithGoogle
+} from '../../firebase/signupAuth'
 
 const SignUp = () => {
   const [name, setName] = useState('')
@@ -56,6 +60,9 @@ const SignUp = () => {
         </button>
         <button type="submit" onClick={signUpWithGoogle}>
           Sign up with Google
+        </button>
+        <button type="submit" onClick={signUpWithGitHub}>
+          Sign up with Github
         </button>
       </div>
     </div>

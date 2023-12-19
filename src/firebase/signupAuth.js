@@ -1,5 +1,10 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { ref, set } from 'firebase/database'
+import {
+  createUserWithEmailAndPassword,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup
+} from 'firebase/auth'
+import { get, ref, set } from 'firebase/database'
 
 import { auth, database } from './firebase'
 
@@ -23,6 +28,7 @@ export const signUpWithEmailAndPassword = async (email, password, name) => {
   }
 }
 
+// signup with google function
 export const signUpWithGoogle = async () => {
   try {
     // Configure Google provider
@@ -48,5 +54,19 @@ export const signUpWithGoogle = async () => {
   } catch (error) {
     //console.error('Error signing up with Google:', error.message)
     throw error
+  }
+}
+
+// signup with github function
+export const signUpWithGitHub = async () => {
+  const provider = new GithubAuthProvider()
+
+  try {
+    await signInWithPopup(auth, provider)
+    // Handle the successful sign-up
+    //console.log('User signed up with GitHub:', result.user)
+  } catch (error) {
+    // Handle errors
+    //console.error('Error signing up with GitHub:', error.message)
   }
 }
