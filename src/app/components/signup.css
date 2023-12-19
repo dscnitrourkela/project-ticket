@@ -1,6 +1,7 @@
 .signContainer {
   background-color: #f5c6c6;
   border: 1px solid aqua;
+  margin: 0px;
 }
 
 .sign-form {
@@ -14,7 +15,7 @@
 
 .sign-form input {
   width: 100%;
-  margin: 20px 5px;
+  margin: 15px 5px;
   padding: 10px;
   border-radius: 5px;
   outline: none;
@@ -22,10 +23,15 @@
 }
 
 .sign-form button {
-  width: 30%;
-  padding: 1vw 2vw;
-  margin: 20px auto;
+  padding: 0.5vw 2vw;
+  margin: 10px auto;
   background-color: #baeeee;
+}
+.signupbutton {
+  width: 30%;
+}
+.extsign {
+  width: 60%;
 }
 
 .sign-form h1 {

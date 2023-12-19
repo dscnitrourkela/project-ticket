@@ -55,13 +55,13 @@ const SignUp = () => {
           value={password}
           onChange={handlePasswordChange}
         />
-        <button type="submit" onClick={handleSignUp}>
+        <button className="signupbutton" type="submit" onClick={handleSignUp}>
           Sign up
         </button>
-        <button type="submit" onClick={signUpWithGoogle}>
+        <button className="extsign" type="submit" onClick={signUpWithGoogle}>
           Sign up with Google
         </button>
-        <button type="submit" onClick={signUpWithGitHub}>
+        <button className="extsign" type="submit" onClick={signUpWithGitHub}>
           Sign up with Github
         </button>
       </div>
