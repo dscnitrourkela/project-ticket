@@ -1,0 +1,40 @@
+.signContainer {
+  background-color: #f5c6c6;
+  border: 1px solid aqua;
+  margin: 0px;
+}
+
+.sign-form {
+  border: 1px solid aqua;
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  margin: 3vw auto;
+  padding: 2vw 4vw;
+}
+
+.sign-form input {
+  width: 100%;
+  margin: 15px 5px;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid aqua;
+}
+
+.sign-form button {
+  padding: 0.5vw 2vw;
+  margin: 10px auto;
+  background-color: #baeeee;
+}
+.signupbutton {
+  width: 30%;
+}
+.extsign {
+  width: 60%;
+}
+
+.sign-form h1 {
+  text-align: center;
+  margin: 10px;
+}
