@@ -1,11 +1,11 @@
 import React from 'react'
 
-import SignUp from './components/SignUp'
+import CreateTicket from './components/CreateTicket'
 
 const Homepage = () => {
   return (
     <>
-      <SignUp />
+      <CreateTicket />
     </>
   )
 }
