@@ -23,6 +23,7 @@
 }
 
 .sign-form button {
+  cursor: pointer;
   padding: 0.5vw 2vw;
   margin: 10px auto;
   background-color: #baeeee;

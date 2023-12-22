@@ -1,11 +1,16 @@
 import React from 'react'
 
-import CreateTicket from './components/CreateTicket'
+import { Navbar } from './components/Navbar'
+//import CreateTicket from './components/CreateTicket'
+import SignUp from './components/SignUp'
 
-const Homepage = () => {
+//import Link from 'next/link'
+
+function Homepage() {
   return (
     <>
-      <CreateTicket />
+      <Navbar />
+      <SignUp />
     </>
   )
 }
