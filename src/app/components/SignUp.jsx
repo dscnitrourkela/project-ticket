@@ -3,6 +3,7 @@
 //import { auth, database } from '../path-to-firebase-file/firebase';
 import './signup.css'
 
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 import {
@@ -15,10 +16,12 @@ const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useRouter()
 
   const handleSignUp = async () => {
     try {
       await signUpWithEmailAndPassword(email, password, name)
+      navigate('/myticket')
       //window.alert('User signed up successfully:', user)
     } catch (error) {
       //window.alert('Signup error:', error.message)
