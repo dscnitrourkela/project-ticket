@@ -55,7 +55,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { database } from '../../firebase/firebase'
-import Modal from '../components/Modal'
+import Modal from '../components/modal'
 import { Navbar } from '../components/Navbar'
 
 const TicketContainer = styled.div`
