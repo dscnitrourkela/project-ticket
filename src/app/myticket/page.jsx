@@ -51,12 +51,14 @@
 import { push, ref } from 'firebase/database'
 import html2canvas from 'html2canvas'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { database } from '../../firebase/firebase'
 import Modal from '../components/modal'
 import { Navbar } from '../components/Navbar'
+import { AuthContext } from '../context/AuthContext'
 
 const TicketContainer = styled.div`
   display: flex;
@@ -103,9 +105,17 @@ const GenerateButton = styled.button`
 `
 
 const MyTicketPage = () => {
+  const { currentUser } = useContext(AuthContext)
   const [ticketInfo, setTicketInfo] = useState({ name: '', teamName: '', email: '' })
   const [showModal, setShowModal] = useState(false)
   const [ticketImage, setTicketImage] = useState('')
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!currentUser) {
+      router.push('/')
+    }
+  }, [currentUser, router])
 
   const handleChange = (e) => {
     setTicketInfo({ ...ticketInfo, [e.target.name]: e.target.value })
@@ -118,12 +128,13 @@ const MyTicketPage = () => {
       setTicketImage(image)
       setShowModal(true)
 
-      // Optional: Store in Firebase
-      const ticketRef = ref(database, 'tickets')
-      push(ticketRef, {
-        ...ticketInfo,
-        ticketImage: image
-      })
+      if (currentUser) {
+        const ticketRef = ref(database, `tickets/${currentUser.uid}`)
+        push(ticketRef, {
+          ...ticketInfo,
+          ticketImage: image
+        })
+      }
     })
   }
 
@@ -163,7 +174,9 @@ const MyTicketPage = () => {
       </TicketContainer>
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <Image src={ticketImage} alt="Generated Ticket" width={1000} height={500} />
+        {ticketImage && (
+          <Image src={ticketImage} alt="Generated Ticket" width={1000} height={500} unoptimized />
+        )}
       </Modal>
     </>
   )

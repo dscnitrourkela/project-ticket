@@ -16,15 +16,25 @@ const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const navigate = useRouter()
+  const router = useRouter()
 
   const handleSignUp = async () => {
     try {
       await signUpWithEmailAndPassword(email, password, name)
-      navigate('/myticket')
+      router.push('/myticket')
       //window.alert('User signed up successfully:', user)
     } catch (error) {
       //window.alert('Signup error:', error.message)
+    }
+  }
+  const handleGoogleSignup = async () => {
+    try {
+      const user = await signUpWithGoogle()
+      if (user) {
+        router.push('/myticket')
+      }
+    } catch (error) {
+      console.error('Signup failed:', error.message)
     }
   }
 
@@ -61,7 +71,7 @@ const SignUp = () => {
         <button className="signupbutton" type="submit" onClick={handleSignUp}>
           Sign up
         </button>
-        <button className="extsign" type="submit" onClick={signUpWithGoogle}>
+        <button className="extsign" type="submit" onClick={handleGoogleSignup}>
           Sign up with Google
         </button>
         <button className="extsign" type="submit" onClick={signUpWithGitHub}>

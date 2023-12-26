@@ -12,7 +12,7 @@
     ],
     "max-len": ["error", 100],
     "no-param-reassign": "error",
-    "no-console": "warn",
+    "no-console": "off",
     "no-alert": "error",
     "quotes": ["error", "single"],
     "simple-import-sort/imports": "error",
