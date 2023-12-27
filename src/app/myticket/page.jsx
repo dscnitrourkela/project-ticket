@@ -108,8 +108,9 @@ const MyTicketPage = () => {
   const { currentUser } = useContext(AuthContext)
   const [ticketInfo, setTicketInfo] = useState({ name: '', teamName: '', email: '' })
   const [existingTicket, setExistingTicket] = useState(null)
+  const [existingTicketKey, setExistingTicketKey] = useState(null)
   const [showModal, setShowModal] = useState(false)
-  const [ticketImage, setTicketImage] = useState('')
+  const [editMode, setEditMode] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -118,13 +119,18 @@ const MyTicketPage = () => {
       return
     }
 
-    // Fetch existing ticket
     const ticketsRef = ref(database, `tickets/${currentUser.uid}`)
     get(ticketsRef).then((snapshot) => {
       if (snapshot.exists()) {
         const tickets = snapshot.val()
         const lastTicketKey = Object.keys(tickets).pop()
         setExistingTicket(tickets[lastTicketKey])
+        setExistingTicketKey(lastTicketKey)
+        setTicketInfo({
+          name: tickets[lastTicketKey].name,
+          teamName: tickets[lastTicketKey].teamName,
+          email: tickets[lastTicketKey].email
+        })
       }
     })
   }, [currentUser, router])
@@ -142,7 +148,10 @@ const MyTicketPage = () => {
 
       if (currentUser) {
         const ticketRef = ref(database, `tickets/${currentUser.uid}`)
-        push(ticketRef, {
+        const updateRef = existingTicketKey
+          ? ref(database, `tickets/${currentUser.uid}/${existingTicketKey}`)
+          : push(ticketRef)
+        update(updateRef, {
           ...ticketInfo,
           ticketImage: image
         })
@@ -153,11 +162,19 @@ const MyTicketPage = () => {
   return (
     <>
       <Navbar />
-      {existingTicket ? (
-        <div>
-          <h2>Your Existing Ticket</h2>
-          <Image src={existingTicket.ticketImage} alt="Existing Ticket" width={500} height={250} />
-        </div>
+      {existingTicket && !editMode ? (
+        <>
+          <button onClick={() => setShowModal(true)}>View Ticket</button>
+          <button onClick={() => setEditMode(true)}>Edit Ticket</button>
+          <Modal show={showModal} onClose={() => setShowModal(false)}>
+            <Image
+              src={existingTicket.ticketImage}
+              alt="Existing Ticket"
+              width={500}
+              height={250}
+            />
+          </Modal>
+        </>
       ) : (
         <TicketContainer>
           <FormSection>
@@ -182,7 +199,9 @@ const MyTicketPage = () => {
               value={ticketInfo.email}
               onChange={handleChange}
             />
-            <GenerateButton onClick={generateTicket}>Generate Ticket</GenerateButton>
+            <GenerateButton onClick={generateTicket}>
+              {existingTicket ? 'Update Ticket' : 'Generate Ticket'}
+            </GenerateButton>
           </FormSection>
           <TicketPreview id="ticketPreview">
             <h2>{ticketInfo.name || 'Your Name'}</h2>
@@ -191,12 +210,6 @@ const MyTicketPage = () => {
           </TicketPreview>
         </TicketContainer>
       )}
-
-      <Modal show={showModal} onClose={() => setShowModal(false)}>
-        {ticketImage && (
-          <Image src={ticketImage} alt="Generated Ticket" width={1000} height={500} unoptimized />
-        )}
-      </Modal>
     </>
   )
 }
