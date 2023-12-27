@@ -25,7 +25,7 @@ const NavItem = styled.li`
   }
 
   a {
-    color: inherit; // Ensures the link color matches the NavItem color
+    color: inherit;
     text-decoration: none;
   }
 `
@@ -42,7 +42,7 @@ const SignOutButton = styled.button`
 `
 
 export const Navbar = () => {
-  const { user } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
   const handleSignOut = () => {
     signOut(auth).catch((error) => console.error('Sign out error:', error))
@@ -53,12 +53,12 @@ export const Navbar = () => {
       <NavItem>
         <a href="/">Home</a>
       </NavItem>
-      {!user && (
+      {!currentUser && (
         <NavItem>
           <a href="/signup">Signup</a>
         </NavItem>
       )}
-      {user && (
+      {currentUser && (
         <>
           <NavItem>
             <a href="/myticket">My Ticket</a>
