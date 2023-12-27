@@ -48,7 +48,7 @@
 // }
 
 // export default CreateTicket
-import { get, push, ref } from 'firebase/database'
+import { get, push, ref, update } from 'firebase/database'
 import html2canvas from 'html2canvas'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -106,11 +106,15 @@ const GenerateButton = styled.button`
 
 const MyTicketPage = () => {
   const { currentUser } = useContext(AuthContext)
-  const [ticketInfo, setTicketInfo] = useState({ name: '', teamName: '', email: '' })
-  const [existingTicket, setExistingTicket] = useState(null)
-  const [existingTicketKey, setExistingTicketKey] = useState(null)
+  const [ticketInfo, setTicketInfo] = useState({
+    name: '',
+    teamName: '',
+    email: '',
+    ticketImage: ''
+  })
   const [showModal, setShowModal] = useState(false)
   const [editMode, setEditMode] = useState(false)
+  const [existingTicketKey, setExistingTicketKey] = useState(null)
   const router = useRouter()
 
   useEffect(() => {
@@ -119,18 +123,20 @@ const MyTicketPage = () => {
       return
     }
 
+    // Fetch existing ticket
     const ticketsRef = ref(database, `tickets/${currentUser.uid}`)
     get(ticketsRef).then((snapshot) => {
       if (snapshot.exists()) {
         const tickets = snapshot.val()
         const lastTicketKey = Object.keys(tickets).pop()
-        setExistingTicket(tickets[lastTicketKey])
-        setExistingTicketKey(lastTicketKey)
         setTicketInfo({
           name: tickets[lastTicketKey].name,
           teamName: tickets[lastTicketKey].teamName,
-          email: tickets[lastTicketKey].email
+          email: tickets[lastTicketKey].email,
+          ticketImage: tickets[lastTicketKey].ticketImage
         })
+        setExistingTicketKey(lastTicketKey)
+        setShowModal(true)
       }
     })
   }, [currentUser, router])
@@ -143,8 +149,6 @@ const MyTicketPage = () => {
     const ticketElement = document.getElementById('ticketPreview')
     html2canvas(ticketElement).then((canvas) => {
       const image = canvas.toDataURL('image/png')
-      setTicketImage(image)
-      setShowModal(true)
 
       if (currentUser) {
         const ticketRef = ref(database, `tickets/${currentUser.uid}`)
@@ -154,6 +158,10 @@ const MyTicketPage = () => {
         update(updateRef, {
           ...ticketInfo,
           ticketImage: image
+        }).then(() => {
+          setTicketInfo({ ...ticketInfo, ticketImage: image })
+          setShowModal(true)
+          setEditMode(false)
         })
       }
     })
@@ -162,20 +170,7 @@ const MyTicketPage = () => {
   return (
     <>
       <Navbar />
-      {existingTicket && !editMode ? (
-        <>
-          <button onClick={() => setShowModal(true)}>View Ticket</button>
-          <button onClick={() => setEditMode(true)}>Edit Ticket</button>
-          <Modal show={showModal} onClose={() => setShowModal(false)}>
-            <Image
-              src={existingTicket.ticketImage}
-              alt="Existing Ticket"
-              width={500}
-              height={250}
-            />
-          </Modal>
-        </>
-      ) : (
+      {editMode ? (
         <TicketContainer>
           <FormSection>
             <Input
@@ -200,7 +195,7 @@ const MyTicketPage = () => {
               onChange={handleChange}
             />
             <GenerateButton onClick={generateTicket}>
-              {existingTicket ? 'Update Ticket' : 'Generate Ticket'}
+              {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
             </GenerateButton>
           </FormSection>
           <TicketPreview id="ticketPreview">
@@ -209,6 +204,21 @@ const MyTicketPage = () => {
             <p>{ticketInfo.email || 'Your Email'}</p>
           </TicketPreview>
         </TicketContainer>
+      ) : (
+        <>
+          <button onClick={() => setEditMode(true)}>Edit Ticket</button>
+          <Modal show={showModal} onClose={() => setShowModal(false)}>
+            {ticketInfo.ticketImage && (
+              <Image
+                src={ticketInfo.ticketImage}
+                alt="Generated Ticket"
+                width={1000}
+                height={500}
+                unoptimized
+              />
+            )}
+          </Modal>
+        </>
       )}
     </>
   )
