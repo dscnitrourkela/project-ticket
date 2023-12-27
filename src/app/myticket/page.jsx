@@ -48,7 +48,7 @@
 // }
 
 // export default CreateTicket
-import { push, ref } from 'firebase/database'
+import { get, push, ref } from 'firebase/database'
 import html2canvas from 'html2canvas'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -107,6 +107,7 @@ const GenerateButton = styled.button`
 const MyTicketPage = () => {
   const { currentUser } = useContext(AuthContext)
   const [ticketInfo, setTicketInfo] = useState({ name: '', teamName: '', email: '' })
+  const [existingTicket, setExistingTicket] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const [ticketImage, setTicketImage] = useState('')
   const router = useRouter()
@@ -114,7 +115,18 @@ const MyTicketPage = () => {
   useEffect(() => {
     if (!currentUser) {
       router.push('/')
+      return
     }
+
+    // Fetch existing ticket
+    const ticketsRef = ref(database, `tickets/${currentUser.uid}`)
+    get(ticketsRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const tickets = snapshot.val()
+        const lastTicketKey = Object.keys(tickets).pop()
+        setExistingTicket(tickets[lastTicketKey])
+      }
+    })
   }, [currentUser, router])
 
   const handleChange = (e) => {
@@ -141,37 +153,44 @@ const MyTicketPage = () => {
   return (
     <>
       <Navbar />
-      <TicketContainer>
-        <FormSection>
-          <Input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={ticketInfo.name}
-            onChange={handleChange}
-          />
-          <Input
-            type="text"
-            name="teamName"
-            placeholder="Team Name"
-            value={ticketInfo.teamName}
-            onChange={handleChange}
-          />
-          <Input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={ticketInfo.email}
-            onChange={handleChange}
-          />
-          <GenerateButton onClick={generateTicket}>Generate Ticket</GenerateButton>
-        </FormSection>
-        <TicketPreview id="ticketPreview">
-          <h2>{ticketInfo.name || 'Your Name'}</h2>
-          <p>{ticketInfo.teamName || 'Your Team Name'}</p>
-          <p>{ticketInfo.email || 'Your Email'}</p>
-        </TicketPreview>
-      </TicketContainer>
+      {existingTicket ? (
+        <div>
+          <h2>Your Existing Ticket</h2>
+          <Image src={existingTicket.ticketImage} alt="Existing Ticket" width={500} height={250} />
+        </div>
+      ) : (
+        <TicketContainer>
+          <FormSection>
+            <Input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={ticketInfo.name}
+              onChange={handleChange}
+            />
+            <Input
+              type="text"
+              name="teamName"
+              placeholder="Team Name"
+              value={ticketInfo.teamName}
+              onChange={handleChange}
+            />
+            <Input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={ticketInfo.email}
+              onChange={handleChange}
+            />
+            <GenerateButton onClick={generateTicket}>Generate Ticket</GenerateButton>
+          </FormSection>
+          <TicketPreview id="ticketPreview">
+            <h2>{ticketInfo.name || 'Your Name'}</h2>
+            <p>{ticketInfo.teamName || 'Your Team Name'}</p>
+            <p>{ticketInfo.email || 'Your Email'}</p>
+          </TicketPreview>
+        </TicketContainer>
+      )}
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         {ticketImage && (
