@@ -1,4 +1,3 @@
-// Import the necessary functions from the Firebase library
 'use client'
 import { push, ref } from 'firebase/database'
 import React, { useState } from 'react'

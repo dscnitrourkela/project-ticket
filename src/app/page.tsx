@@ -1,9 +1,11 @@
+'use client'
+import { AuthProvider } from './context/AuthContext'
 import Homepage from './Homepage'
 
 export default function Home() {
   return (
-    <main>
+    <AuthProvider>
       <Homepage />
-    </main>
+    </AuthProvider>
   )
 }
