@@ -178,7 +178,7 @@ const MyTicketPage = () => {
                 <ClrButton
                   key={c}
                   style={{ backgroundColor: c }}
-                  onChange={setTicketInfo({ ...ticketInfo, bgcolor: c })}
+                  onClick={() => setTicketInfo({ ...ticketInfo, bgcolor: c })}
                 />
               ))}
             </ColorArray>
