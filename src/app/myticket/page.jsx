@@ -11,6 +11,7 @@ import { database } from '../../firebase/firebase'
 import Modal from '../components/modal'
 import { Navbar } from '../components/Navbar'
 import { AuthContext } from '../context/AuthContext'
+//import { color } from 'html2canvas/dist/types/css/types/color'
 
 const TicketContainer = styled.div`
   display: flex;
@@ -25,6 +26,10 @@ const FormSection = styled.div`
   flex: 1;
   margin-right: 20px;
   padding: 2vw 4vw;
+  background: linear-gradient(0deg, #292929, #bd00ff),
+    linear-gradient(212.47deg, #bd00ff 0%, rgba(0, 0, 0, 0) 44.37%);
+  border-image-source: linear-gradient(212.47deg, #bd00ff 0%, rgba(0, 0, 0, 0) 44.37%),
+    linear-gradient(0deg, #292929, #292929);
   border-radius: 10px;
 `
 
@@ -44,11 +49,23 @@ const TicketPreview = styled.div`
   border-radius: 20px;
   min-height: 200px;
 `
+const ColorArray = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+const ClrButton = styled.span`
+  height: 20px;
+  width: 20px;
+  margin: 2vw 1vw;
+  cursor: pointer;
+  border-radius: 5px;
+`
 
 const GenerateButton = styled.button`
   height: 50px;
   width: 100%;
-  background-color: #4caf50;
+  background-color: #bc00fe;
   color: white;
   padding: 15px 32px;
   text-align: center;
@@ -61,6 +78,7 @@ const GenerateButton = styled.button`
 `
 
 const MyTicketPage = () => {
+  const colors = ['#206EA6', '#4C1077', '#BBD3D9', '#FECF29', '#14F195']
   const { currentUser } = useContext(AuthContext)
   const [ticketInfo, setTicketInfo] = useState({
     name: '',
@@ -130,7 +148,7 @@ const MyTicketPage = () => {
       <Navbar />
       {editMode ? (
         <TicketContainer>
-          <FormSection style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#ffffff' }}>
+          <FormSection>
             <Input
               type="text"
               name="name"
@@ -152,8 +170,18 @@ const MyTicketPage = () => {
               value={ticketInfo.email}
               onChange={handleChange}
             />
+            <></>
             choose Background:
-            <Input type="color" name="bgcolor" value={ticketInfo.bgcolor} onChange={handleChange} />
+            <Input type="color" name="bgcolor" value={ticketInfo.bgcolor} onClick={handleChange} />
+            <ColorArray>
+              {colors.map((c) => (
+                <ClrButton
+                  key={c}
+                  style={{ backgroundColor: c }}
+                  onChange={setTicketInfo({ ...ticketInfo, bgcolor: c })}
+                />
+              ))}
+            </ColorArray>
             <GenerateButton onClick={generateTicket}>
               {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
             </GenerateButton>
