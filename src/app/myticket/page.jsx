@@ -1,53 +1,5 @@
 /* eslint-disable max-len */
 'use client'
-// import React, { useState } from 'react'
-
-// import { createThis } from '../../firebase/createTicket.js'
-// import { Navbar } from '../components/Navbar'
-
-// const CreateTicket = () => {
-//   const [name, setName] = useState('')
-//   const [teamName, setTeamName] = useState('')
-//   const [email, setEmail] = useState('')
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault()
-//     createThis(name, teamName, email)
-//     // console.log('Ticket Created:', { name, teamName, email })
-//     setName('')
-//     setTeamName('')
-//     setEmail('')
-//   }
-
-//   return (
-//     <>
-//       <Navbar />
-
-//       <div className="form-cont">
-//         <form onSubmit={handleSubmit}>
-//           <label>
-//             Name:
-//             <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-//           </label>
-//           <br />
-//           <label>
-//             Team Name:
-//             <input type="text" value={teamName} onChange={(e) => setTeamName(e.target.value)} />
-//           </label>
-//           <br />
-//           <label>
-//             Email ID:
-//             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-//           </label>
-//           <br />
-//           <button type="submit">Create Ticket</button>
-//         </form>
-//       </div>
-//     </>
-//   )
-// }
-
-// export default CreateTicket
 import { get, push, ref, update } from 'firebase/database'
 import html2canvas from 'html2canvas'
 import Image from 'next/image'
@@ -72,11 +24,13 @@ const FormSection = styled.div`
   flex-direction: column;
   flex: 1;
   margin-right: 20px;
+  padding: 2vw 4vw;
+  border-radius: 10px;
 `
 
 const Input = styled.input`
   padding: 10px;
-  margin-bottom: 10px;
+  margin: 7px 0px;
   border-radius: 4px;
   border: 1px solid #ccc;
 `
@@ -86,6 +40,8 @@ const TicketPreview = styled.div`
   border: 1px solid black;
   padding: 20px;
   margin: 10px;
+  padding: 2vw 4vw;
+  border-radius: 20px;
   min-height: 200px;
 `
 
@@ -110,6 +66,7 @@ const MyTicketPage = () => {
     name: '',
     teamName: '',
     email: '',
+    bgcolor: '',
     ticketImage: ''
   })
   const [showModal, setShowModal] = useState(false)
@@ -133,6 +90,7 @@ const MyTicketPage = () => {
           name: tickets[lastTicketKey].name,
           teamName: tickets[lastTicketKey].teamName,
           email: tickets[lastTicketKey].email,
+          bgcolor: tickets[lastTicketKey].bgcolor,
           ticketImage: tickets[lastTicketKey].ticketImage
         })
         setExistingTicketKey(lastTicketKey)
@@ -172,7 +130,7 @@ const MyTicketPage = () => {
       <Navbar />
       {editMode ? (
         <TicketContainer>
-          <FormSection>
+          <FormSection style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#ffffff' }}>
             <Input
               type="text"
               name="name"
@@ -194,11 +152,17 @@ const MyTicketPage = () => {
               value={ticketInfo.email}
               onChange={handleChange}
             />
+            choose Background:
+            <Input type="color" name="bgcolor" value={ticketInfo.bgcolor} onChange={handleChange} />
             <GenerateButton onClick={generateTicket}>
               {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
             </GenerateButton>
           </FormSection>
-          <TicketPreview id="ticketPreview">
+
+          <TicketPreview
+            id="ticketPreview"
+            style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#ffffff' }}
+          >
             <h2>{ticketInfo.name || 'Your Name'}</h2>
             <p>{ticketInfo.teamName || 'Your Team Name'}</p>
             <p>{ticketInfo.email || 'Your Email'}</p>
