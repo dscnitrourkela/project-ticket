@@ -52,16 +52,16 @@ const SignUp = () => {
     <div className="signContainer">
       <div className="sign-form">
         <h1>User signup</h1>
-        name:
+        Your Name
         <input type="text" placeholder="Enter your name" value={name} onChange={handleNameChange} />
-        email:
+        Email
         <input
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={handleEmailChange}
         />
-        password:
+        Password
         <input
           type="password"
           placeholder="Enter your password"

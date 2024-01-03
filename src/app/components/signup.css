@@ -1,16 +1,38 @@
 .signContainer {
-  background-color: #f5c6c6;
-  border: 1px solid aqua;
   margin: 0px;
+  width: 784.65px;
+  height: 1010px;
+  border-radius: 20px;
+  border: 2.5px solid;
+  border-radius: 20px;
+  border: 2.5px solid #393939;
+  background: linear-gradient(
+    180deg,
+    rgba(156, 154, 255, 0.1) 0%,
+    rgba(234, 173, 255, 0.08) 123.17%
+  );
+  box-shadow:
+    -1px 2px 9.8px 0px rgba(255, 255, 255, 0.25) inset,
+    0px 18px 59.6px 0px rgba(204, 60, 255, 0.1) inset;
+  backdrop-filter: blur(40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sign-form {
-  border: 1px solid aqua;
   display: flex;
   flex-direction: column;
   width: 30vw;
   margin: 3vw auto;
   padding: 2vw 4vw;
+  display: inline-flex;
+  height: 943px;
+  align-items: center;
+  justify-content: center;
+  width: Hug (674px);
+  height: Fixed (943px);
+  gap: 30px;
 }
 
 .sign-form input {
@@ -30,9 +52,22 @@
 }
 .signupbutton {
   width: 30%;
+  width: Fixed (229px);
+  height: Hug (46px);
+  padding: 12px;
+  border-radius: 36px;
+  gap: 10px;
+  background: linear-gradient(0deg, #bc00fe, #bc00fe),
+    linear-gradient(0deg, rgba(232, 142, 255, 0.2), rgba(232, 142, 255, 0.2));
 }
 .extsign {
-  width: 60%;
+  width: Fixed (607px);
+  height: Hug (56.03px);
+  padding: 12px;
+  border-radius: 11px;
+  gap: 10px;
+  background: linear-gradient(0deg, rgba(225, 225, 225, 0.06), rgba(225, 225, 225, 0.06)),
+    linear-gradient(0deg, rgba(232, 142, 255, 0.2), rgba(232, 142, 255, 0.2));
 }
 
 .sign-form h1 {
