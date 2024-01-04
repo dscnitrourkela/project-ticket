@@ -2,6 +2,7 @@ import { signOut } from 'firebase/auth'
 import React, { useContext } from 'react'
 import '../styles/globals.css'
 import styled from 'styled-components'
+import { GlobalButton } from './shared/GlobalButton'
 
 import { auth } from '../../firebase/firebase'
 import { AuthContext } from '../context/AuthContext'
@@ -35,28 +36,6 @@ const NavItem = styled.li`
   }
 `
 
-const SignOutButton = styled.button`
-  background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)),
-    linear-gradient(97.1deg, rgba(247, 225, 255, 0.38) 11.37%, rgba(218, 115, 255, 0.38) 102.95%);
-
-  border: none;
-  color: white;
-  cursor: pointer;
-  border: 1.85px solid;
-  border-radius: 35px;
-  padding: 12px 60px;
-
-  border-image-source: linear-gradient(
-    97.1deg,
-    rgba(247, 225, 255, 0.38) 11.37%,
-    rgba(218, 115, 255, 0.38) 102.95%
-  );
-
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
 export const Navbar = () => {
   const { currentUser } = useContext(AuthContext)
 
@@ -80,9 +59,7 @@ export const Navbar = () => {
             <a href="/myticket">My Ticket</a>
           </NavItem>
           <NavItem>
-            <SignOutButton onClick={handleSignOut} className="global-buttons">
-              Sign Out
-            </SignOutButton>
+            <GlobalButton onClick={handleSignOut}>Sign Out</GlobalButton>
           </NavItem>
         </>
       )}
