@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import '../styles/globals.css'
+//import { TicketPage } from './ticket.styles.jsx'
 
 import { database } from '../../firebase/firebase'
 import Modal from '../components/modal'
