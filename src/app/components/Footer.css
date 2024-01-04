@@ -25,10 +25,13 @@
     flex-direction:row;
     flex-wrap:wrap;
     gap: 20px;
+    color:#A1A1A1;
+    font-family: Prompt;
 }
-.sb__footer-below-links p{
-    color: white;
+.sb__footer-below-links a{
     text-decoration: none;
+    color:#A1A1A1;
+    font-family: Prompt;
 }
 .socialmedia{
     display:flex;

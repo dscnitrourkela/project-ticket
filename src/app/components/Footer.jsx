@@ -12,7 +12,8 @@ export const Footer = () => {
       <Image
         src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
         alt=""
-        width="100%"
+        width={1200}
+        height={5}
       />
       <div className="sb__footer section__padding">
         <div className="sb__footer-links">
@@ -25,11 +26,11 @@ export const Footer = () => {
             </a>
             <a href="/terms">
               <div>
-                <p>Terms & Conditions</p>
+                <p>Terms and Conditions</p>
               </div>
             </a>
-            <div>
-              <p>Architected with by HackNITR Team</p>
+            <div className="arc">
+              <p>Architected with ❤️ by HackNITR Team</p>
             </div>
           </div>
           <div className="sb__footer-links-div">
@@ -39,25 +40,40 @@ export const Footer = () => {
                 <Image
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_cp028c.png"
                   alt=""
+                  width={120}
+                  height={20}
                 />
               </p>
-              {/* <p><Image src="https://res.cloudinary.com/dra96qhox/image/upload/v1704293636/TwitterX_y0nx7i.png" alt=""/></p> */}
+              <p>
+                <Image
+                  src="https://res.cloudinary.com/dra96qhox/image/upload/v1704344747/twitter_jxdedq.png"
+                  alt=""
+                  width={100}
+                  height={20}
+                />
+              </p>
               <p>
                 <Image
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_1_odf6vh.png"
                   alt=""
+                  width={100}
+                  height={20}
                 />
               </p>
               <p>
                 <Image
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_2_scrlxt.png"
                   alt=""
+                  width={100}
+                  height={20}
                 />
               </p>
               <p>
                 <Image
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_3_mwqut0.png"
                   alt=""
+                  width={100}
+                  height={20}
                 />
               </p>
             </div>
