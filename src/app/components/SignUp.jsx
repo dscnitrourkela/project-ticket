@@ -51,17 +51,20 @@ const SignUp = () => {
   return (
     <div className="signContainer">
       <div className="sign-form">
-        <h1>User signup</h1>
-        Your Name
+        <div className="switch-btn">
+          <div className="signup">Signup</div>&nbsp;
+          <div className="signin">Signin</div>
+        </div>
+        <p className="form-header">Your Name</p>
         <input type="text" placeholder="Enter your name" value={name} onChange={handleNameChange} />
-        Email
+        <div className="form-header">Email</div>
         <input
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={handleEmailChange}
         />
-        Password
+        <p className="form-header">Password</p>
         <input
           type="password"
           placeholder="Enter your password"
@@ -69,7 +72,7 @@ const SignUp = () => {
           onChange={handlePasswordChange}
         />
         <button className="signupbutton" type="submit" onClick={handleSignUp}>
-          Sign up
+          <p className="form-header">Sign up</p>
         </button>
         <button className="extsign" type="submit" onClick={handleGoogleSignup}>
           Sign up with Google
@@ -77,6 +80,9 @@ const SignUp = () => {
         <button className="extsign" type="submit" onClick={signUpWithGitHub}>
           Sign up with Github
         </button>
+        <div className="footer">
+          Already have an account ? &nbsp; <span> Sign in </span>
+        </div>
       </div>
     </div>
   )
