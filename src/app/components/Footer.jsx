@@ -9,13 +9,13 @@ import React from 'react'
 export const Footer = () => {
   return (
     <div className="footer">
-      <Image
+      {/* <Image
         className="line"
         src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
         alt=""
         width={1200}
         height={5}
-      />
+      /> */}
       <div className="sb__footer section__padding">
         <div className="sb__footer-links">
           {/* <hr></hr> */}
