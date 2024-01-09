@@ -42,7 +42,7 @@ export const Footer = () => {
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_cp028c.png"
                   alt=""
                   width={120}
-                  height={20}
+                  height={19}
                 />
               </p>
               <p>
@@ -50,7 +50,7 @@ export const Footer = () => {
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704344747/twitter_jxdedq.png"
                   alt=""
                   width={120}
-                  height={20}
+                  height={19}
                 />
               </p>
               <p>
@@ -58,7 +58,7 @@ export const Footer = () => {
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_1_odf6vh.png"
                   alt=""
                   width={120}
-                  height={20}
+                  height={19}
                 />
               </p>
               <p>
@@ -66,7 +66,7 @@ export const Footer = () => {
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_2_scrlxt.png"
                   alt=""
                   width={120}
-                  height={20}
+                  height={19}
                 />
               </p>
               <p>
@@ -74,7 +74,7 @@ export const Footer = () => {
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_3_mwqut0.png"
                   alt=""
                   width={120}
-                  height={20}
+                  height={19}
                 />
               </p>
             </div>

@@ -1,3 +1,5 @@
+import './navbar.css'
+
 import { signOut } from 'firebase/auth'
 import Image from 'next/image'
 import React, { useContext } from 'react'
@@ -8,18 +10,22 @@ import { AuthContext } from '../context/AuthContext'
 
 const StyledNavbar = styled.nav`
   padding: 2%;
-  // padding-top:9%;
-  padding-left: 8%;
+  padding-top: 5%;
+  padding-left: 25%;
+  padding-right: 25%;
   background-color: #04040d;
-  overflow: hidden;
+  // overflow: ;
   font-family: Arial, sans-serif;
+  // display: inline-block;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `
 
 const NavItem = styled.li`
-  float: left;
+  box-sizing: border-box;
+  // float: left;
   display: flex;
+  margin: 3%;
   color: white;
   text-align: center;
   padding: 14px 16px;
@@ -39,6 +45,10 @@ const NavTitle = styled.div`
   font-size: 30px;
   font-weight: bold;
 `
+// const NavNew = styled.div`
+//   position:relative;
+//   // overflow:hidden;
+// `
 const SignOutButton = styled.button`
   width: 150px;
   height: 50px;
@@ -75,7 +85,8 @@ export const Navbar = () => {
     <StyledNavbar>
       <NavItem>
         <Image
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704704471/Component_6_yxzutx.png"
+          className="logo"
+          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704780097/logo_fmxouh.png"
           alt=""
           width={70}
           height={70}
@@ -83,10 +94,46 @@ export const Navbar = () => {
       </NavItem>
       <NavItem>
         <Image
+          className="horizontal_c"
+          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+          alt=""
+          width={800}
+          height={2}
+        />
+      </NavItem>
+      <NavItem>
+        <Image
+          className="horizontal_d"
+          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+          alt=""
+          width={5}
+          height={2}
+        />
+      </NavItem>
+      <NavItem>
+        <Image
           src="https://res.cloudinary.com/dra96qhox/image/upload/v1704775140/Line_48_qqi6yv.png"
           alt=""
           width={2}
-          height={100}
+          height={150}
+        />
+      </NavItem>
+      <NavItem>
+        <Image
+          className="horizontal_d"
+          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+          alt=""
+          width={5}
+          height={2}
+        />
+      </NavItem>
+      <NavItem>
+        <Image
+          className="horizontal_a"
+          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+          alt=""
+          width={5}
+          height={2}
         />
       </NavItem>
       {!currentUser && (
@@ -96,12 +143,22 @@ export const Navbar = () => {
       )}
       <NavItem>
         <Image
+          className="horizontal_b"
+          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+          alt=""
+          width={5}
+          height={2}
+        />
+      </NavItem>
+      <NavItem>
+        <Image
           src="https://res.cloudinary.com/dra96qhox/image/upload/v1704775140/Line_48_qqi6yv.png"
           alt=""
           width={2}
-          height={100}
+          height={150}
         />
       </NavItem>
+
       <NavItem Sign>
         <Image
           src="https://res.cloudinary.com/dra96qhox/image/upload/v1704775140/Line_48_qqi6yv.png"
