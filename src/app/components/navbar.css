@@ -1,11 +1,11 @@
-.navbar {
-  background-color: aqua;
+ .navbar {
+  background-color: black;
   display: flex;
   flex-direction: row;
   justify-content: end;
 }
 
-.nav-link {
+/*.nav-link {
   cursor: pointer;
   border: 1px solid white;
   padding: 1vw 2vw;
@@ -21,4 +21,43 @@
 
 li {
   list-style: none;
+} */
+button {
+  width: 200px;
+  height: 62px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 17px;
+  border-radius: 5rem;
+  border: none;
+  position: relative;
+  background: #100720;
+  transition: 0.1s;
+  border-radius: 2.23356rem;
+border: 1.848px solid #F7E1FF;
+
+background: rgba(217, 217, 217, 0.10);
+
+box-shadow: 0px -3.697px 10.66px 0px rgba(225, 140, 255, 0.35) inset;
+backdrop-filter: blur(7.702038764953613px);
+
+}
+
+button::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  filter: blur(15px);
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+button:active {
+  transform: scale(0.9) rotate(3deg);
+  background: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );
+  background: #F7E1FF;
+  color: black;
+  transition: 0.5s;
 }

@@ -10,6 +10,7 @@ export const Footer = () => {
   return (
     <div className="footer">
       <Image
+        className="line"
         src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
         alt=""
         width={1200}
@@ -30,7 +31,7 @@ export const Footer = () => {
               </div>
             </a>
             <div className="arc">
-              <p>Architected with ❤️ by HackNITR Team</p>
+              <p>Architected with ♥ by HackNITR Team</p>
             </div>
           </div>
           <div className="sb__footer-links-div">
@@ -48,7 +49,7 @@ export const Footer = () => {
                 <Image
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704344747/twitter_jxdedq.png"
                   alt=""
-                  width={100}
+                  width={120}
                   height={20}
                 />
               </p>
@@ -56,7 +57,7 @@ export const Footer = () => {
                 <Image
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_1_odf6vh.png"
                   alt=""
-                  width={100}
+                  width={120}
                   height={20}
                 />
               </p>
@@ -64,7 +65,7 @@ export const Footer = () => {
                 <Image
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_2_scrlxt.png"
                   alt=""
-                  width={100}
+                  width={120}
                   height={20}
                 />
               </p>
@@ -72,7 +73,7 @@ export const Footer = () => {
                 <Image
                   src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Vector_3_mwqut0.png"
                   alt=""
-                  width={100}
+                  width={120}
                   height={20}
                 />
               </p>
