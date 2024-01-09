@@ -15,15 +15,36 @@ const StyledNavbar = styled.nav`
   align-items: center;
   width: 100%;
 `
-const Line = styled(Image)`
+const LineStyles = styled(Image)`
   position: absolute;
   width: 200%;
   left: ${(props) => props.left};
   bottom: ${(props) => props.bottom};
 `
-const VerticalLine = styled(Line)`
+const Line = (props) => (
+  <LineStyles
+    src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+    alt="line"
+    width={5}
+    height={2}
+    left={props.left}
+    bottom={props.bottom}
+  />
+)
+
+const VerticalLineStyles = styled(LineStyles)`
   transform: rotate(90deg);
 `
+const VerticalLine = (props) => (
+  <VerticalLineStyles
+    src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+    alt="line"
+    width={5}
+    height={2}
+    left={props.left}
+    bottom={props.bottom}
+  />
+)
 const Logo = styled(Image)`
   filter: drop-shadow(0 0 2rem #bc00fe);
 `
@@ -106,43 +127,11 @@ export const Navbar = () => {
         <NavItem>
           <a href="/signup">
             <SignOutButton>
-              <Line
-                // eslint-disable-next-line max-len
-                src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
-                alt="line"
-                width={5}
-                height={2}
-                left="-75px"
-                bottom="-2px"
-              ></Line>
-              <VerticalLine
-                // eslint-disable-next-line max-len
-                src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
-                alt="line"
-                width={5}
-                height={2}
-                left="-148px"
-                bottom="40px"
-              ></VerticalLine>
+              <Line left="-75px" bottom="-2px"></Line>
+              <VerticalLine left="-148px" bottom="40px"></VerticalLine>
               Sign in
-              <VerticalLine
-                // eslint-disable-next-line max-len
-                src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
-                alt="line"
-                width={5}
-                height={2}
-                left="1px"
-                bottom="7px"
-              ></VerticalLine>
-              <Line
-                // eslint-disable-next-line max-len
-                src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
-                alt="line"
-                width={5}
-                height={2}
-                left="-75px"
-                bottom="47px"
-              ></Line>
+              <VerticalLine left="1px" bottom="7px"></VerticalLine>
+              <Line left="-75px" bottom="47px"></Line>
             </SignOutButton>
           </a>
         </NavItem>
