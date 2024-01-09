@@ -1,5 +1,3 @@
-import './navbar.css'
-
 import { signOut } from 'firebase/auth'
 import Image from 'next/image'
 import React, { useContext } from 'react'
@@ -9,46 +7,54 @@ import { auth } from '../../firebase/firebase'
 import { AuthContext } from '../context/AuthContext'
 
 const StyledNavbar = styled.nav`
-  padding: 2%;
-  padding-top: 5%;
-  padding-left: 25%;
-  padding-right: 25%;
-  background-color: #04040d;
-  // overflow: ;
+  background-color: black;
+  overflow: hidden;
   font-family: Arial, sans-serif;
-  // display: inline-block;
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 `
-
+const Line = styled(Image)`
+  position: absolute;
+  width: 200%;
+  left: ${(props) => props.left};
+  bottom: ${(props) => props.bottom};
+`
+const VerticalLine = styled(Line)`
+  transform: rotate(90deg);
+`
+const Logo = styled(Image)`
+  filter: drop-shadow(0 0 2rem #bc00fe);
+`
+const NavHeading = styled.div`
+  background: linear-gradient(180deg, #c464ff -13.76%, rgba(252, 252, 252, 0.33) 128.58%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Montserrat;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px;
+  @media (max-width: 640px) {
+    font-size: 20px;
+  }
+`
 const NavItem = styled.li`
-  box-sizing: border-box;
-  // float: left;
-  display: flex;
-  margin: 3%;
-  color: white;
+  float: left;
+  display: block;
+  color: #d9d9d91a;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-
+  cursor: pointer;
   a {
     color: inherit;
     text-decoration: none;
   }
 `
-const NavTitle = styled.div`
-  margin-top: 15px;
-  background: linear-gradient(180deg, #cd4ff9 0%, #fff 146.39%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 30px;
-  font-weight: bold;
-`
-// const NavNew = styled.div`
-//   position:relative;
-//   // overflow:hidden;
-// `
+
 const SignOutButton = styled.button`
   width: 150px;
   height: 50px;
@@ -84,96 +90,73 @@ export const Navbar = () => {
   return (
     <StyledNavbar>
       <NavItem>
-        <Image
-          className="logo"
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704780097/logo_fmxouh.png"
-          alt=""
-          width={70}
-          height={70}
-        />
+        <a href="/">
+          <Logo
+            src="https://res.cloudinary.com/dhnkuonev/image/upload/v1699458313/hnlogo_ei64kd.png"
+            alt="HN-logo"
+            height={68}
+            width={68}
+          />
+        </a>
       </NavItem>
       <NavItem>
-        <Image
-          className="horizontal_c"
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
-          alt=""
-          width={800}
-          height={2}
-        />
-      </NavItem>
-      <NavItem>
-        <Image
-          className="horizontal_d"
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
-          alt=""
-          width={5}
-          height={2}
-        />
-      </NavItem>
-      <NavItem>
-        <Image
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704775140/Line_48_qqi6yv.png"
-          alt=""
-          width={2}
-          height={150}
-        />
-      </NavItem>
-      <NavItem>
-        <Image
-          className="horizontal_d"
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
-          alt=""
-          width={5}
-          height={2}
-        />
-      </NavItem>
-      <NavItem>
-        <Image
-          className="horizontal_a"
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
-          alt=""
-          width={5}
-          height={2}
-        />
+        <NavHeading>HACKNITR 5.0</NavHeading>
       </NavItem>
       {!currentUser && (
         <NavItem>
-          <NavTitle>HACKNITR 5.0</NavTitle>
+          <a href="/signup">
+            <SignOutButton>
+              <Line
+                // eslint-disable-next-line max-len
+                src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+                alt="line"
+                width={5}
+                height={2}
+                left="-75px"
+                bottom="-2px"
+              ></Line>
+              <VerticalLine
+                // eslint-disable-next-line max-len
+                src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+                alt="line"
+                width={5}
+                height={2}
+                left="-148px"
+                bottom="40px"
+              ></VerticalLine>
+              Sign in
+              <VerticalLine
+                // eslint-disable-next-line max-len
+                src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+                alt="line"
+                width={5}
+                height={2}
+                left="1px"
+                bottom="7px"
+              ></VerticalLine>
+              <Line
+                // eslint-disable-next-line max-len
+                src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
+                alt="line"
+                width={5}
+                height={2}
+                left="-75px"
+                bottom="47px"
+              ></Line>
+            </SignOutButton>
+          </a>
         </NavItem>
       )}
-      <NavItem>
-        <Image
-          className="horizontal_b"
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704284949/Line_46_l0jm2p.png"
-          alt=""
-          width={5}
-          height={2}
-        />
-      </NavItem>
-      <NavItem>
-        <Image
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704775140/Line_48_qqi6yv.png"
-          alt=""
-          width={2}
-          height={150}
-        />
-      </NavItem>
-
-      <NavItem Sign>
-        <Image
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704775140/Line_48_qqi6yv.png"
-          alt=""
-          width={2}
-          height={80}
-        />
-        <SignOutButton onClick={handleSignOut}>Sign Out</SignOutButton>
-        <Image
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1704775140/Line_48_qqi6yv.png"
-          alt=""
-          width={2}
-          height={80}
-        />
-      </NavItem>
+      {currentUser && (
+        <>
+          <NavItem>
+            <a href="/myticket">My Ticket</a>
+          </NavItem>
+          <NavItem>
+            <SignOutButton onClick={handleSignOut}>Sign Out</SignOutButton>
+          </NavItem>
+        </>
+      )}
     </StyledNavbar>
   )
 }
