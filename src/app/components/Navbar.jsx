@@ -14,6 +14,7 @@ const StyledNavbar = styled.nav`
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  padding-left: 23px;
 `
 const LineStyles = styled(Image)`
   position: absolute;
@@ -62,6 +63,10 @@ const NavHeading = styled.div`
     font-size: 20px;
   }
 `
+
+// const Wrapper = styled.div`
+
+// `
 const NavItem = styled.li`
   float: left;
   display: block;
@@ -120,8 +125,18 @@ export const Navbar = () => {
           />
         </a>
       </NavItem>
+      {/* <Wrapper>
+              <Line left="-75px" bottom="-2px"></Line>
+              <VerticalLine left="-148px" bottom="40px"></VerticalLine>
+              <VerticalLine left="1px" bottom="7px"></VerticalLine>
+              <Line left="-75px" bottom="47px"></Line>
+      </Wrapper> */}
       <NavItem>
+        {/* <Line left="45px" bottom="505px"></Line> */}
+        {/* <VerticalLine left="-148px" bottom="40px"></VerticalLine> */}
         <NavHeading>HACKNITR 5.0</NavHeading>
+        {/* <VerticalLine left="1px" bottom="7px"></VerticalLine>
+              <Line left="-75px" bottom="47px"></Line> */}
       </NavItem>
       {!currentUser && (
         <NavItem>
@@ -136,6 +151,7 @@ export const Navbar = () => {
           </a>
         </NavItem>
       )}
+
       {currentUser && (
         <>
           <NavItem>
