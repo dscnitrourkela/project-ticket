@@ -1,4 +1,4 @@
-.hero{
+.hero {
   height: 100%;
   width: 100%;
   background-color: black;
@@ -6,13 +6,13 @@
   background-size: cover;
   position: relative;
   border: 1px solid black;
-    margin: 0px;
+  margin: 0px;
 }
-.form-box{
+.form-box {
   width: 400px;
   height: 480px;
-  position:relative;
-  margin:6% auto;
+  position: relative;
+  margin: 6% auto;
   padding: 5px;
   overflow: hidden;
   backdrop-filter: blur(16px) saturate(180%);
@@ -22,66 +22,60 @@
   border: 1px solid rgba(255, 255, 255, 0.125);
   gap: 40px;
 }
-.button-box{
-  width:220px;
+.button-box {
+  width: 220px;
   margin: 35px auto;
-  position:relative;
-  border:  solid rgba(232, 142, 255, 0.2);
-    border-radius: 30px;
-    color:white;
+  position: relative;
+  border: solid rgba(232, 142, 255, 0.2);
+  border-radius: 30px;
+  color: white;
 }
-.toggle-btn{
-  padding:10px 30px;
+.toggle-btn {
+  padding: 10px 30px;
   margin: 1px;
-  cursor:pointer;
+  cursor: pointer;
   background: transparent;
-  border:0;
-  outline:none;
-  position:relative;
+  border: 0;
+  outline: none;
+  position: relative;
+  color: white;
 }
-#btn{
+#btn {
   top: 0;
   left: 0;
   position: absolute;
   width: 110px;
-  height:100%;
+  height: 100%;
   background: rgba(225, 225, 225, 0.06);
-    border:  solid rgba(232, 142, 255, 0.2);
-    border-radius: 30px;
-    transition: 0.5s;
+  border: solid rgba(232, 142, 255, 0.2);
+  border-radius: 30px;
+  transition: 0.5s;
 }
 
-.input-group{
-  top: 150px;
+.input-group {
+  top: 120px;
   position: absolute;
-  width:280px;
-  transition: .5s;
+  width: 280px;
+  transition: 0.5s;
   color: white;
 }
-.input-field{
+.input-field {
   width: 100%;
-  padding: 10px 0;
-  margin:5px 0;
-  outline:none;
+  /* padding: 10px 0; */
+  padding: 0 0 40px 0;
+  margin: 5px 0;
+  outline: none;
   border-radius: 0.6875rem;
   border: 1.8px solid rgba(232, 142, 255, 0.2);
   background: rgba(225, 225, 225, 0.06);
   backdrop-filter: blur(25px);
 }
-.submit-btn{
-  padding:2px 20px;
-  cursor:pointer;
-  display:block;
-  margin:auto;
+.submit-btn {
+  padding: 2px 20px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
   outline: none;
-  width: 30%;
-border-radius: 2.25rem;
-border: 1.8px solid rgba(232, 142, 255, 0.2);
-background: #bc00fe;
-backdrop-filter: blur(25px);
-color: white;
-}
-.signupbutton {
   width: 30%;
   border-radius: 2.25rem;
   border: 1.8px solid rgba(232, 142, 255, 0.2);
@@ -89,9 +83,25 @@ color: white;
   backdrop-filter: blur(25px);
   color: white;
 }
+.signupbutton {
+  padding: 10px 20px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  outline: none;
+  width: 60%;
+  border-radius: 2.25rem;
+  border: 1.8px solid rgba(232, 142, 255, 0.2);
+  background: #bc00fe;
+  backdrop-filter: blur(25px);
+  color: white;
+}
 .extsign {
-  width: 90%;
+  padding: 7px 20px;
+  width: 100%;
+  cursor: pointer;
   border-radius: 0.2rem;
+  margin: 8px;
   border: 1.8px solid rgba(232, 142, 255, 0.2);
   background: rgba(225, 225, 225, 0.06);
   backdrop-filter: blur(25px);
@@ -99,33 +109,36 @@ color: white;
 }
 
 .holder {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  outline: none;
   border-radius: 0.6875rem;
   border: 1.8px solid rgba(232, 142, 255, 0.2);
   background: rgba(225, 225, 225, 0.06);
   backdrop-filter: blur(25px);
 }
-#login{
-  left:50px;
+#login {
+  left: 50px;
 }
-#register{
-  left:450px;
+#register {
+  left: 450px;
 }
-.cards_a{
+.cards_a {
   position: absolute;
   top: 355px;
   left: 249px;
 }
-.cards_b{
+.cards_b {
   position: absolute;
   top: 368px;
   left: 658px;
 }
-.cards_a img{
-  width:67%;
+.cards_a img {
+  width: 67%;
   transform: rotate(-9deg);
 }
-.cards_b img{
-  width:67%;
+.cards_b img {
+  width: 67%;
   transform: rotate(20deg);
 }
-
