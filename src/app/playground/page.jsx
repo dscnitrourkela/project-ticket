@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import '../styles/globals.css'
-//import { TicketPage } from './ticket.styles.jsx'
+import { SubmitButton } from '../components/shared/SubmitButton'
 
 import { database } from '../../firebase/firebase'
 import Modal from '../components/modal'
@@ -15,45 +15,97 @@ import { Navbar } from '../components/Navbar'
 import { AuthContext } from '../context/AuthContext'
 //import { color } from 'html2canvas/dist/types/css/types/color'
 
+const TicketPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 65px 45px;
+  border: 1px solid aqua;
+`
+
 const TicketContainer = styled.div`
+  height: 343px;
+  border: 1px solid white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
+  @media (max-width: 980px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
+const FormBg = styled.div`
+  height: auto;
+  width: auto;
+  margin-right: 20px;
+  align-items: center;
+  border: 1.5px solid;
+  border-image-source: linear-gradient(212.47deg, #bd00ff 0%, rgba(0, 0, 0, 0) 44.37%);
 
+  border-image-slice: 1;
+  border-radius: 10px;
+
+  background: linear-gradient(212.47deg, rgba(189, 0, 255, 0.2) 0%, rgba(0, 0, 0, 0) 44.37%);
+  box-shadow: 0px 18px 59.599998474121094px 0px #cc3cff1a inset;
+`
 const FormSection = styled.div`
-  width: 291.65px;
-  min-height: 216.42px;
+  opacity: 1;
+  width: 458px;
+  height: 278px;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  margin-right: 20px;
-  padding: 2vw 4vw;
-  background: linear-gradient(0deg, #292929, #bd00ff),
-    linear-gradient(212.47deg, #bd00ff 0%, rgba(0, 0, 0, 0) 44.37%);
-  border-image-source: linear-gradient(212.47deg, #bd00ff 0%, rgba(0, 0, 0, 0) 44.37%),
-    linear-gradient(0deg, #292929, #292929);
+  justify-content: end;
+  padding: 3vw 1.5vw 1vw 1.5vw;
+  background: linear-gradient(
+    180deg,
+    rgba(156, 154, 255, 0.1) 0%,
+    rgba(234, 173, 255, 0.084) 123.17%
+  );
+
   border-radius: 10px;
+
+  box-shadow: -1px 2px 9.800000190734863px 0px #ffffff40 inset;
+`
+const FormText = styled.p`
+  color: white;
+  border: 0px solid pink;
+  margin: 20px 0px 5px 0px;
 `
 
 const Input = styled.input`
+  background-color: #292929;
+  height: 19px;
   padding: 10px;
-  margin: 7px 0px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  margin: 5px 0px 20px 0px;
+  border-radius: 11px;
+  border: 1.8px solid #e88eff33;
 `
 
 const TicketPreview = styled.div`
-  flex: 1;
-  border: 1px solid black;
+  color: white;
+  background-color: black;
+  width: 500px;
+  border: 1px solid white;
   padding: 20px;
   margin: 10px;
   padding: 2vw 4vw;
   border-radius: 20px;
   min-height: 200px;
 `
+const ArrayHolder = styled.div`
+  color: white;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+`
+const ColorText = styled.p`
+  border: 0px solid pink;
+`
 const ColorArray = styled.div`
+  border: 0px solid pink;
+  flex: 0.4;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -61,23 +113,8 @@ const ColorArray = styled.div`
 const ClrButton = styled.span`
   height: 25px;
   width: 25px;
-  margin: 2vw 1vw;
+  margin: 1.5vw 1vw;
   cursor: pointer;
-`
-
-const GenerateButton = styled.button`
-  height: 50px;
-  width: 189px;
-  background-color: #bc00fe;
-  color: white;
-  border: none;
-  border-radius: 28px;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 10px auto;
 `
 
 const MyTicketPage = () => {
@@ -154,32 +191,45 @@ const MyTicketPage = () => {
     <>
       <Navbar />
       {editMode ? (
-        <TicketContainer>
-          <FormSection>
-            <Input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={ticketInfo.name}
-              onChange={handleChange}
-            />
-            <Input
-              type="text"
-              name="teamName"
-              placeholder="Team Name"
-              value={ticketInfo.teamName}
-              onChange={handleChange}
-            />
-            <Input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={ticketInfo.email}
-              onChange={handleChange}
-            />
-            <></>
-            choose Background:
-            <Input type="color" name="bgcolor" value={ticketInfo.bgcolor} onClick={handleChange} />
+        <TicketPage>
+          <TicketContainer>
+            <FormBg>
+              <FormSection>
+                <FormText>Your name:</FormText>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={ticketInfo.name}
+                  onChange={handleChange}
+                />
+                <FormText>Team name:</FormText>
+                <Input
+                  type="text"
+                  name="teamName"
+                  placeholder="Team Name"
+                  value={ticketInfo.teamName}
+                  onChange={handleChange}
+                />
+
+                <></>
+                <SubmitButton onClick={generateTicket}>
+                  {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
+                </SubmitButton>
+              </FormSection>
+            </FormBg>
+
+            <TicketPreview
+              id="ticketPreview"
+              style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#04040D' }}
+            >
+              <h2>{ticketInfo.name || 'Your Name'}</h2>
+              <p>{ticketInfo.teamName || 'Your Team Name'}</p>
+              <p>{ticketInfo.email || 'Your Email'}</p>
+            </TicketPreview>
+          </TicketContainer>
+          <ArrayHolder>
+            <ColorText>choose color: </ColorText>
             <ColorArray>
               {colors.map((c) => (
                 <ClrButton
@@ -189,20 +239,8 @@ const MyTicketPage = () => {
                 />
               ))}
             </ColorArray>
-            <GenerateButton onClick={generateTicket}>
-              {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
-            </GenerateButton>
-          </FormSection>
-
-          <TicketPreview
-            id="ticketPreview"
-            style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#ffffff' }}
-          >
-            <h2>{ticketInfo.name || 'Your Name'}</h2>
-            <p>{ticketInfo.teamName || 'Your Team Name'}</p>
-            <p>{ticketInfo.email || 'Your Email'}</p>
-          </TicketPreview>
-        </TicketContainer>
+          </ArrayHolder>
+        </TicketPage>
       ) : (
         <>
           <button onClick={() => setEditMode(true)}>Edit Ticket</button>
