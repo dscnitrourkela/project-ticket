@@ -9,9 +9,16 @@ const ButtonCont = styled.button`
   border: none;
   border-radius: 35px;
   padding: 2.7px;
+
+  background: linear-gradient(
+    97.1deg,
+    rgba(247, 225, 255, 0.38) 11.37%,
+    rgba(218, 115, 255, 0.38) 102.95%
+  );
 `
 const InsideButton = styled.button`
-  background: grey;
+  opacity: 1;
+  background: rgba(25, 25, 33, 0.8);
   color: white;
   cursor: pointer;
   border: none;

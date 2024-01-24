@@ -190,75 +190,58 @@ const MyTicketPage = () => {
   return (
     <>
       <Navbar />
-      {editMode ? (
-        <TicketPage>
-          <TicketContainer>
-            <FormBg>
-              <FormSection>
-                <FormText>Your name:</FormText>
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={ticketInfo.name}
-                  onChange={handleChange}
-                />
-                <FormText>Team name:</FormText>
-                <Input
-                  type="text"
-                  name="teamName"
-                  placeholder="Team Name"
-                  value={ticketInfo.teamName}
-                  onChange={handleChange}
-                />
 
-                <></>
-                <SubmitButton onClick={generateTicket}>
-                  {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
-                </SubmitButton>
-              </FormSection>
-            </FormBg>
-
-            <TicketPreview
-              id="ticketPreview"
-              style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#04040D' }}
-            >
-              <h2>{ticketInfo.name || 'Your Name'}</h2>
-              <p>{ticketInfo.teamName || 'Your Team Name'}</p>
-              <p>{ticketInfo.email || 'Your Email'}</p>
-            </TicketPreview>
-          </TicketContainer>
-          <ArrayHolder>
-            <ColorText>choose color: </ColorText>
-            <ColorArray>
-              {colors.map((c) => (
-                <ClrButton
-                  key={c}
-                  style={{ backgroundColor: c }}
-                  onClick={() => setTicketInfo({ ...ticketInfo, bgcolor: c })}
-                />
-              ))}
-            </ColorArray>
-          </ArrayHolder>
-        </TicketPage>
-      ) : (
-        <>
-          <button onClick={() => setEditMode(true)}>Edit Ticket</button>
-          <Modal show={showModal} onClose={() => setShowModal(false)}>
-            {ticketInfo.ticketImage && (
-              <Image
-                src={ticketInfo.ticketImage}
-                alt="Generated Ticket"
-                width={1000}
-                height={500}
-                unoptimized
+      <TicketPage>
+        <TicketContainer>
+          <FormBg>
+            <FormSection>
+              <FormText>Your name:</FormText>
+              <Input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={ticketInfo.name}
+                onChange={handleChange}
               />
-            )}
-          </Modal>
-        </>
-      )}
+              <FormText>Team name:</FormText>
+              <Input
+                type="text"
+                name="teamName"
+                placeholder="Team Name"
+                value={ticketInfo.teamName}
+                onChange={handleChange}
+              />
+
+              <></>
+              <SubmitButton onClick={generateTicket}>
+                {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
+              </SubmitButton>
+            </FormSection>
+          </FormBg>
+
+          <TicketPreview
+            id="ticketPreview"
+            style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#04040D' }}
+          >
+            <h2>{ticketInfo.name || 'Your Name'}</h2>
+            <p>{ticketInfo.teamName || 'Your Team Name'}</p>
+            <p>{ticketInfo.email || 'Your Email'}</p>
+          </TicketPreview>
+        </TicketContainer>
+        <ArrayHolder>
+          <ColorText>choose color: </ColorText>
+          <ColorArray>
+            {colors.map((c) => (
+              <ClrButton
+                key={c}
+                style={{ backgroundColor: c }}
+                onClick={() => setTicketInfo({ ...ticketInfo, bgcolor: c })}
+              />
+            ))}
+          </ColorArray>
+        </ArrayHolder>
+      </TicketPage>
     </>
   )
 }
-
 export default MyTicketPage
