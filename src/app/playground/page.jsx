@@ -13,16 +13,20 @@ import { database } from '../../firebase/firebase'
 import Modal from '../components/modal'
 import { Navbar } from '../components/Navbar'
 import { AuthContext } from '../context/AuthContext'
+import { GlobalButton } from '../components/shared/GlobalButton'
 //import { color } from 'html2canvas/dist/types/css/types/color'
 
 const TicketPage = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 65px 45px;
+  align-items: center;
+  margin: 25px 45px;
+  padding: 40px 0px;
   border: 1px solid aqua;
 `
 
 const TicketContainer = styled.div`
+  width: 98%;
   height: 343px;
   border: 1px solid white;
   display: flex;
@@ -67,7 +71,6 @@ const FormSection = styled.div`
   box-shadow: -1px 2px 9.800000190734863px 0px #ffffff40 inset;
 `
 const FormText = styled.p`
-  color: white;
   border: 0px solid pink;
   margin: 20px 0px 5px 0px;
 `
@@ -82,7 +85,6 @@ const Input = styled.input`
 `
 
 const TicketPreview = styled.div`
-  color: white;
   background-color: black;
   width: 500px;
   border: 1px solid white;
@@ -93,7 +95,8 @@ const TicketPreview = styled.div`
   min-height: 200px;
 `
 const ArrayHolder = styled.div`
-  color: white;
+  width: 100%;
+
   border: 1px solid white;
   display: flex;
   flex-direction: row;
@@ -240,6 +243,8 @@ const MyTicketPage = () => {
             ))}
           </ColorArray>
         </ArrayHolder>
+
+        <GlobalButton>Register for HackNITR</GlobalButton>
       </TicketPage>
     </>
   )

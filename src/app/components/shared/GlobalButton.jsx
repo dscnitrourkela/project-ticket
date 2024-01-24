@@ -2,13 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 const ButtonCont = styled.button`
-  background: linear-gradient(0deg, rgba(217, 217, 217, 0.1), rgba(217, 217, 217, 0.1)),
-    linear-gradient(97.1deg, rgba(247, 225, 255, 0.38) 11.37%, rgba(218, 115, 255, 0.38) 102.95%);
-  color: white;
+  height: 52px;
   cursor: pointer;
   border: none;
   border-radius: 35px;
   padding: 2.7px;
+  margin: 2vw;
 
   background: linear-gradient(
     97.1deg,
@@ -18,6 +17,8 @@ const ButtonCont = styled.button`
 `
 const InsideButton = styled.button`
   opacity: 1;
+  height: 100%;
+  width: 100%;
   background: rgba(25, 25, 33, 0.8);
   color: white;
   cursor: pointer;

@@ -12,7 +12,7 @@ const StyledNavbar = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1vw 5vw;
+  padding: 0vw 5vw;
   background-color: #333;
   overflow: hidden;
   font-family: Arial, sans-serif;
@@ -52,20 +52,17 @@ export const Navbar = () => {
       <NavItem>
         <a href="/">Home</a>
       </NavItem>
-      {!currentUser && (
-        <NavItem>
-          <a href="/signup">Signup</a>
-        </NavItem>
-      )}
-      {currentUser && (
+
+      {currentUser ? (
         <>
           <NavItem>
             <a href="/myticket">My Ticket</a>
           </NavItem>
-          <NavItem>
-            <GlobalButton onClick={handleSignOut}>Sign Out</GlobalButton>
-          </NavItem>
+
+          <GlobalButton onClick={handleSignOut}>Sign Out</GlobalButton>
         </>
+      ) : (
+        <GlobalButton href="/signup">Signup</GlobalButton>
       )}
     </StyledNavbar>
   )
