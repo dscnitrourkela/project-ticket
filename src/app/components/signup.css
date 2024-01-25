@@ -7,10 +7,13 @@
   position: relative;
   border: 1px solid black;
   margin: 0px;
+
 }
+
+
 .form-box {
   width: 400px;
-  height: 480px;
+  height: 560px;
   position: relative;
   margin: 6% auto;
   padding: 5px;
@@ -87,7 +90,7 @@
   padding: 10px 20px;
   cursor: pointer;
   display: block;
-  margin: auto;
+  margin: 20px auto;
   outline: none;
   width: 60%;
   border-radius: 2.25rem;
@@ -97,7 +100,7 @@
   color: white;
 }
 .extsign {
-  padding: 7px 20px;
+  padding: 7px 30px;
   width: 100%;
   cursor: pointer;
   border-radius: 0.2rem;
@@ -120,6 +123,7 @@
 }
 #login {
   left: 50px;
+
 }
 #register {
   left: 450px;
