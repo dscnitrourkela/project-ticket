@@ -27,7 +27,7 @@ const TicketPage = styled.div`
 
 const TicketContainer = styled.div`
   width: 98%;
-  height: 343px;
+  height: auto;
   border: 1px solid white;
   display: flex;
   flex-direction: row;
@@ -41,16 +41,22 @@ const TicketContainer = styled.div`
 const FormBg = styled.div`
   height: auto;
   width: auto;
-  margin-right: 20px;
+  margin: 0vw 2.5vw;
   align-items: center;
   border: 1.5px solid;
   border-image-source: linear-gradient(212.47deg, #bd00ff 0%, rgba(0, 0, 0, 0) 44.37%);
-
   border-image-slice: 1;
   border-radius: 10px;
 
   background: linear-gradient(212.47deg, rgba(189, 0, 255, 0.2) 0%, rgba(0, 0, 0, 0) 44.37%);
   box-shadow: 0px 18px 59.599998474121094px 0px #cc3cff1a inset;
+
+  @media (max-width: 980px) {
+    margin: 2vw 0vw;
+  }
+  @media (max-width: 680px) {
+    margin: 6vw 0vw;
+  }
 `
 const FormSection = styled.div`
   opacity: 1;
@@ -67,26 +73,100 @@ const FormSection = styled.div`
   );
 
   border-radius: 10px;
-
   box-shadow: -1px 2px 9.800000190734863px 0px #ffffff40 inset;
+
+  @media (min-width: 980px) and (max-width: 1200px) {
+    width: 35vw;
+  }
+  @media (max-width: 680px) {
+    width: 68vw;
+    min-height: 40vw;
+  }
 `
+
 const FormText = styled.p`
   border: 0px solid pink;
   margin: 20px 0px 5px 0px;
+  @media (max-width: 680px) {
+    height: 10px;
+    margin: 3vw 2vw;
+  }
 `
 
 const Input = styled.input`
-  background-color: #292929;
+  background: linear-gradient(0deg, rgba(225, 225, 225, 0.06), rgba(225, 225, 225, 0.06));
   height: 19px;
   padding: 10px;
   margin: 5px 0px 20px 0px;
   border-radius: 11px;
   border: 1.8px solid #e88eff33;
+
+  &:focus {
+    outline: none;
+    background: linear-gradient(0deg, rgba(232, 142, 255, 0.2), rgba(232, 142, 255, 0.2));
+    border-color: #e88eff;
+  }
+
+  @media (max-width: 680px) {
+    margin: 1vw 2vw;
+  }
+  @media (max-width: 680px) {
+    height: 10px;
+  }
+  @media (max-width: 460px) {
+    height: 6px;
+  }
+`
+
+const PreviewBg = styled.div`
+  height: auto;
+  width: auto;
+  margin: 0vw 2.5vw;
+  align-items: center;
+  border: 1.5px solid;
+  border-image-source: linear-gradient(132.59deg, #bd00ff 1.4%, rgba(0, 0, 0, 0) 34.46%);
+
+  border-image-slice: 1;
+  border-radius: 10px;
+
+  background: linear-gradient(132.59deg, rgba(189, 0, 255, 0.2) 1.4%, rgba(0, 0, 0, 0) 34.46%);
+  box-shadow: 0px 18px 59.599998474121094px 0px #cc3cff1a inset;
+
+  @media (max-width: 980px) {
+    margin: 2vw 0vw;
+  }
+`
+const PreviewCont = styled.div`
+  opacity: 1;
+  width: 458px;
+  height: 278px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 3vw 1.5vw 1vw 1.5vw;
+  background: linear-gradient(
+    180deg,
+    rgba(156, 154, 255, 0.1) 0%,
+    rgba(234, 173, 255, 0.084) 123.17%
+  );
+
+  border-radius: 10px;
+
+  box-shadow: -1px 2px 9.800000190734863px 0px #ffffff40 inset;
+
+  @media (min-width: 980px) and (max-width: 1200px) {
+    width: 35vw;
+  }
+  @media (max-width: 680px) {
+    width: 68vw;
+    min-height: 40vw;
+  }
 `
 
 const TicketPreview = styled.div`
+  opacity: 0;
   background-color: black;
-  width: 500px;
+  max-width: 500px;
   border: 1px solid white;
   padding: 20px;
   margin: 10px;
@@ -102,6 +182,9 @@ const ArrayHolder = styled.div`
   flex-direction: row;
   justify-content: end;
   align-items: center;
+  @media (max-width: 980px) {
+    justify-content: center;
+  }
 `
 const ColorText = styled.p`
   border: 0px solid pink;
@@ -222,14 +305,18 @@ const MyTicketPage = () => {
             </FormSection>
           </FormBg>
 
-          <TicketPreview
-            id="ticketPreview"
-            style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#04040D' }}
-          >
-            <h2>{ticketInfo.name || 'Your Name'}</h2>
-            <p>{ticketInfo.teamName || 'Your Team Name'}</p>
-            <p>{ticketInfo.email || 'Your Email'}</p>
-          </TicketPreview>
+          <PreviewBg>
+            <PreviewCont>
+              <TicketPreview
+                id="ticketPreview"
+                style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#04040D' }}
+              >
+                <h2>{ticketInfo.name || 'Your Name'}</h2>
+                <p>{ticketInfo.teamName || 'Your Team Name'}</p>
+                <p>{ticketInfo.email || 'Your Email'}</p>
+              </TicketPreview>
+            </PreviewCont>
+          </PreviewBg>
         </TicketContainer>
         <ArrayHolder>
           <ColorText>choose color: </ColorText>
@@ -244,7 +331,7 @@ const MyTicketPage = () => {
           </ColorArray>
         </ArrayHolder>
 
-        <GlobalButton>Register for HackNITR</GlobalButton>
+        <GlobalButton>Share your Ticket</GlobalButton>
       </TicketPage>
     </>
   )

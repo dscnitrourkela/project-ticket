@@ -7,13 +7,21 @@ const ButtonCont = styled.button`
   border: none;
   border-radius: 35px;
   padding: 2.7px;
-  margin: 2vw;
+  margin: 2vw 0vw;
 
   background: linear-gradient(
     97.1deg,
     rgba(247, 225, 255, 0.38) 11.37%,
     rgba(218, 115, 255, 0.38) 102.95%
   );
+
+  &:hover {
+    background: linear-gradient(
+      97.1deg,
+      rgba(247, 225, 255, 0.88) 11.37%,
+      rgba(218, 115, 255, 0.58) 102.95%
+    );
+  }
 `
 const InsideButton = styled.button`
   opacity: 1;
@@ -27,7 +35,7 @@ const InsideButton = styled.button`
   padding: 12px 60px;
 
   &:hover {
-    background: white;
+    background: rgba(25, 25, 33, 0);
     color: black;
   }
 `

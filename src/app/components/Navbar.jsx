@@ -24,6 +24,7 @@ const NavItem = styled.li`
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  margin: 0vw 2vw;
 
   &:hover {
     background-color: #ddd;
