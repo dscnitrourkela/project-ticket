@@ -22,11 +22,25 @@ const ButtonCont = styled.button`
       rgba(218, 115, 255, 0.58) 102.95%
     );
   }
+
+  @media (max-width: 680px) {
+    padding: 2px;
+    height: 8vw;
+    min-width: 25vw;
+    margin: 3vw 2vw;
+  }
+
+  @media (max-width: 450px) {
+    font-size: small;
+    min-height: 10vw;
+  }
 `
+
 const InsideButton = styled.button`
   opacity: 1;
   height: 100%;
   width: 100%;
+  text-align: center;
   background: rgba(25, 25, 33, 0.8);
   color: white;
   cursor: pointer;
@@ -38,7 +52,15 @@ const InsideButton = styled.button`
     background: rgba(25, 25, 33, 0);
     color: black;
   }
+
+  @media (max-width: 680px) {
+    padding: 1vw;
+  }
+  @media (max-width: 450px) {
+    padding: 2vw;
+  }
 `
+
 export const GlobalButton = ({ children }) => {
   return (
     <ButtonCont>
