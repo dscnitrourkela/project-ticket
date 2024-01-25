@@ -82,6 +82,9 @@ const FormSection = styled.div`
     width: 68vw;
     min-height: 40vw;
   }
+  @media (max-width: 450px) {
+    height: 64vw;
+  }
 `
 
 const FormText = styled.p`
@@ -176,7 +179,6 @@ const TicketPreview = styled.div`
 `
 const ArrayHolder = styled.div`
   width: 100%;
-
   border: 1px solid white;
   display: flex;
   flex-direction: row;
@@ -184,6 +186,10 @@ const ArrayHolder = styled.div`
   align-items: center;
   @media (max-width: 980px) {
     justify-content: center;
+  }
+  @media (max-width: 680px) {
+    flex-direction: column;
+    justify-content: space-around;
   }
 `
 const ColorText = styled.p`
@@ -201,6 +207,11 @@ const ClrButton = styled.span`
   width: 25px;
   margin: 1.5vw 1vw;
   cursor: pointer;
+  @media (max-width: 450px) {
+    height: 18px;
+    width: 18px;
+    margin: 2vw 2vw;
+  }
 `
 
 const MyTicketPage = () => {
