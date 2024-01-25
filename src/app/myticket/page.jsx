@@ -95,7 +95,7 @@ const MyTicketPage = () => {
     ticketImage: ''
   })
   const [showModal, setShowModal] = useState(false)
-  const [editMode, setEditMode] = useState(false)
+  const [editMode, setEditMode] = useState(true)
   const [existingTicketKey, setExistingTicketKey] = useState(null)
   const router = useRouter()
 

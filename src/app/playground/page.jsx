@@ -141,12 +141,11 @@ const PreviewBg = styled.div`
 `
 const PreviewCont = styled.div`
   opacity: 1;
-  width: 458px;
-  height: 278px;
+  width: 513px;
+  height: 338px;
   display: flex;
   flex-direction: column;
   justify-content: end;
-  padding: 3vw 1.5vw 1vw 1.5vw;
   background: linear-gradient(
     180deg,
     rgba(156, 154, 255, 0.1) 0%,
@@ -154,7 +153,6 @@ const PreviewCont = styled.div`
   );
 
   border-radius: 10px;
-
   box-shadow: -1px 2px 9.800000190734863px 0px #ffffff40 inset;
 
   @media (min-width: 980px) and (max-width: 1200px) {
@@ -162,6 +160,43 @@ const PreviewCont = styled.div`
   }
   @media (max-width: 680px) {
     width: 68vw;
+    min-height: 40vw;
+  }
+  @media (max-width: 450px) {
+    height: 64vw;
+  }
+`
+const GridCont = styled.div`
+  opacity: 1;
+  width: 100%;
+  height: 99%;
+  margin: auto 0px;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  gap: 1px;
+
+  border: 0px solid red;
+  border-radius: 10px;
+
+  @media (min-width: 980px) and (max-width: 1200px) {
+    width: 35vw;
+  }
+  @media (max-width: 680px) {
+    width: 68vw;
+    min-height: 40vw;
+  }
+  @media (max-width: 450px) {
+    height: 64vw;
+  }
+`
+const GridLines = styled.div`
+  width: 1.8vw;
+  background-color: rgba(156, 154, 255, 0);
+  border-right: 3px solid rgba(165, 148, 176, 0.3);
+  height: 100%;
+
+  @media (max-width: 680px) {
     min-height: 40vw;
   }
 `
@@ -216,6 +251,8 @@ const ClrButton = styled.span`
 
 const MyTicketPage = () => {
   const colors = ['#206EA6', '#4C1077', '#BBD3D9', '#FECF29', '#14F195']
+  const rows = 1
+  const columns = 16
   // const { currentUser } = useContext(AuthContext)
   var currentUser = {
     name: 'uder1',
@@ -229,7 +266,7 @@ const MyTicketPage = () => {
     ticketImage: ''
   })
   const [showModal, setShowModal] = useState(false)
-  const [editMode, setEditMode] = useState(false)
+  const [editMode, setEditMode] = useState(true)
   const [existingTicketKey, setExistingTicketKey] = useState(null)
   const router = useRouter()
 
@@ -287,63 +324,85 @@ const MyTicketPage = () => {
   return (
     <>
       <Navbar />
+      {editMode ? (
+        <TicketPage>
+          <TicketContainer>
+            <FormBg>
+              <FormSection>
+                <FormText>Your name:</FormText>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={ticketInfo.name}
+                  onChange={handleChange}
+                />
+                <FormText>Team name:</FormText>
+                <Input
+                  type="text"
+                  name="teamName"
+                  placeholder="Team Name"
+                  value={ticketInfo.teamName}
+                  onChange={handleChange}
+                />
 
-      <TicketPage>
-        <TicketContainer>
-          <FormBg>
-            <FormSection>
-              <FormText>Your name:</FormText>
-              <Input
-                type="text"
-                name="name"
-                placeholder="Name"
-                value={ticketInfo.name}
-                onChange={handleChange}
+                <></>
+                <SubmitButton onClick={generateTicket}>
+                  {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
+                </SubmitButton>
+              </FormSection>
+            </FormBg>
+
+            <PreviewBg>
+              <PreviewCont>
+                <GridCont>
+                  {Array.from({ length: rows * columns }, (_, index) => (
+                    <GridLines key={index}>
+                      <TicketPreview
+                        id="ticketPreview"
+                        style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#04040D' }}
+                      >
+                        <h2>{ticketInfo.name || 'Your Name'}</h2>
+                        <p>{ticketInfo.teamName || 'Your Team Name'}</p>
+                        <p>{ticketInfo.email || 'Your Email'}</p>
+                      </TicketPreview>
+                    </GridLines>
+                  ))}
+                </GridCont>
+              </PreviewCont>
+            </PreviewBg>
+          </TicketContainer>
+          <ArrayHolder>
+            <ColorText>choose color: </ColorText>
+            <ColorArray>
+              {colors.map((c) => (
+                <ClrButton
+                  key={c}
+                  style={{ backgroundColor: c }}
+                  onClick={() => setTicketInfo({ ...ticketInfo, bgcolor: c })}
+                />
+              ))}
+            </ColorArray>
+          </ArrayHolder>
+
+          <GlobalButton>Share your Ticket</GlobalButton>
+        </TicketPage>
+      ) : (
+        <>
+          <button onClick={() => setEditMode(true)}>Edit Ticket</button>
+          <Modal show={showModal} onClose={() => setShowModal(false)}>
+            {ticketInfo.ticketImage && (
+              <Image
+                src={ticketInfo.ticketImage}
+                alt="Generated Ticket"
+                width={1000}
+                height={500}
+                unoptimized
               />
-              <FormText>Team name:</FormText>
-              <Input
-                type="text"
-                name="teamName"
-                placeholder="Team Name"
-                value={ticketInfo.teamName}
-                onChange={handleChange}
-              />
-
-              <></>
-              <SubmitButton onClick={generateTicket}>
-                {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
-              </SubmitButton>
-            </FormSection>
-          </FormBg>
-
-          <PreviewBg>
-            <PreviewCont>
-              <TicketPreview
-                id="ticketPreview"
-                style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#04040D' }}
-              >
-                <h2>{ticketInfo.name || 'Your Name'}</h2>
-                <p>{ticketInfo.teamName || 'Your Team Name'}</p>
-                <p>{ticketInfo.email || 'Your Email'}</p>
-              </TicketPreview>
-            </PreviewCont>
-          </PreviewBg>
-        </TicketContainer>
-        <ArrayHolder>
-          <ColorText>choose color: </ColorText>
-          <ColorArray>
-            {colors.map((c) => (
-              <ClrButton
-                key={c}
-                style={{ backgroundColor: c }}
-                onClick={() => setTicketInfo({ ...ticketInfo, bgcolor: c })}
-              />
-            ))}
-          </ColorArray>
-        </ArrayHolder>
-
-        <GlobalButton>Share your Ticket</GlobalButton>
-      </TicketPage>
+            )}
+          </Modal>
+        </>
+      )}
     </>
   )
 }
