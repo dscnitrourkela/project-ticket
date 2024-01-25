@@ -127,12 +127,11 @@ const PreviewBg = styled.div`
   margin: 0vw 2.5vw;
   align-items: center;
   border: 1.5px solid;
-  border-image-source: linear-gradient(132.59deg, #bd00ff 1.4%, rgba(0, 0, 0, 0) 34.46%);
-
-  border-image-slice: 1;
   border-radius: 10px;
+  border-image-source: linear-gradient(132.59deg, #bd00ff 1.4%, rgba(0, 0, 0, 0) 34.46%);
+  border-image-slice: 1;
 
-  background: linear-gradient(132.59deg, rgba(189, 0, 255, 0.2) 1.4%, rgba(0, 0, 0, 0) 34.46%);
+  background: linear-gradient(132.59deg, rgba(189, 0, 255, 0.2) 5.4%, rgba(0, 0, 0, 0) 34.46%);
   box-shadow: 0px 18px 59.599998474121094px 0px #cc3cff1a inset;
 
   @media (max-width: 980px) {
