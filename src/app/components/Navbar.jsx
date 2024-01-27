@@ -12,13 +12,22 @@ const StyledNavbar = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0vw 5vw;
-  background-color: #333;
+  margin: 2vw 0vw;
+  padding: 0vw 4vw;
   overflow: hidden;
-  font-family: Arial, sans-serif;
+  border: 2px solid;
+  border-image-source: linear-gradient(
+    270deg,
+    rgba(221, 221, 221, 0) 0%,
+    rgba(237, 194, 252, 0.38) 51.35%,
+    rgba(239, 192, 255, 0.464552) 56.36%,
+    rgba(221, 221, 221, 0) 96.88%
+  );
+  border-image-slice: 1;
 `
 
 const NavItem = styled.li`
+  border: 0px solid pink;
   list-style: none;
   color: white;
   text-align: center;

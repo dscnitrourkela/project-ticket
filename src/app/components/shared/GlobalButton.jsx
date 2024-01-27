@@ -7,7 +7,7 @@ const ButtonCont = styled.button`
   border: none;
   border-radius: 35px;
   padding: 2.7px;
-  margin: 2vw 0vw;
+  margin: 1.2vw 0vw;
 
   background: linear-gradient(
     97.1deg,
@@ -42,7 +42,6 @@ const InsideButton = styled.button`
   width: 100%;
   text-align: center;
   background: rgba(25, 25, 33, 0.8);
-  color: white;
   cursor: pointer;
   border: none;
   border-radius: 35px;

@@ -11,11 +11,16 @@ import { SubmitButton } from '../components/shared/SubmitButton'
 
 import { database } from '../../firebase/firebase'
 import Modal from '../components/modal'
+import Ticket, { InnerTicket, TicketImgBg } from '../Ticket/page'
 import { Navbar } from '../components/Navbar'
 import { AuthContext } from '../context/AuthContext'
 import { GlobalButton } from '../components/shared/GlobalButton'
 //import { color } from 'html2canvas/dist/types/css/types/color'
 
+const ShareButton = styled(GlobalButton)`
+  background-color: pink;
+  margin: 10vw 2vw;
+`
 const TicketPage = styled.div`
   display: flex;
   flex-direction: column;
@@ -166,6 +171,7 @@ const PreviewCont = styled.div`
   }
 `
 const GridCont = styled.div`
+  position: relative;
   opacity: 1;
   width: 100%;
   height: 99%;
@@ -199,17 +205,46 @@ const GridLines = styled.div`
     min-height: 40vw;
   }
 `
-
-const TicketPreview = styled.div`
-  opacity: 0;
-  background-color: black;
-  max-width: 500px;
+const TicketCompontent = styled(TicketImgBg)`
   border: 1px solid white;
-  padding: 20px;
+  position: absolute;
+  width: 439px;
+  height: 250px;
+  transform: rotate(-5.4deg);
+  &:hover {
+    transform: rotate(0deg);
+    transition: 0.2s;
+  }
+`
+
+const TicketPreBg = styled.div`
+  position: absolute;
+  width: 439px;
+  height: 250px;
+  left: 4%;
+  top: 10%;
+  transform: rotate(-5.4deg);
+  border: 1px solid white;
   margin: 10px;
-  padding: 2vw 4vw;
   border-radius: 20px;
-  min-height: 200px;
+
+  &:hover {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+`
+const TicketPreview = styled.div`
+  max-width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background-color: black;
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 20px;
+
+  &:hover {
+    opacity: 1;
+  }
 `
 const ArrayHolder = styled.div`
   width: 100%;
@@ -249,7 +284,14 @@ const ClrButton = styled.span`
 `
 
 const MyTicketPage = () => {
-  const colors = ['#206EA6', '#4C1077', '#BBD3D9', '#FECF29', '#14F195']
+  const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
+  const ticketUrls = [
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/light_izvbcd.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/magenta_dgiq85.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/green_zgppwy.png'
+  ]
   const rows = 1
   const columns = 16
   // const { currentUser } = useContext(AuthContext)
@@ -261,9 +303,12 @@ const MyTicketPage = () => {
     name: '',
     teamName: '',
     email: '',
-    bgcolor: '',
+    bgcolor: '#04040D',
     ticketImage: ''
   })
+
+  const [selectedColor, setSelectedColor] = useState(0)
+
   const [showModal, setShowModal] = useState(false)
   const [editMode, setEditMode] = useState(true)
   const [existingTicketKey, setExistingTicketKey] = useState(null)
@@ -356,17 +401,17 @@ const MyTicketPage = () => {
               <PreviewCont>
                 <GridCont>
                   {Array.from({ length: rows * columns }, (_, index) => (
-                    <GridLines key={index}>
-                      <TicketPreview
-                        id="ticketPreview"
-                        style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#04040D' }}
-                      >
-                        <h2>{ticketInfo.name || 'Your Name'}</h2>
-                        <p>{ticketInfo.teamName || 'Your Team Name'}</p>
-                        <p>{ticketInfo.email || 'Your Email'}</p>
-                      </TicketPreview>
-                    </GridLines>
+                    <GridLines key={index}></GridLines>
                   ))}
+                  <TicketCompontent>
+                    <InnerTicket
+                      user_name={ticketInfo.name || 'Your Name'}
+                      team_name={ticketInfo.teamName || 'Your Team Name'}
+                      ticket_num={ticketInfo.ticketId || '510000'}
+                      ticket_img_url={ticketUrls[selectedColor]}
+                      lightBg={selectedColor === 1 ? true : false}
+                    />
+                  </TicketCompontent>
                 </GridCont>
               </PreviewCont>
             </PreviewBg>
@@ -378,13 +423,16 @@ const MyTicketPage = () => {
                 <ClrButton
                   key={c}
                   style={{ backgroundColor: c }}
-                  onClick={() => setTicketInfo({ ...ticketInfo, bgcolor: c })}
+                  onClick={() => {
+                    setTicketInfo({ ...ticketInfo, bgcolor: c })
+                    setSelectedColor(colors.indexOf(c))
+                  }}
                 />
               ))}
             </ColorArray>
           </ArrayHolder>
 
-          <GlobalButton>Share your Ticket</GlobalButton>
+          <ShareButton>Share your Ticket</ShareButton>
         </TicketPage>
       ) : (
         <>
