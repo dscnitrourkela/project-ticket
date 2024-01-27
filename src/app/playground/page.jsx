@@ -27,13 +27,13 @@ const TicketPage = styled.div`
   align-items: center;
   margin: 25px 45px;
   padding: 40px 0px;
-  border: 1px solid aqua;
+  border: 0px solid aqua;
 `
 
 const TicketContainer = styled.div`
   width: 98%;
   height: auto;
-  border: 1px solid white;
+  border: 0px solid white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -206,14 +206,35 @@ const GridLines = styled.div`
   }
 `
 const TicketCompontent = styled(TicketImgBg)`
-  border: 1px solid white;
+  border: 0px solid pink;
   position: absolute;
+  left: 2.1vw;
+  top: 2.5vw;
   width: 439px;
   height: 250px;
   transform: rotate(-5.4deg);
   &:hover {
     transform: rotate(0deg);
     transition: 0.2s;
+  }
+
+  @media (min-width: 980px) and (max-width: 1200px) {
+    width: 32vw;
+    height: 20vw;
+    top: 5vw;
+    left: 1.5vw;
+  }
+  @media (max-width: 980px) {
+    width: 50vw;
+    height: 32vw;
+    left: 4vw;
+    top: 4vw;
+  }
+  @media (max-width: 680px) {
+    width: 63vw;
+    height: 42vw;
+    top: 8vw;
+    left: 2vw;
   }
 `
 
@@ -224,7 +245,7 @@ const TicketPreBg = styled.div`
   left: 4%;
   top: 10%;
   transform: rotate(-5.4deg);
-  border: 1px solid white;
+  border: 0px solid white;
   margin: 10px;
   border-radius: 20px;
 
@@ -248,7 +269,7 @@ const TicketPreview = styled.div`
 `
 const ArrayHolder = styled.div`
   width: 100%;
-  border: 1px solid white;
+  border: 0px solid white;
   display: flex;
   flex-direction: row;
   justify-content: end;

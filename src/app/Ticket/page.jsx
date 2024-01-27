@@ -18,14 +18,14 @@ export const TicketImgBg = styled.div`
     rgba(0, 0, 0, 0) 48.42%
   );
   border: 4px solid hotpink;
-  margin: 50px;
+  margin: 0px;
   border-radius: 20px;
 `
 
 const TicketImage = styled.img`
   width: 100%;
   height: 100%;
-  border: 1px solid white;
+  border: 0px solid white;
   border-radius: 20px;
 `
 const TicketText = styled.div`
