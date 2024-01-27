@@ -1,15 +1,11 @@
 .hero {
-  height: 100%;
-  width: 100%;
-  background-color: black;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  border: 1px solid black;
-  margin: 0px;
+
+background-color: black;
+padding-top:40px;
+padding-bottom: 40px;
+width: 100%;
 
 }
-
 
 .form-box {
   width: 400px;
@@ -88,9 +84,12 @@
 }
 .signupbutton {
   padding: 10px 20px;
+  display:flex;
   cursor: pointer;
   display: block;
   margin: 20px auto;
+  position: relative;
+  left: 10px;;
   outline: none;
   width: 60%;
   border-radius: 2.25rem;
@@ -113,7 +112,7 @@
 
 .holder {
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 10px;
   margin: 5px 0;
   outline: none;
   border-radius: 0.6875rem;

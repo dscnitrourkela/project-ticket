@@ -14,7 +14,6 @@ const StyledNavbar = styled.nav`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  padding-left: 23px;
 `
 const LineStyles = styled(Image)`
   position: absolute;
