@@ -82,11 +82,11 @@ const GenerateButton = styled.button`
 
 const MyTicketPage = () => {
   const colors = ['#206EA6', '#4C1077', '#BBD3D9', '#FECF29', '#14F195']
-  // const { currentUser } = useContext(AuthContext)
-  var currentUser = {
+  const { currentUser } = useContext(AuthContext)
+  /*var currentUser = {
     name: 'uder1',
     mail: 'hey@gmail.com'
-  }
+  */
   const [ticketInfo, setTicketInfo] = useState({
     name: '',
     teamName: '',

@@ -31,7 +31,7 @@ const Names = styled.div`
   bottom: 0vw;
   left: 1.5vw;
   color: white;
-  border: 1px solid red;
+  border: 0px solid red;
   position: absolute;
   width: 40%;
   max-height: 40%;
@@ -68,7 +68,7 @@ const TeamName = styled.h2`
   }
 `
 const TicketNum = styled.span`
-  border: 1px solid red;
+  border: 0px solid red;
   transform: rotate(-90deg);
   position: absolute;
   right: -1vw;

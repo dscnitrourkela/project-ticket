@@ -15,7 +15,6 @@ import Ticket, { InnerTicket, TicketImgBg } from '../Ticket/page'
 import { Navbar } from '../components/Navbar'
 import { AuthContext } from '../context/AuthContext'
 import { GlobalButton } from '../components/shared/GlobalButton'
-//import { color } from 'html2canvas/dist/types/css/types/color'
 
 const ShareButton = styled(GlobalButton)`
   background-color: pink;
@@ -305,6 +304,25 @@ const ClrButton = styled.span`
   }
 `
 
+const ModalPage = styled.div`
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+`
+const PreviewButton = styled.button`
+  height: 52px;
+  cursor: pointer;
+  border: none;
+  border-radius: 35px;
+  padding: 2.7px;
+  padding: 0vw 2vw;
+  background: linear-gradient(
+    97.1deg,
+    rgba(247, 225, 255, 0.38) 11.37%,
+    rgba(218, 115, 255, 0.38) 102.95%
+  );
+`
+
 const MyTicketPage = () => {
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
   const ticketUrls = [
@@ -316,11 +334,11 @@ const MyTicketPage = () => {
   ]
   const rows = 1
   const columns = 16
-  // const { currentUser } = useContext(AuthContext)
-  var currentUser = {
+  const { currentUser } = useContext(AuthContext)
+  /*var currentUser = {
     name: 'uder1',
     mail: 'hey@gmail.com'
-  }
+  }*/
   const [ticketInfo, setTicketInfo] = useState({
     name: '',
     teamName: '',
@@ -355,7 +373,7 @@ const MyTicketPage = () => {
           ticketImage: tickets[lastTicketKey].ticketImage
         })
         setExistingTicketKey(lastTicketKey)
-        //setShowModal(true)
+        setShowModal(true)
       }
     })
   }, [currentUser, router])
@@ -388,88 +406,87 @@ const MyTicketPage = () => {
   return (
     <>
       <Navbar />
-      {!showModal ? (
-        <TicketPage>
-          <TicketContainer>
-            <FormBg>
-              <FormSection>
-                <FormText>Your name:</FormText>
-                <Input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={ticketInfo.name}
-                  onChange={handleChange}
-                />
-                <FormText>Team name:</FormText>
-                <Input
-                  type="text"
-                  name="teamName"
-                  placeholder="Team Name"
-                  value={ticketInfo.teamName}
-                  onChange={handleChange}
-                />
-
-                <></>
-                <SubmitButton onClick={generateTicket}>
-                  {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
-                </SubmitButton>
-              </FormSection>
-            </FormBg>
-
-            <PreviewBg>
-              <PreviewCont>
-                <GridCont>
-                  {Array.from({ length: rows * columns }, (_, index) => (
-                    <GridLines key={index}></GridLines>
-                  ))}
-                  <TicketCompontent>
-                    <InnerTicket
-                      user_name={ticketInfo.name || 'Your Name'}
-                      team_name={ticketInfo.teamName || 'Your Team Name'}
-                      ticket_num={ticketInfo.ticketId || '510000'}
-                      ticket_img_url={ticketUrls[selectedColor]}
-                      lightBg={selectedColor === 1 ? true : false}
-                    />
-                  </TicketCompontent>
-                </GridCont>
-              </PreviewCont>
-            </PreviewBg>
-          </TicketContainer>
-          <ArrayHolder>
-            <ColorText>choose color: </ColorText>
-            <ColorArray>
-              {colors.map((c) => (
-                <ClrButton
-                  key={c}
-                  style={{ backgroundColor: c }}
-                  onClick={() => {
-                    setTicketInfo({ ...ticketInfo, bgcolor: c })
-                    setSelectedColor(colors.indexOf(c))
-                  }}
-                />
-              ))}
-            </ColorArray>
-          </ArrayHolder>
-
-          <ShareButton>Share your Ticket</ShareButton>
-        </TicketPage>
-      ) : (
-        <>
-          <GlobalButton onClick={() => setEditMode(true)}>Edit Ticket</GlobalButton>
-          <Modal show={showModal} onClose={() => setShowModal(false)}>
-            {ticketInfo.ticketImage && (
-              <InnerTicket
-                user_name={ticketInfo.name || 'Your Name'}
-                team_name={ticketInfo.teamName || 'Your Team Name'}
-                ticket_num={ticketInfo.ticketId || '510000'}
-                ticket_img_url={ticketUrls[selectedColor]}
-                lightBg={selectedColor === 1 ? true : false}
+      <TicketPage>
+        <TicketContainer>
+          <FormBg>
+            <FormSection>
+              <FormText>Your name:</FormText>
+              <Input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={ticketInfo.name}
+                onChange={handleChange}
               />
-            )}
-          </Modal>
-        </>
-      )}
+              <FormText>Team name:</FormText>
+              <Input
+                type="text"
+                name="teamName"
+                placeholder="Team Name"
+                value={ticketInfo.teamName}
+                onChange={handleChange}
+              />
+
+              <></>
+              <SubmitButton onClick={generateTicket}>
+                {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
+              </SubmitButton>
+            </FormSection>
+          </FormBg>
+
+          <PreviewBg>
+            <PreviewCont>
+              <GridCont>
+                {Array.from({ length: rows * columns }, (_, index) => (
+                  <GridLines key={index}></GridLines>
+                ))}
+                <TicketCompontent>
+                  <InnerTicket
+                    user_name={ticketInfo.name || 'Your Name'}
+                    team_name={ticketInfo.teamName || 'Your Team Name'}
+                    ticket_num={ticketInfo.ticketId || '510000'}
+                    ticket_img_url={ticketUrls[selectedColor]}
+                    lightBg={selectedColor === 1 ? true : false}
+                  />
+                </TicketCompontent>
+              </GridCont>
+            </PreviewCont>
+          </PreviewBg>
+        </TicketContainer>
+        <ArrayHolder>
+          <ColorText>choose color: </ColorText>
+          <ColorArray>
+            {colors.map((c) => (
+              <ClrButton
+                key={c}
+                style={{ backgroundColor: c }}
+                onClick={() => {
+                  setTicketInfo({ ...ticketInfo, bgcolor: c })
+                  setSelectedColor(colors.indexOf(c))
+                }}
+              />
+            ))}
+          </ColorArray>
+        </ArrayHolder>
+
+        <PreviewButton onClick={() => setShowModal(true)}>Preview your Ticket</PreviewButton>
+        <ShareButton>Share your Ticket</ShareButton>
+      </TicketPage>
+
+      <ModalPage style={showModal ? { display: 'block' } : { display: 'none' }}>
+        <GlobalButton onClick={() => setShowModal(false)}>Edit Ticket</GlobalButton>
+        <Modal show={showModal} onClose={() => setShowModal(false)}>
+          {ticketInfo.ticketImage && (
+            <InnerTicket
+              user_name={ticketInfo.name || 'Your Name'}
+              team_name={ticketInfo.teamName || 'Your Team Name'}
+              ticket_num={ticketInfo.ticketId || '510000'}
+              ticket_img_url={ticketUrls[selectedColor]}
+              lightBg={selectedColor === 1 ? true : false}
+            />
+          )}
+        </Modal>
+      </ModalPage>
     </>
   )
 }

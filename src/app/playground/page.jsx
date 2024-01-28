@@ -316,22 +316,22 @@ const MyTicketPage = () => {
   ]
   const rows = 1
   const columns = 16
-  // const { currentUser } = useContext(AuthContext)
-  var currentUser = {
+  const { currentUser } = useContext(AuthContext)
+  /*var currentUser = {
     name: 'uder1',
     mail: 'hey@gmail.com'
-  }
+  }*/
   const [ticketInfo, setTicketInfo] = useState({
     name: '',
     teamName: '',
     email: '',
-    bgcolor: '#04040D',
+    bgcolor: '',
     ticketImage: ''
   })
 
   const [selectedColor, setSelectedColor] = useState(0)
 
-  const [showModal, setShowModal] = useState(true)
+  const [showModal, setShowModal] = useState(false)
   const [existingTicketKey, setExistingTicketKey] = useState(null)
   const router = useRouter()
 
@@ -352,11 +352,11 @@ const MyTicketPage = () => {
           teamName: tickets[lastTicketKey].teamName,
           email: tickets[lastTicketKey].email,
           bgcolor: tickets[lastTicketKey].bgcolor,
+          ticketId: tickets[lastTicketKey].ticketId,
           ticketImage: tickets[lastTicketKey].ticketImage
         })
         setExistingTicketKey(lastTicketKey)
-
-        //setShowModal(true)        //for now, later after adding authcontext change this.
+        //setShowModal(true)
       }
     })
   }, [currentUser, router])
@@ -459,15 +459,13 @@ const MyTicketPage = () => {
         <>
           <GlobalButton onClick={() => setEditMode(true)}>Edit Ticket</GlobalButton>
           <Modal show={showModal} onClose={() => setShowModal(false)}>
-            {ticketInfo.ticketImage && (
-              <Ticket
-                user_name={ticketInfo.name || 'Your Name'}
-                team_name={ticketInfo.teamName || 'Your Team Name'}
-                ticket_num={ticketInfo.ticketId || '510000'}
-                ticket_img_url={ticketUrls[selectedColor]}
-                lightBg={selectedColor === 1 ? true : false}
-              />
-            )}
+            <InnerTicket
+              user_name={ticketInfo.name || 'Your Name'}
+              team_name={ticketInfo.teamName || 'Your Team Name'}
+              ticket_num={ticketInfo.ticketId || '510000'}
+              ticket_img_url={ticketUrls[selectedColor]}
+              lightBg={selectedColor === 1 ? true : false}
+            />
           </Modal>
         </>
       )}

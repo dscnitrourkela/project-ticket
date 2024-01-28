@@ -12,12 +12,13 @@ const StyledModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 `
 
 const ModalContent = styled.div`
   width: 50%;
   height: auto;
-  border: 1px solid red;
+  border: 0px solid red;
   position: relative;
   @media (max-width: 680px) {
     width: 80%;
@@ -30,6 +31,7 @@ const CloseButton = styled.button`
   right: 5vw;
   cursor: pointer;
   border-radius: 50%;
+  border: 1px solid rgba(200, 200, 200, 0.2);
   height: 60px;
   width: 60px;
   font-size: 20px;

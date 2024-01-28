@@ -60,9 +60,9 @@ const InsideButton = styled.button`
   }
 `
 
-export const GlobalButton = ({ children }) => {
+export const GlobalButton = ({ onClick, children }) => {
   return (
-    <ButtonCont>
+    <ButtonCont onClick={onClick}>
       <InsideButton>{children}</InsideButton>
     </ButtonCont>
   )
