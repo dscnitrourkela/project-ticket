@@ -1,12 +1,24 @@
 import { signOut } from 'firebase/auth'
 import React, { useContext } from 'react'
-import '../styles/globals.css'
+import '../../styles/globals.css'
 import styled from 'styled-components'
-import { GlobalButton } from './shared/GlobalButton'
+import { GlobalButton } from '../shared/GlobalButton'
 
-import { auth } from '../../firebase/firebase'
-import { AuthContext } from '../context/AuthContext'
+import { auth } from '../../../firebase/firebase'
+import { AuthContext } from '../../context/AuthContext'
 
+const LogoImg = styled.img`
+  width: 77px;
+  height: 77px;
+  @media (max-width: 680px) {
+    width: 50px;
+    height: 50px;
+  }
+  @media (max-width: 360px) {
+    width: 40px;
+    height: 40px;
+  }
+`
 const StyledNavbar = styled.nav`
   display: flex;
   flex-direction: row;
@@ -31,13 +43,11 @@ const NavItem = styled.li`
   list-style: none;
   color: white;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
   margin: 0vw 2vw;
 
   &:hover {
-    background-color: #ddd;
-    color: black;
+    border-bottom: 2px solid rgba(218, 115, 255, 0.8);
   }
 
   a {
@@ -59,7 +69,12 @@ export const Navbar = () => {
   return (
     <StyledNavbar>
       <NavItem>
-        <a href="/">Home</a>
+        <a href="/">
+          <LogoImg
+            src="https://res.cloudinary.com/djl2ulktr/image/upload/v1706421438/HN_logo_bswqp2.png"
+            alt="logo"
+          />
+        </a>
       </NavItem>
 
       {currentUser ? (

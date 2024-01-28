@@ -8,7 +8,12 @@ const StyledModal = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(237, 237, 237, 0.4);
+  background: linear-gradient(
+    90deg,
+    rgba(230, 230, 230, 0.4) 30%,
+    rgba(240, 240, 255, 0.6) 43%,
+    rgba(230, 230, 230, 0.4) 100%
+  );
   display: flex;
   justify-content: center;
   align-items: center;

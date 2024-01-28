@@ -2,7 +2,6 @@
 'use client'
 import { get, push, ref, update } from 'firebase/database'
 import html2canvas from 'html2canvas'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
@@ -11,8 +10,8 @@ import { SubmitButton } from '../components/shared/SubmitButton'
 
 import { database } from '../../firebase/firebase'
 import Modal from '../Ticket/modal'
-import Ticket, { InnerTicket, TicketImgBg } from '../Ticket/page'
-import { Navbar } from '../components/Navbar'
+import { InnerTicket, TicketImgBg } from '../Ticket/page'
+import { Navbar } from '../components/marginals/Navbar'
 import { AuthContext } from '../context/AuthContext'
 import { GlobalButton } from '../components/shared/GlobalButton'
 
@@ -370,7 +369,6 @@ const MyTicketPage = () => {
           teamName: tickets[lastTicketKey].teamName,
           email: tickets[lastTicketKey].email,
           bgcolor: tickets[lastTicketKey].bgcolor,
-          ticketId: tickets[lastTicketKey].ticketId,
           ticketImage: tickets[lastTicketKey].ticketImage
         })
         setExistingTicketKey(lastTicketKey)
