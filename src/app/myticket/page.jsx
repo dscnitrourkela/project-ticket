@@ -7,53 +7,286 @@ import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import '../styles/globals.css'
-//import { TicketPage } from './ticket.styles.jsx'
+import { SubmitButton } from '../components/shared/SubmitButton'
 
 import { database } from '../../firebase/firebase'
 import Modal from '../Ticket/modal'
+import Ticket, { InnerTicket, TicketImgBg } from '../Ticket/page'
 import { Navbar } from '../components/Navbar'
 import { AuthContext } from '../context/AuthContext'
-//import { color } from 'html2canvas/dist/types/css/types/color'
+import { GlobalButton } from '../components/shared/GlobalButton'
+
+const ShareButton = styled(GlobalButton)`
+  background-color: pink;
+  margin: 10vw 2vw;
+`
+const TicketPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px 45px;
+  padding: 40px 0px;
+  border: 0px solid aqua;
+`
 
 const TicketContainer = styled.div`
+  width: 98%;
+  height: auto;
+  border: 0px solid white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
+  @media (max-width: 980px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
+const FormBg = styled.div`
+  height: auto;
+  width: auto;
+  margin: 0vw 2.5vw;
+  align-items: center;
+  border: 1.5px solid;
+  border-image-source: linear-gradient(212.47deg, #bd00ff 0%, rgba(0, 0, 0, 0) 44.37%);
+  border-image-slice: 1;
+  border-radius: 10px;
 
+  background: linear-gradient(212.47deg, rgba(189, 0, 255, 0.2) 0%, rgba(0, 0, 0, 0) 44.37%);
+  box-shadow: 0px 18px 59.599998474121094px 0px #cc3cff1a inset;
+
+  @media (max-width: 980px) {
+    margin: 2vw 0vw;
+  }
+  @media (max-width: 680px) {
+    margin: 6vw 0vw;
+  }
+`
 const FormSection = styled.div`
-  width: 291.65px;
-  min-height: 216.42px;
+  opacity: 1;
+  width: 458px;
+  height: 278px;
   display: flex;
   flex-direction: column;
-  flex: 1;
-  margin-right: 20px;
-  padding: 2vw 4vw;
-  background: linear-gradient(0deg, #292929, #bd00ff),
-    linear-gradient(212.47deg, #bd00ff 0%, rgba(0, 0, 0, 0) 44.37%);
-  border-image-source: linear-gradient(212.47deg, #bd00ff 0%, rgba(0, 0, 0, 0) 44.37%),
-    linear-gradient(0deg, #292929, #292929);
+  justify-content: end;
+  padding: 3vw 1.5vw 1vw 1.5vw;
+  background: linear-gradient(
+    180deg,
+    rgba(156, 154, 255, 0.1) 0%,
+    rgba(234, 173, 255, 0.084) 123.17%
+  );
+
   border-radius: 10px;
+  box-shadow: -1px 2px 9.800000190734863px 0px #ffffff40 inset;
+
+  @media (min-width: 980px) and (max-width: 1200px) {
+    width: 35vw;
+  }
+  @media (max-width: 680px) {
+    width: 68vw;
+    min-height: 40vw;
+  }
+  @media (max-width: 450px) {
+    height: 64vw;
+  }
+`
+
+const FormText = styled.p`
+  border: 0px solid pink;
+  margin: 20px 0px 5px 0px;
+  @media (max-width: 680px) {
+    height: 10px;
+    margin: 3vw 2vw;
+  }
 `
 
 const Input = styled.input`
+  background: linear-gradient(0deg, rgba(225, 225, 225, 0.06), rgba(225, 225, 225, 0.06));
+  height: 19px;
   padding: 10px;
-  margin: 7px 0px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  margin: 5px 0px 20px 0px;
+  border-radius: 11px;
+  border: 1.8px solid #e88eff33;
+
+  &:focus {
+    outline: none;
+    background: linear-gradient(0deg, rgba(232, 142, 255, 0.2), rgba(232, 142, 255, 0.2));
+    border-color: #e88eff;
+  }
+
+  @media (max-width: 680px) {
+    margin: 1vw 2vw;
+  }
+  @media (max-width: 680px) {
+    height: 10px;
+  }
+  @media (max-width: 460px) {
+    height: 6px;
+  }
 `
 
-const TicketPreview = styled.div`
-  flex: 1;
-  border: 1px solid black;
-  padding: 20px;
+const PreviewBg = styled.div`
+  height: auto;
+  width: auto;
+  margin: 0vw 2.5vw;
+  align-items: center;
+  border: 1.5px solid;
+  border-radius: 10px;
+  border-image-source: linear-gradient(132.59deg, #bd00ff 1.4%, rgba(0, 0, 0, 0) 34.46%);
+  border-image-slice: 1;
+
+  background: linear-gradient(132.59deg, rgba(189, 0, 255, 0.2) 5.4%, rgba(0, 0, 0, 0) 34.46%);
+  box-shadow: 0px 18px 59.599998474121094px 0px #cc3cff1a inset;
+
+  @media (max-width: 980px) {
+    margin: 2vw 0vw;
+  }
+`
+const PreviewCont = styled.div`
+  opacity: 1;
+  width: 513px;
+  height: 338px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background: linear-gradient(
+    180deg,
+    rgba(156, 154, 255, 0.1) 0%,
+    rgba(234, 173, 255, 0.084) 123.17%
+  );
+
+  border-radius: 10px;
+  box-shadow: -1px 2px 9.800000190734863px 0px #ffffff40 inset;
+
+  @media (min-width: 980px) and (max-width: 1200px) {
+    width: 35vw;
+  }
+  @media (max-width: 680px) {
+    width: 68vw;
+    min-height: 40vw;
+  }
+  @media (max-width: 450px) {
+    height: 64vw;
+  }
+`
+const GridCont = styled.div`
+  position: relative;
+  opacity: 1;
+  width: 100%;
+  height: 99%;
+  margin: auto 0px;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  gap: 1px;
+
+  border: 0px solid red;
+  border-radius: 10px;
+
+  @media (min-width: 980px) and (max-width: 1200px) {
+    width: 35vw;
+  }
+  @media (max-width: 680px) {
+    width: 68vw;
+    min-height: 40vw;
+  }
+  @media (max-width: 450px) {
+    height: 64vw;
+  }
+`
+const GridLines = styled.div`
+  width: 1.8vw;
+  background-color: rgba(156, 154, 255, 0);
+  border-right: 3px solid rgba(165, 148, 176, 0.3);
+  height: 100%;
+
+  @media (max-width: 680px) {
+    min-height: 40vw;
+  }
+`
+const TicketCompontent = styled(TicketImgBg)`
+  border: 0px solid pink;
+  position: absolute;
+  left: 2.1vw;
+  top: 2.5vw;
+  width: 439px;
+  height: 250px;
+  transform: rotate(-5.4deg);
+  &:hover {
+    transform: rotate(0deg);
+    transition: 0.2s;
+  }
+
+  @media (min-width: 980px) and (max-width: 1200px) {
+    width: 32vw;
+    height: 20vw;
+    top: 5vw;
+    left: 1.5vw;
+  }
+  @media (max-width: 980px) {
+    width: 50vw;
+    height: 32vw;
+    left: 4vw;
+    top: 4vw;
+  }
+  @media (max-width: 680px) {
+    width: 63vw;
+    height: 42vw;
+    top: 8vw;
+    left: 2vw;
+  }
+`
+
+const TicketPreBg = styled.div`
+  position: absolute;
+  width: 439px;
+  height: 250px;
+  left: 4%;
+  top: 10%;
+  transform: rotate(-5.4deg);
+  border: 0px solid white;
   margin: 10px;
-  padding: 2vw 4vw;
   border-radius: 20px;
-  min-height: 200px;
+
+  &:hover {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+`
+const TicketPreview = styled.div`
+  max-width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background-color: black;
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 20px;
+
+  &:hover {
+    opacity: 1;
+  }
+`
+const ArrayHolder = styled.div`
+  width: 100%;
+  border: 0px solid white;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  @media (max-width: 980px) {
+    justify-content: center;
+  }
+  @media (max-width: 680px) {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+`
+const ColorText = styled.p`
+  border: 0px solid pink;
 `
 const ColorArray = styled.div`
+  border: 0px solid pink;
+  flex: 0.4;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -61,32 +294,51 @@ const ColorArray = styled.div`
 const ClrButton = styled.span`
   height: 25px;
   width: 25px;
-  margin: 2vw 1vw;
+  margin: 1.5vw 1vw;
   cursor: pointer;
+  border-radius: 5px;
+  @media (max-width: 450px) {
+    height: 18px;
+    width: 18px;
+    margin: 2vw 2vw;
+  }
 `
 
-const GenerateButton = styled.button`
-  height: 50px;
-  width: 189px;
-  background-color: #bc00fe;
-  color: white;
-  border: none;
-  border-radius: 28px;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
+const ModalPage = styled.div`
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+`
+const PreviewButton = styled.button`
+  height: 52px;
   cursor: pointer;
-  margin: 10px auto;
+  border: none;
+  border-radius: 35px;
+  padding: 2.7px;
+  padding: 0vw 2vw;
+  background: linear-gradient(
+    97.1deg,
+    rgba(247, 225, 255, 0.38) 11.37%,
+    rgba(218, 115, 255, 0.38) 102.95%
+  );
 `
 
 const MyTicketPage = () => {
-  const colors = ['#206EA6', '#4C1077', '#BBD3D9', '#FECF29', '#14F195']
+  const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
+  const ticketUrls = [
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/light_izvbcd.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/magenta_dgiq85.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/green_zgppwy.png'
+  ]
+  const rows = 1
+  const columns = 16
   const { currentUser } = useContext(AuthContext)
   /*var currentUser = {
     name: 'uder1',
     mail: 'hey@gmail.com'
-  */
+  }*/
   const [ticketInfo, setTicketInfo] = useState({
     name: '',
     teamName: '',
@@ -94,8 +346,10 @@ const MyTicketPage = () => {
     bgcolor: '',
     ticketImage: ''
   })
-  const [showModal, setShowModal] = useState(false)
-  const [editMode, setEditMode] = useState(true)
+
+  const [selectedColor, setSelectedColor] = useState(0)
+
+  const [showModal, setShowModal] = useState(true)
   const [existingTicketKey, setExistingTicketKey] = useState(null)
   const router = useRouter()
 
@@ -116,6 +370,7 @@ const MyTicketPage = () => {
           teamName: tickets[lastTicketKey].teamName,
           email: tickets[lastTicketKey].email,
           bgcolor: tickets[lastTicketKey].bgcolor,
+          ticketId: tickets[lastTicketKey].ticketId,
           ticketImage: tickets[lastTicketKey].ticketImage
         })
         setExistingTicketKey(lastTicketKey)
@@ -144,7 +399,6 @@ const MyTicketPage = () => {
         }).then(() => {
           setTicketInfo({ ...ticketInfo, ticketImage: image })
           setShowModal(true)
-          setEditMode(false)
         })
       }
     })
@@ -153,74 +407,93 @@ const MyTicketPage = () => {
   return (
     <>
       <Navbar />
-      {editMode ? (
+      <TicketPage>
         <TicketContainer>
-          <FormSection>
-            <Input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={ticketInfo.name}
-              onChange={handleChange}
-            />
-            <Input
-              type="text"
-              name="teamName"
-              placeholder="Team Name"
-              value={ticketInfo.teamName}
-              onChange={handleChange}
-            />
-            <Input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={ticketInfo.email}
-              onChange={handleChange}
-            />
-            <></>
-            choose Background:
-            <Input type="color" name="bgcolor" value={ticketInfo.bgcolor} onClick={handleChange} />
-            <ColorArray>
-              {colors.map((c) => (
-                <ClrButton
-                  key={c}
-                  style={{ backgroundColor: c }}
-                  onClick={() => setTicketInfo({ ...ticketInfo, bgcolor: c })}
-                />
-              ))}
-            </ColorArray>
-            <GenerateButton onClick={generateTicket}>
-              {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
-            </GenerateButton>
-          </FormSection>
-
-          <TicketPreview
-            id="ticketPreview"
-            style={{ background: ticketInfo.bgcolor ? ticketInfo.bgcolor : '#ffffff' }}
-          >
-            <h2>{ticketInfo.name || 'Your Name'}</h2>
-            <p>{ticketInfo.teamName || 'Your Team Name'}</p>
-            <p>{ticketInfo.email || 'Your Email'}</p>
-          </TicketPreview>
-        </TicketContainer>
-      ) : (
-        <>
-          <button onClick={() => setEditMode(true)}>Edit Ticket</button>
-          <Modal show={showModal} onClose={() => setShowModal(false)}>
-            {ticketInfo.ticketImage && (
-              <Image
-                src={ticketInfo.ticketImage}
-                alt="Generated Ticket"
-                width={1000}
-                height={500}
-                unoptimized
+          <FormBg>
+            <FormSection>
+              <FormText>Your name:</FormText>
+              <Input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={ticketInfo.name}
+                onChange={handleChange}
               />
-            )}
-          </Modal>
-        </>
-      )}
+              <FormText>Team name:</FormText>
+              <Input
+                type="text"
+                name="teamName"
+                placeholder="Team Name"
+                value={ticketInfo.teamName}
+                onChange={handleChange}
+              />
+
+              <></>
+              <SubmitButton
+                onClick={() => {
+                  generateTicket
+                  setShowModal(true)
+                }}
+              >
+                {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
+              </SubmitButton>
+            </FormSection>
+          </FormBg>
+
+          <PreviewBg>
+            <PreviewCont>
+              <GridCont>
+                {Array.from({ length: rows * columns }, (_, index) => (
+                  <GridLines key={index}></GridLines>
+                ))}
+                <TicketCompontent>
+                  <InnerTicket
+                    user_name={ticketInfo.name || 'Your Name'}
+                    team_name={ticketInfo.teamName || 'Your Team Name'}
+                    ticket_num={ticketInfo.ticketId || '510000'}
+                    ticket_img_url={ticketUrls[selectedColor]}
+                    lightBg={selectedColor === 1 ? true : false}
+                  />
+                </TicketCompontent>
+              </GridCont>
+            </PreviewCont>
+          </PreviewBg>
+        </TicketContainer>
+        <ArrayHolder>
+          <ColorText>choose color: </ColorText>
+          <ColorArray>
+            {colors.map((c) => (
+              <ClrButton
+                key={c}
+                style={{ backgroundColor: c }}
+                onClick={() => {
+                  setTicketInfo({ ...ticketInfo, bgcolor: c })
+                  setSelectedColor(colors.indexOf(c))
+                }}
+              />
+            ))}
+          </ColorArray>
+        </ArrayHolder>
+
+        <PreviewButton onClick={() => setShowModal(true)}>Preview your Ticket</PreviewButton>
+        <ShareButton>Share your Ticket</ShareButton>
+      </TicketPage>
+
+      <ModalPage style={showModal ? { display: 'block' } : { display: 'none' }}>
+        <GlobalButton onClick={() => setShowModal(false)}>Edit Ticket</GlobalButton>
+        <Modal show={showModal} onClose={() => setShowModal(false)}>
+          {ticketInfo.ticketImage && (
+            <InnerTicket
+              user_name={ticketInfo.name || 'Your Name'}
+              team_name={ticketInfo.teamName || 'Your Team Name'}
+              ticket_num={ticketInfo.ticketId || '510000'}
+              ticket_img_url={ticketUrls[selectedColor]}
+              lightBg={selectedColor === 1 ? true : false}
+            />
+          )}
+        </Modal>
+      </ModalPage>
     </>
   )
 }
-
 export default MyTicketPage
