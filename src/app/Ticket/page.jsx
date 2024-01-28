@@ -1,38 +1,27 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
-import Image from 'next/image'
 
 export const TicketImgBg = styled.div`
   width: 660px;
   height: 390px;
-  background-color: #206ea6;
   position: absolute;
-  background: linear-gradient(
-    106.88deg,
-    rgba(0, 62, 183, 0.8) 1.32%,
-    rgba(0, 0, 0, 0) 18.58%,
-    rgba(0, 154, 164, 0.2) -4.72%,
-    rgba(2, 9, 165, 0) 109.51%,
-    rgba(0, 224, 255, 0.96) -4.08%,
-    rgba(0, 0, 0, 0) 48.42%
-  );
   border: 4px solid hotpink;
   margin: 0px;
-  border-radius: 20px;
+  border-radius: 5px;
 `
 
 const TicketImage = styled.img`
   width: 100%;
   height: 100%;
   border: 0px solid white;
-  border-radius: 20px;
+  border-radius: 10px;
 `
 const TicketText = styled.div`
   position: absolute;
   top: 0vw;
   color: white;
-  border: 1px solid black;
+  border: 0px solid black;
   width: 100%;
   height: 100%;
 `
@@ -54,6 +43,9 @@ const UserName = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 1.8vw;
+  @media (max-width: 980px) {
+    font-size: 3vw;
+  }
 `
 const TeamName = styled.h2`
   background: -webkit-linear-gradient(
@@ -71,6 +63,9 @@ const TeamName = styled.h2`
   line-height: 1.2vw;
   letter-spacing: 0em;
   text-align: left;
+  @media (max-width: 980px) {
+    font-size: 2.8vw;
+  }
 `
 const TicketNum = styled.span`
   border: 1px solid red;
@@ -93,6 +88,9 @@ const TicketNum = styled.span`
   font-family: Montserrat;
   font-size: 2vw;
   font-weight: 500;
+  @media (max-width: 980px) {
+    font-size: 3.5vw;
+  }
 `
 const DarkUserName = styled(UserName)`
   background: -webkit-linear-gradient(97.42deg, #010101 6.54%, rgba(79, 82, 82, 0.78) 124.9%);

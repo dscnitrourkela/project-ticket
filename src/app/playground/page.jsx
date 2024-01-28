@@ -297,6 +297,7 @@ const ClrButton = styled.span`
   width: 25px;
   margin: 1.5vw 1vw;
   cursor: pointer;
+  border-radius: 5px;
   @media (max-width: 450px) {
     height: 18px;
     width: 18px;
