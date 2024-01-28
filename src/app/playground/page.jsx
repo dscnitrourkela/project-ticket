@@ -236,35 +236,6 @@ const TicketCompontent = styled(TicketImgBg)`
   }
 `
 
-const TicketPreBg = styled.div`
-  position: absolute;
-  width: 439px;
-  height: 250px;
-  left: 4%;
-  top: 10%;
-  transform: rotate(-5.4deg);
-  border: 0px solid white;
-  margin: 10px;
-  border-radius: 20px;
-
-  &:hover {
-    opacity: 1;
-    transform: rotate(0deg);
-  }
-`
-const TicketPreview = styled.div`
-  max-width: 100%;
-  height: 100%;
-  opacity: 0.5;
-  background-color: black;
-  border: 1px solid white;
-  padding: 10px;
-  border-radius: 20px;
-
-  &:hover {
-    opacity: 1;
-  }
-`
 const ArrayHolder = styled.div`
   width: 100%;
   border: 0px solid white;
