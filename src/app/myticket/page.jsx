@@ -10,7 +10,7 @@ import '../styles/globals.css'
 //import { TicketPage } from './ticket.styles.jsx'
 
 import { database } from '../../firebase/firebase'
-import Modal from '../components/modal'
+import Modal from '../Ticket/modal'
 import { Navbar } from '../components/Navbar'
 import { AuthContext } from '../context/AuthContext'
 //import { color } from 'html2canvas/dist/types/css/types/color'

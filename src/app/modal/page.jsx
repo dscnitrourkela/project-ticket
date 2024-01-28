@@ -355,8 +355,7 @@ const MyTicketPage = () => {
           ticketImage: tickets[lastTicketKey].ticketImage
         })
         setExistingTicketKey(lastTicketKey)
-
-        //setShowModal(true)        //for now, later after adding authcontext change this.
+        //setShowModal(true)
       }
     })
   }, [currentUser, router])
@@ -460,7 +459,7 @@ const MyTicketPage = () => {
           <GlobalButton onClick={() => setEditMode(true)}>Edit Ticket</GlobalButton>
           <Modal show={showModal} onClose={() => setShowModal(false)}>
             {ticketInfo.ticketImage && (
-              <Ticket
+              <InnerTicket
                 user_name={ticketInfo.name || 'Your Name'}
                 team_name={ticketInfo.teamName || 'Your Team Name'}
                 ticket_num={ticketInfo.ticketId || '510000'}
