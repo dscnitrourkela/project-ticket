@@ -1,8 +1,8 @@
-'use client'
+"use client";
 /*eslint-disable max-len */
 
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -20,7 +20,7 @@ const StyledModal = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2;
-`
+`;
 
 const ModalContent = styled.div`
   width: 50%;
@@ -30,7 +30,7 @@ const ModalContent = styled.div`
   @media (max-width: 680px) {
     width: 80%;
   }
-`
+`;
 
 const CloseButton = styled.button`
   position: absolute;
@@ -61,15 +61,15 @@ const CloseButton = styled.button`
     width: 40px;
     height: 40px;
   }
-`
+`;
 const CloseImg = styled.img`
   width: 100%;
   height: 100%;
-`
+`;
 
 const Modal = ({ show, onClose, children }) => {
   if (!show) {
-    return null
+    return null;
   }
 
   return (
@@ -84,7 +84,7 @@ const Modal = ({ show, onClose, children }) => {
       </CloseButton>
       <ModalContent>{children}</ModalContent>
     </StyledModal>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;
