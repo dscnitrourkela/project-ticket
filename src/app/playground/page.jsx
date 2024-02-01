@@ -10,10 +10,19 @@ import { SubmitButton } from '../components/shared/SubmitButton'
 
 import { database } from '../../firebase/firebase'
 import Modal from '../Ticket/modal'
-import { InnerTicket, TicketImgBg } from '../Ticket/page'
+import { InnerTicket } from '../Ticket/page'
 import { Navbar } from '../components/marginals/Navbar'
 import { AuthContext } from '../context/AuthContext'
 import { GlobalButton } from '../components/shared/GlobalButton'
+
+const TicketImgBg = styled.div`
+  width: 660px;
+  height: 390px;
+  position: absolute;
+  border: 4px solid hotpink;
+  margin: 0px;
+  border-radius: 5px;
+`
 
 const ShareButton = styled(GlobalButton)`
   background-color: pink;

@@ -2,15 +2,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const TicketImgBg = styled.div`
-  width: 660px;
-  height: 390px;
-  position: absolute;
-  border: 4px solid hotpink;
-  margin: 0px;
-  border-radius: 5px;
-`
-
 const TicketImage = styled.img`
   width: 100%;
   height: 100%;
@@ -154,37 +145,4 @@ export const InnerTicket = ({
   )
 }
 
-const Ticket = ({
-  user_name = demo_name,
-  team_name = demo_team,
-  ticket_num = demo_num,
-  ticket_img_url = demo_img_url,
-  lightBg = demo_lightBg
-}) => {
-  return (
-    <>
-      <TicketImgBg>
-        <TicketImage src={ticket_img_url} width={100} height={100} alt="green ticket" />
-        {!lightBg ? (
-          <TicketText>
-            <Names>
-              <UserName>{user_name}</UserName>
-              <TeamName>{team_name}</TeamName>
-            </Names>
-            <TicketNum>{ticket_num}</TicketNum>
-          </TicketText>
-        ) : (
-          <TicketText>
-            <Names>
-              <DarkUserName>{user_name}</DarkUserName>
-              <DarkTeamName>{team_name}</DarkTeamName>
-            </Names>
-            <DarkTicketNum>{ticket_num}</DarkTicketNum>
-          </TicketText>
-        )}
-      </TicketImgBg>
-    </>
-  )
-}
-
-export default Ticket
+export default InnerTicket

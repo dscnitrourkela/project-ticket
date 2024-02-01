@@ -65,9 +65,7 @@ export const Navbar = () => {
     mail: 'hey@gmail.com'
   }*/
   const handleSignOut = () => {
-    signOut(auth)
-      .then(() => window.alert('signed out'))
-      .catch((error) => console.error('Sign out error:', error))
+    signOut(auth).catch((error) => console.error('Sign out error:', error))
   }
 
   return (

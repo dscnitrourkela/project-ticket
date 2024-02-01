@@ -1,6 +1,14 @@
 import styled from 'styled-components'
-import { TicketImgBg } from '../Ticket/page'
 import { GlobalButton } from '../components/shared/GlobalButton'
+
+const TicketImgBg = styled.div`
+  width: 660px;
+  height: 390px;
+  position: absolute;
+  border: 4px solid hotpink;
+  margin: 0px;
+  border-radius: 5px;
+`
 
 export const ShareButton = styled(GlobalButton)`
   background-color: pink;
