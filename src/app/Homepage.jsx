@@ -1,4 +1,5 @@
 import React from 'react'
+import { AuthProvider } from './context/AuthContext'
 
 import { Navbar } from './components/marginals/Navbar'
 //import CreateTicket from './components/CreateTicket'
@@ -9,8 +10,10 @@ import SignUp from './components/SignUp'
 function Homepage() {
   return (
     <>
-      <Navbar />
-      <SignUp />
+      <AuthProvider>
+        <Navbar />
+        <SignUp />
+      </AuthProvider>
     </>
   )
 }

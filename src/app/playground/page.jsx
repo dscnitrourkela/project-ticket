@@ -235,7 +235,6 @@ const TicketCompontent = styled(TicketImgBg)`
     left: 2vw;
   }
 `
-
 const ArrayHolder = styled.div`
   width: 100%;
   border: 0px solid white;

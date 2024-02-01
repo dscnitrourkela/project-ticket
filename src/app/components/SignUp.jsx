@@ -32,9 +32,11 @@ const SignUp = () => {
       const user = await signUpWithGoogle()
       if (user) {
         router.push('/myticket')
+        //window.alert('User signed up successfully:', user)
       }
     } catch (error) {
       console.error('Signup failed:', error.message)
+      //window.alert('Signup failed:', error.message)
     }
   }
 

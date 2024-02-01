@@ -58,12 +58,16 @@ const NavItem = styled.li`
 
 export const Navbar = () => {
   const { currentUser } = useContext(AuthContext)
+
+  //window.alert('MyTicketPage - currentUser:', currentUser.name)
   /* var currentUser = {
     name: 'uder1',
     mail: 'hey@gmail.com'
   }*/
   const handleSignOut = () => {
-    signOut(auth).catch((error) => console.error('Sign out error:', error))
+    signOut(auth)
+      .then(() => window.alert('signed out'))
+      .catch((error) => console.error('Sign out error:', error))
   }
 
   return (
