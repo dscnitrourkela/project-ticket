@@ -8,8 +8,8 @@ import '../styles/globals.css'
 import { SubmitButton } from '../components/shared/SubmitButton'
 
 import { database } from '../../firebase/firebase'
-import Modal from '../Ticket/modal'
-import { InnerTicket } from '../Ticket/page'
+import Modal from '../components/Ticket/modal'
+import InnerTicket from '../components/Ticket/ticketComp'
 import { Navbar } from '../components/marginals/Navbar'
 import { AuthContext } from '../context/AuthContext'
 import { GlobalButton } from '../components/shared/GlobalButton'
@@ -46,10 +46,7 @@ const MyTicketPage = () => {
   const rows = 1
   const columns = 16
   const { currentUser } = useContext(AuthContext)
-  /*var currentUser = {
-    name: 'uder1',
-    mail: 'hey@gmail.com'
-  }*/
+
   const [ticketInfo, setTicketInfo] = useState({
     name: '',
     teamName: '',
@@ -106,7 +103,8 @@ const MyTicketPage = () => {
           : push(ticketRef)
         update(updateRef, {
           ...ticketInfo,
-          ticketImage: image
+          ticketImage: image,
+          ticketId: ticketId++
         }).then(() => {
           setTicketInfo({ ...ticketInfo, ticketImage: image })
           setShowModal(true)

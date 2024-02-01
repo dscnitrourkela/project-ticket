@@ -114,7 +114,7 @@ const demo_img_url =
 
 const demo_lightBg = false
 
-export const InnerTicket = ({
+const InnerTicket = ({
   user_name = demo_name,
   team_name = demo_team,
   ticket_num = demo_num,
