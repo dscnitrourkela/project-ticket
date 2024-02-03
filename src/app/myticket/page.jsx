@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 'use client'
 import { get, push, ref, update } from 'firebase/database'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -37,13 +36,7 @@ import {
 
 const MyTicketPage = () => {
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
-  const ticketUrls = [
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/light_izvbcd.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/magenta_dgiq85.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/green_zgppwy.png'
-  ]
+
   const rows = 1
   const columns = 16
   const { currentUser } = useContext(AuthContext)
@@ -59,7 +52,7 @@ const MyTicketPage = () => {
       // Unsubscribe from the event when the component unmounts
       unsubscribe()
     }
-  }, [router])
+  }, [currentUser, router])
 
   const [ticketId, setTicketId] = useState(550000)
   const [ticketInfo, setTicketInfo] = useState({
@@ -71,7 +64,7 @@ const MyTicketPage = () => {
     ticketImage: ''
   })
 
-  const [selectedColor, setSelectedColor] = useState(0)
+  const [selectedColor, setSelectedColor] = useState()
 
   const [showModal, setShowModal] = useState(true)
   const [existingTicketKey, setExistingTicketKey] = useState(null)
@@ -177,9 +170,9 @@ const MyTicketPage = () => {
                   <InnerTicket
                     user_name={ticketInfo.name || 'Your Name'}
                     team_name={ticketInfo.teamName || 'Your Team Name'}
-                    ticket_num={ticketInfo.ticketId || '550000'}
-                    ticket_img_url={ticketUrls[selectedColor]}
-                    lightBg={selectedColor === 1 ? true : false}
+                    ticket_num={ticketInfo.ticketId || ticketId}
+                    ticket_img={ticketInfo.bgcolor || colors[selectedColor]}
+                    lightBg={colors.indexOf(ticketInfo.bgcolor) === 1 ? true : false}
                   />
                 </TicketCompontent>
               </GridCont>
@@ -214,8 +207,8 @@ const MyTicketPage = () => {
               user_name={ticketInfo.name || 'Your Name'}
               team_name={ticketInfo.teamName || 'Your Team Name'}
               ticket_num={ticketInfo.ticketId || '510000'}
-              ticket_img_url={ticketUrls[selectedColor]}
-              lightBg={selectedColor === 1 ? true : false}
+              ticket_img={ticketInfo.bgcolor || colors[selectedColor]}
+              lightBg={colors.indexOf(ticketInfo.bgcolor) === 1 ? true : false}
             />
           )}
         </Modal>

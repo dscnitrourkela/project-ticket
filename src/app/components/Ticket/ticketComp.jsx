@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 'use client'
 import React from 'react'
 import styled from 'styled-components'
@@ -109,8 +110,7 @@ const DarkTicketNum = styled(TicketNum)`
 const demo_name = 'Xori octacat'
 const demo_team = 'DSC NITR'
 const demo_num = 510000
-const demo_img_url =
-  'https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png'
+//const demo_img_url ='https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png'
 
 const demo_lightBg = false
 
@@ -118,12 +118,26 @@ const InnerTicket = ({
   user_name = demo_name,
   team_name = demo_team,
   ticket_num = demo_num,
-  ticket_img_url = demo_img_url,
+  ticket_img,
   lightBg = demo_lightBg
 }) => {
+  const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
+  const ticketUrls = [
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/light_izvbcd.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/magenta_dgiq85.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png',
+    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/green_zgppwy.png'
+  ]
+
   return (
     <>
-      <TicketImage src={ticket_img_url} width={100} height={100} alt="green ticket" />
+      <TicketImage
+        src={ticketUrls[colors.indexOf(ticket_img)]}
+        width={100}
+        height={100}
+        alt="Ticket image"
+      />
       {!lightBg ? (
         <TicketText>
           <Names>
