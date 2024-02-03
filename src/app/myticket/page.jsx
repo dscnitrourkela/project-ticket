@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 'use client'
 import { get, push, ref, update } from 'firebase/database'
-import html2canvas from 'html2canvas'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../../firebase/firebase'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import '../styles/globals.css'
@@ -46,12 +47,27 @@ const MyTicketPage = () => {
   const rows = 1
   const columns = 16
   const { currentUser } = useContext(AuthContext)
+  const router = useRouter()
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push('/')
+      }
+    })
+    return () => {
+      // Unsubscribe from the event when the component unmounts
+      unsubscribe()
+    }
+  }, [router])
+
+  const [ticketId, setTicketId] = useState(550000)
   const [ticketInfo, setTicketInfo] = useState({
     name: '',
     teamName: '',
     email: '',
     bgcolor: '',
+    ticketId: '',
     ticketImage: ''
   })
 
@@ -59,9 +75,12 @@ const MyTicketPage = () => {
 
   const [showModal, setShowModal] = useState(true)
   const [existingTicketKey, setExistingTicketKey] = useState(null)
-  const router = useRouter()
 
   useEffect(() => {
+    if (currentUser === null) {
+      // Authentication state is still loading
+      return
+    }
     if (!currentUser) {
       router.push('/')
       return
@@ -81,6 +100,7 @@ const MyTicketPage = () => {
           ticketId: tickets[lastTicketKey].ticketId,
           ticketImage: tickets[lastTicketKey].ticketImage
         })
+        setTicketId(tickets[lastTicketKey].ticketId + 1)
         setExistingTicketKey(lastTicketKey)
         setShowModal(true)
       }
@@ -92,25 +112,23 @@ const MyTicketPage = () => {
   }
 
   const generateTicket = () => {
-    const ticketElement = document.getElementById('ticketPreview')
-    html2canvas(ticketElement).then((canvas) => {
-      const image = canvas.toDataURL('image/png')
+    if (currentUser) {
+      const ticketRef = ref(database, `tickets/${currentUser.uid}`)
+      const updateRef = existingTicketKey
+        ? ref(database, `tickets/${currentUser.uid}/${existingTicketKey}`)
+        : push(ticketRef)
 
-      if (currentUser) {
-        const ticketRef = ref(database, `tickets/${currentUser.uid}`)
-        const updateRef = existingTicketKey
-          ? ref(database, `tickets/${currentUser.uid}/${existingTicketKey}`)
-          : push(ticketRef)
-        update(updateRef, {
-          ...ticketInfo,
-          ticketImage: image,
-          ticketId: ticketId++
-        }).then(() => {
-          setTicketInfo({ ...ticketInfo, ticketImage: image })
-          setShowModal(true)
-        })
-      }
-    })
+      // Use a promise to wait for the update operation to complete
+      const updatePromise = update(updateRef, {
+        ...ticketInfo,
+        ticketId: ticketInfo.ticketId || 550000
+      })
+
+      updatePromise.then(() => {
+        // Update the local state after the update operation is complete
+        setShowModal(true)
+      })
+    }
   }
 
   return (
@@ -140,7 +158,7 @@ const MyTicketPage = () => {
               <></>
               <SubmitButton
                 onClick={() => {
-                  generateTicket
+                  generateTicket()
                   setShowModal(true)
                 }}
               >
@@ -159,7 +177,7 @@ const MyTicketPage = () => {
                   <InnerTicket
                     user_name={ticketInfo.name || 'Your Name'}
                     team_name={ticketInfo.teamName || 'Your Team Name'}
-                    ticket_num={ticketInfo.ticketId || '510000'}
+                    ticket_num={ticketInfo.ticketId || '550000'}
                     ticket_img_url={ticketUrls[selectedColor]}
                     lightBg={selectedColor === 1 ? true : false}
                   />
