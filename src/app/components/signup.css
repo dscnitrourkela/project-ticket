@@ -1,41 +1,163 @@
-.signContainer {
-  background-color: #f5c6c6;
-  border: 1px solid aqua;
-  margin: 0px;
-}
+.hero {
 
-.sign-form {
-  border: 1px solid aqua;
-  display: flex;
-  flex-direction: column;
-  width: 30vw;
-  margin: 3vw auto;
-  padding: 2vw 4vw;
-}
+background-color: black;
+padding-top:40px;
+padding-bottom: 40px;
+width: 100%;
 
-.sign-form input {
-  width: 100%;
-  margin: 15px 5px;
-  padding: 10px;
-  border-radius: 5px;
-  outline: none;
-  border: 1px solid aqua;
 }
+.form-box{
+  width: 400px;
+  height: 560px;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  gap: 40px;
+  margin: 0 auto;
 
-.sign-form button {
+
+;
+}
+.button-box {
+  width: 220px;
+  margin: 35px auto;
+  position: relative;
+  border: solid rgba(232, 142, 255, 0.2);
+  border-radius: 30px;
+  color: white;
+}
+.toggle-btn {
+  padding: 10px 30px;
+  margin: 1px;
   cursor: pointer;
-  padding: 0.5vw 2vw;
-  margin: 10px auto;
-  background-color: #baeeee;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+  color: white;
+}
+#btn {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: rgba(225, 225, 225, 0.06);
+  border: solid rgba(232, 142, 255, 0.2);
+  border-radius: 30px;
+  transition: 0.5s;
+}
+
+.input-group {
+  top: 120px;
+
+  width: 280px;
+  transition: 0.5s;
+  color: white;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0 0 40px 0;
+  margin: 5px 0;
+  outline: none;
+  border-radius: 0.6875rem;
+  border: 1.8px solid rgba(232, 142, 255, 0.2);
+  background: rgba(225, 225, 225, 0.06);
+  backdrop-filter: blur(25px);
+}
+.submit-btn {
+  padding: 2px 20px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  outline: none;
+  width: 30%;
+  border-radius: 2.25rem;
+  border: 1.8px solid rgba(232, 142, 255, 0.2);
+  background: #bc00fe;
+  backdrop-filter: blur(25px);
+  color: white;
 }
 .signupbutton {
-  width: 30%;
+  padding: 10px 20px;
+  display:flex;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  position: relative;
+  left: 10px;;
+  outline: none;
+  width: 60%;
+  border-radius: 2.25rem;
+  border: 1.8px solid rgba(232, 142, 255, 0.2);
+  background: #bc00fe;
+  backdrop-filter: blur(25px);
+  color: white;
 }
 .extsign {
-  width: 60%;
+  padding: 7px 30px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  margin: 8px;
+  border: 1.8px solid rgba(232, 142, 255, 0.2);
+  background: rgba(225, 225, 225, 0.06);
+  backdrop-filter: blur(25px);
+  color: white;
 }
 
-.sign-form h1 {
-  text-align: center;
-  margin: 10px;
+.holder {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 5px 0;
+  outline: none;
+  border-radius: 0.6875rem;
+  border: 1.8px solid rgba(232, 142, 255, 0.2);
+  background: rgba(225, 225, 225, 0.06);
+  backdrop-filter: blur(25px);
+}
+/* #login {
+  left: 50px;
+
+}
+#register {
+  left: 450px;
+} */
+.cards_a {
+  position: relative;
+  left:290px;
+  top:260px;
+
+
+}
+.cards_b {
+
+  position:relative;
+top:220px;
+
+}
+.cards_a img {
+  width: 67%;
+  transform: rotate(-9deg);
+}
+.cards_b img {
+  width: 67%;
+  transform: rotate(20deg);
+}
+
+.cards_img{
+  position:absolute;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.input-group{
+
+margin: 0px auto;
+width:70%;
+
 }
