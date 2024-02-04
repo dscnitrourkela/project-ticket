@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+
 'use client'
 import './signup.css'
 
+// import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 // import React from 'react';
 import React, { useState } from 'react'
@@ -77,6 +79,12 @@ const SignUp = () => {
           alt="Card B"
         />
       </div>
+      {/* <Image
+      src="https://example.com/hero.jpg"
+      alt="Landscape picture"
+      width={800}
+      height={500}
+    /> */}
       <div className="form-box">
         <div className="button-box">
           <div id="btn" style={zStyle}></div>
