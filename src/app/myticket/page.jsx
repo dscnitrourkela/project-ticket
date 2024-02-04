@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client'
 import { get, push, ref, update } from 'firebase/database'
 import { onAuthStateChanged } from 'firebase/auth'
@@ -50,7 +51,6 @@ const MyTicketPage = () => {
     ticketId: ''
   })
 
-  const [showModal, setShowModal] = useState(true)
   const [existingTicketKey, setExistingTicketKey] = useState(null)
 
   useEffect(() => {
@@ -81,17 +81,18 @@ const MyTicketPage = () => {
         const tickets = snapshot.val()
         const lastTicketKey = Object.keys(tickets).pop()
         setTicketInfo({
-          name: tickets[lastTicketKey].name ? tickets[lastTicketKey].name : currentUser.displayName,
+          name: tickets[lastTicketKey].name || currentUser.displayName,
           teamName: tickets[lastTicketKey].teamName,
           email: tickets[lastTicketKey].email,
           bgcolor: tickets[lastTicketKey].bgcolor,
           ticketId: tickets[lastTicketKey].ticketId
         })
         setExistingTicketKey(lastTicketKey)
-        setShowModal(true)
       }
     })
   }, [currentUser, router])
+
+  const [showModal, setShowModal] = existingTicketKey ? useState(true) : useState(false)
 
   const handleChange = (e) => {
     setTicketInfo({ ...ticketInfo, [e.target.name]: e.target.value })
@@ -143,8 +144,7 @@ const MyTicketPage = () => {
               <></>
               <SubmitButton
                 onClick={() => {
-                  generateTicket()
-                  setShowModal(true)
+                  generateTicket()(existingTicketKey ? setShowModal(true) : null)
                 }}
               >
                 {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
@@ -189,21 +189,20 @@ const MyTicketPage = () => {
         <PreviewButton onClick={() => setShowModal(true)}>Preview your Ticket</PreviewButton>
         <ShareButton>Share your Ticket</ShareButton>
       </TicketPage>
-
-      <ModalPage style={showModal ? { display: 'block' } : { display: 'none' }}>
-        <GlobalButton onClick={() => setShowModal(false)}>Edit Ticket</GlobalButton>
-        <Modal show={showModal} onClose={() => setShowModal(false)}>
-          {ticketInfo.ticketId && (
+      {showModal && (
+        <ModalPage>
+          <GlobalButton onClick={() => setShowModal(false)}>Edit Ticket</GlobalButton>
+          <Modal show={showModal} onClose={() => setShowModal(false)}>
             <InnerTicket
               user_name={ticketInfo.name || 'Your Name'}
               team_name={ticketInfo.teamName || 'Your Team Name'}
-              ticket_num={ticketInfo.ticketId || '510000'}
+              ticket_num={ticketInfo.ticketId || 550000}
               ticket_img={ticketInfo.bgcolor || '#206EA6'}
               lightBg={colors.indexOf(ticketInfo.bgcolor) === 1 ? true : false}
             />
-          )}
-        </Modal>
-      </ModalPage>
+          </Modal>
+        </ModalPage>
+      )}
     </>
   )
 }
