@@ -81,7 +81,7 @@ const MyTicketPage = () => {
         const tickets = snapshot.val()
         const lastTicketKey = Object.keys(tickets).pop()
         setTicketInfo({
-          name: tickets[lastTicketKey].name,
+          name: tickets[lastTicketKey].name ? tickets[lastTicketKey].name : currentUser.displayName,
           teamName: tickets[lastTicketKey].teamName,
           email: tickets[lastTicketKey].email,
           bgcolor: tickets[lastTicketKey].bgcolor,
@@ -107,6 +107,7 @@ const MyTicketPage = () => {
       // Use a promise to wait for the update operation to complete
       const updatePromise = update(updateRef, {
         ...ticketInfo,
+        email: currentUser.email,
         ticketId: existingTicketKey ? ticketInfo.ticketId : ticketInfo.ticketId + 1
       })
       updatePromise.then(() => {
