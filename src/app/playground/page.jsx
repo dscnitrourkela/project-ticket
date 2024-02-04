@@ -313,10 +313,7 @@ const MyTicketPage = () => {
   const rows = 1
   const columns = 16
   const { currentUser } = useContext(AuthContext)
-  /*var currentUser = {
-    name: 'uder1',
-    mail: 'hey@gmail.com'
-  }*/
+
   const [ticketInfo, setTicketInfo] = useState({
     name: '',
     teamName: '',
@@ -332,6 +329,10 @@ const MyTicketPage = () => {
   const router = useRouter()
 
   useEffect(() => {
+    if (currentUser === null) {
+      // Authentication state is still loading
+      return
+    }
     if (!currentUser) {
       router.push('/')
       return

@@ -42,6 +42,17 @@ const MyTicketPage = () => {
   const { currentUser } = useContext(AuthContext)
   const router = useRouter()
 
+  const [ticketInfo, setTicketInfo] = useState({
+    name: '',
+    teamName: '',
+    email: '',
+    bgcolor: '',
+    ticketId: ''
+  })
+
+  const [showModal, setShowModal] = useState(true)
+  const [existingTicketKey, setExistingTicketKey] = useState(null)
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
@@ -49,25 +60,9 @@ const MyTicketPage = () => {
       }
     })
     return () => {
-      // Unsubscribe from the event when the component unmounts
-      unsubscribe()
+      unsubscribe() // Unsubscribe from the event when the component unmounts
     }
   }, [currentUser, router])
-
-  const [ticketId, setTicketId] = useState(550000)
-  const [ticketInfo, setTicketInfo] = useState({
-    name: '',
-    teamName: '',
-    email: '',
-    bgcolor: '',
-    ticketId: '',
-    ticketImage: ''
-  })
-
-  const [selectedColor, setSelectedColor] = useState()
-
-  const [showModal, setShowModal] = useState(true)
-  const [existingTicketKey, setExistingTicketKey] = useState(null)
 
   useEffect(() => {
     if (currentUser === null) {
@@ -90,10 +85,8 @@ const MyTicketPage = () => {
           teamName: tickets[lastTicketKey].teamName,
           email: tickets[lastTicketKey].email,
           bgcolor: tickets[lastTicketKey].bgcolor,
-          ticketId: tickets[lastTicketKey].ticketId,
-          ticketImage: tickets[lastTicketKey].ticketImage
+          ticketId: tickets[lastTicketKey].ticketId
         })
-        setTicketId(tickets[lastTicketKey].ticketId + 1)
         setExistingTicketKey(lastTicketKey)
         setShowModal(true)
       }
@@ -114,11 +107,9 @@ const MyTicketPage = () => {
       // Use a promise to wait for the update operation to complete
       const updatePromise = update(updateRef, {
         ...ticketInfo,
-        ticketId: ticketInfo.ticketId || 550000
+        ticketId: existingTicketKey ? ticketInfo.ticketId : ticketInfo.ticketId + 1
       })
-
       updatePromise.then(() => {
-        // Update the local state after the update operation is complete
         setShowModal(true)
       })
     }
@@ -170,8 +161,8 @@ const MyTicketPage = () => {
                   <InnerTicket
                     user_name={ticketInfo.name || 'Your Name'}
                     team_name={ticketInfo.teamName || 'Your Team Name'}
-                    ticket_num={ticketInfo.ticketId || ticketId}
-                    ticket_img={ticketInfo.bgcolor || colors[selectedColor]}
+                    ticket_num={ticketInfo.ticketId || 550000}
+                    ticket_img={ticketInfo.bgcolor || '#206EA6'}
                     lightBg={colors.indexOf(ticketInfo.bgcolor) === 1 ? true : false}
                   />
                 </TicketCompontent>
@@ -188,7 +179,6 @@ const MyTicketPage = () => {
                 style={{ backgroundColor: c }}
                 onClick={() => {
                   setTicketInfo({ ...ticketInfo, bgcolor: c })
-                  setSelectedColor(colors.indexOf(c))
                 }}
               />
             ))}
@@ -202,12 +192,12 @@ const MyTicketPage = () => {
       <ModalPage style={showModal ? { display: 'block' } : { display: 'none' }}>
         <GlobalButton onClick={() => setShowModal(false)}>Edit Ticket</GlobalButton>
         <Modal show={showModal} onClose={() => setShowModal(false)}>
-          {ticketInfo.ticketImage && (
+          {ticketInfo.ticketId && (
             <InnerTicket
               user_name={ticketInfo.name || 'Your Name'}
               team_name={ticketInfo.teamName || 'Your Team Name'}
               ticket_num={ticketInfo.ticketId || '510000'}
-              ticket_img={ticketInfo.bgcolor || colors[selectedColor]}
+              ticket_img={ticketInfo.bgcolor || '#206EA6'}
               lightBg={colors.indexOf(ticketInfo.bgcolor) === 1 ? true : false}
             />
           )}

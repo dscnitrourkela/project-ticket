@@ -2,6 +2,7 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
+import { ticketUrls } from '../../../config/TicketBackgrounds'
 
 const TicketImage = styled.img`
   width: 100%;
@@ -107,28 +108,8 @@ const DarkTicketNum = styled(TicketNum)`
   background-clip: text;
 `
 
-const demo_name = 'Xori octacat'
-const demo_team = 'DSC NITR'
-const demo_num = 510000
-//const demo_img_url ='https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png'
-
-const demo_lightBg = false
-
-const InnerTicket = ({
-  user_name = demo_name,
-  team_name = demo_team,
-  ticket_num = demo_num,
-  ticket_img,
-  lightBg = demo_lightBg
-}) => {
+const InnerTicket = ({ user_name, team_name, ticket_num, ticket_img, lightBg }) => {
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
-  const ticketUrls = [
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/light_izvbcd.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/magenta_dgiq85.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/green_zgppwy.png'
-  ]
 
   return (
     <>
