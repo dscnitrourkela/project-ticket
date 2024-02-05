@@ -22,9 +22,8 @@ const SignUp = () => {
     try {
       await signUpWithEmailAndPassword(email, password, name)
       router.push('/myticket')
-      //window.alert('User signed up successfully:', user)
     } catch (error) {
-      //window.alert('Signup error:', error.message)
+      console.error('Signup error:', error.message)
     }
   }
   const handleGoogleSignup = async () => {
