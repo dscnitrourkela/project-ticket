@@ -1,18 +1,19 @@
 import React from 'react'
 
-import { Footer } from './components/Footer'
-import { Navbar } from './components/Navbar'
-// import CreateTicket from './components/CreateTicket'
+import { Navbar } from './components/marginals/Navbar'
+//import CreateTicket from './components/CreateTicket'
 import SignUp from './components/SignUp'
-// import Footer from './components/Footer.jsx'
+import { AuthProvider } from './context/AuthContext'
+
 //import Link from 'next/link'
 
 function Homepage() {
   return (
     <>
-      <Navbar />
-      <SignUp />
-      <Footer />
+      <AuthProvider>
+        <Navbar />
+        <SignUp />
+      </AuthProvider>
     </>
   )
 }
