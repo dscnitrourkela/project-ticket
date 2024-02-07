@@ -3,8 +3,8 @@ import Image from 'next/image'
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 
-import { auth } from '../../firebase/firebase'
-import { AuthContext } from '../context/AuthContext'
+import { auth } from '../../../firebase/firebase'
+import { AuthContext } from '../../context/AuthContext'
 
 const StyledNavbar = styled.nav`
   background-color: black;
