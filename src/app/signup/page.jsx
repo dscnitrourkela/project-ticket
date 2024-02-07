@@ -10,7 +10,7 @@ import {
   signUpWithGitHub,
   signUpWithGoogle
 } from '../../firebase/signupAuth'
-import { Navbar } from '../components/Navbar'
+import { Navbar } from '../components/marginals/navbar2'
 
 const SignUp = () => {
   const [name, setName] = useState('')
