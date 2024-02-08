@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Navbar } from './components/marginals/navbar'
+import { Navbar } from './components/marginals2/navbar.jsx'
 //import CreateTicket from './components/CreateTicket'
 import SignUp from './components/SignUp'
 import { AuthProvider } from './context/AuthContext'
