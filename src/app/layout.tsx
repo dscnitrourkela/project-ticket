@@ -7,10 +7,10 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <AuthProvider>
+     <AuthProvider>
       <html lang="en">
         <body>{children}</body>
       </html>
-    </AuthProvider>
+     </AuthProvider>
   )
 }

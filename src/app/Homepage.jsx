@@ -1,4 +1,5 @@
 import React from 'react'
+import { AuthProvider } from './context/AuthContext'
 
 import { Navbar } from './components/marginals/Navbar'
 //import CreateTicket from './components/CreateTicket'
