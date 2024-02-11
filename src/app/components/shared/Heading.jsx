@@ -16,7 +16,7 @@ export const Headings = styled.div`
   width: 156%;
   margin: 1.2vw -33% 0vw -33%;
 
-  background: linear-gradient(180deg, #c464ff -13.76%, rgba(252, 252, 252, 0.33) 128.58%);
+  background: linear-gradient(180deg, #af32fc -13.76%, rgba(252, 252, 252, 0.63) 102.58%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -70,13 +70,13 @@ export const TitleCont = styled.div`
   width: 140%;
   margin: 0 -20% 0 -20%;
   padding: 0.2vw 0vw;
-  border: 1px solid white;
+  border-top: 1px solid white;
   border-image-source: linear-gradient(
     270deg,
     rgba(221, 221, 221, 0) 0%,
     rgba(237, 194, 252, 0.38) 40.35%,
     rgba(239, 192, 255, 0.464552) 65.36%,
-    rgba(221, 221, 221, 0) 96.88%
+    rgba(221, 221, 221, 0) 98.88%
   );
   border-image-slice: 1;
 `

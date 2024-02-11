@@ -9,7 +9,7 @@ export const AuthButton = styled.button`
   width: 100%;
   cursor: pointer;
   border-radius: 11px;
-  margin: 1.6vw auto;
+  margin: 1.2vw auto;
   border: 1.8px solid rgba(232, 142, 255, 0.6);
   background: linear-gradient(180deg, rgba(232, 142, 255, 0.2) 60%, rgba(232, 240, 255, 0.1));
 
@@ -44,10 +44,10 @@ export const Hero = styled.div`
 
 export const FormBox = styled.div`
   width: 400px;
-  height: 660px;
+  height: 580px;
   position: relative;
   margin: 2vw auto;
-  padding: 5px;
+  padding: 5px 0px;
   overflow: hidden;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -59,7 +59,7 @@ export const FormBox = styled.div`
   @media screen and (max-width: 500px) {
     width: 70vw;
     padding: 2px;
-    height: 125vw;
+    height: 105vw;
   }
 `
 
@@ -69,7 +69,7 @@ export const ButtonBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 35px auto;
+  margin: 20px auto;
   position: relative;
   border: solid rgba(232, 142, 255, 0.2);
   border-radius: 30px;
@@ -90,7 +90,6 @@ export const ToggleButton = styled.button`
   position: relative;
   color: white;
 `
-
 export const Btn = styled.div`
   top: 0vw;
   left: 0;

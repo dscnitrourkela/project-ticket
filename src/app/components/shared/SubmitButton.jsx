@@ -15,14 +15,14 @@ export const SubmitButton = styled.button`
   margin: 10px 20%;
 
   @media (max-width: 680px) {
-    height: 8vw;
+    height: 7vw;
     margin: 3vw 20%;
     width: 30vw;
     padding: 0px 1vw;
   }
 
   @media (max-width: 450px) {
-    margin: 5vw 20%;
+    margin: 4vw 20%;
     font-size: small;
   }
 `
