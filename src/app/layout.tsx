@@ -1,4 +1,4 @@
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider } from '../context/AuthContext'
 
 export const metadata = {
   title: 'Next.js',
