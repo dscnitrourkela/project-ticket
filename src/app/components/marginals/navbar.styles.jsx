@@ -7,8 +7,8 @@ export const LogoImg = styled.img`
   padding: 0px;
   box-shadow: 0px 0px 14px 6px rgba(196, 100, 255, 0.25);
   border-radius: 50%;
-  width: 77px;
-  height: 77px;
+  width: 70px;
+  height: 70px;
   @media (max-width: 680px) {
     width: 50px;
     height: 50px;
@@ -26,7 +26,7 @@ export const StyledNavbar = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 2vw 0vw;
+  margin: 0.3vw 0vw 0.2vw 0vw;
   padding: 0vw 1vw 0vw 4vw;
   overflow: hidden;
   border: 2px solid;

@@ -104,7 +104,6 @@ export const Btn = styled.div`
 `
 
 export const InputGroup = styled.div`
-  border: 1px solid rgba(255, 255, 255, 0.125);
   top: 100px;
   position: absolute;
   width: 65%;

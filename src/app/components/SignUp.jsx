@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 
 import { Input, FormText } from './shared/FormElements'
 import { SubmitButton } from './shared/SubmitButton'
-import { Headings } from './shared/Heading'
+import { Headings, SubHead, HeadBox, Title, TitleCont } from './shared/Heading'
 import {
   AuthButton,
   CenterText,
@@ -84,7 +84,14 @@ const SignUp = () => {
 
   return (
     <Hero>
-      <Headings>HACKNITR 5.0</Headings>
+      <HeadBox>
+        <Headings>HACKNITR 5.0</Headings>
+        <SubHead>Presents</SubHead>
+        <TitleCont>
+          <Title>Tickets</Title>
+        </TitleCont>
+      </HeadBox>
+
       <CardsA>
         <CardImage
           src="https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png"
