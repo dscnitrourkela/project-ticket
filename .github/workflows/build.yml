@@ -72,6 +72,8 @@ jobs:
           echo "NEXT_PUBLIC_FIREBASE_APP_ID=${NEXT_PUBLIC_FIREBASE_APP_ID}" >> .env.local
           echo "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}" >> .env.local
 
+          cat .env.local
+
       - name: Build Check
         run: yarn build
         continue-on-error: ${{ !inputs.fail-on-error }}
