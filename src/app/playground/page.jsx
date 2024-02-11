@@ -6,14 +6,14 @@ import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import '../styles/globals.css'
-import { SubmitButton } from '../components/shared/SubmitButton'
+import { SubmitButton } from '.../components/shared/SubmitButton'
 
-import { database } from '../../firebase/firebase'
-import Modal from '../components/Ticket/modal'
-import InnerTicket from '../components/Ticket/ticketComp'
-import { Navbar } from '../components/marginals/Navbar'
+import { database } from '../firebase/firebase'
+import Modal from '.../components/Ticket/modal'
+import InnerTicket from '.../components/Ticket/ticketComp'
+import { Navbar } from '.../components/marginals/Navbar'
 import { AuthContext } from '../context/AuthContext'
-import { GlobalButton } from '../components/shared/GlobalButton'
+import { GlobalButton } from '.../components/shared/GlobalButton'
 
 const TicketImgBg = styled.div`
   width: 660px;
