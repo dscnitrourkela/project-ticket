@@ -14,6 +14,8 @@ import InnerTicket from '../components/Ticket/ticketComp'
 import { Navbar } from '../components/marginals/Navbar'
 import { AuthContext } from '../context/AuthContext'
 import { GlobalButton } from '../components/shared/GlobalButton'
+import { Headings, HeadBox } from '../components/shared/Heading'
+
 import {
   TicketPage,
   TicketContainer,
@@ -30,6 +32,7 @@ import {
   ColorText,
   ColorArray,
   ClrButton,
+  UpdateButton,
   PreviewButton,
   ShareButton,
   ModalPage
@@ -118,8 +121,12 @@ const MyTicketPage = () => {
   }
 
   return (
-    <>
+    <div>
       <Navbar />
+      <HeadBox>
+        <Headings>Generate Your Ticket</Headings>
+      </HeadBox>
+
       <TicketPage>
         <TicketContainer>
           <FormBg>
@@ -142,14 +149,14 @@ const MyTicketPage = () => {
               />
 
               <></>
-              <SubmitButton
+              <UpdateButton
                 onClick={() => {
                   generateTicket
                   existingTicketKey ? setShowModal(true) : null
                 }}
               >
                 {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
-              </SubmitButton>
+              </UpdateButton>
             </FormSection>
           </FormBg>
 
@@ -204,7 +211,7 @@ const MyTicketPage = () => {
           </Modal>
         </ModalPage>
       )}
-    </>
+    </div>
   )
 }
 export default MyTicketPage

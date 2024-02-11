@@ -12,17 +12,18 @@ export const SubmitButton = styled.button`
   text-decoration: none;
   font-size: 16px;
   cursor: pointer;
-  margin: 10px 20%;
+  margin-inline: 20%;
+  margin-block: 10px;
 
   @media (max-width: 680px) {
     height: 7vw;
-    margin: 3vw 20%;
+    margin-block: 3vw;
     width: 30vw;
     padding: 0px 1vw;
   }
 
   @media (max-width: 450px) {
-    margin: 4vw 20%;
+    margin-block: 4vw;
     font-size: small;
   }
 `

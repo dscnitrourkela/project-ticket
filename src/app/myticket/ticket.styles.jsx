@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { GlobalButton } from '../components/shared/GlobalButton'
+import { SubmitButton } from '../components/shared/SubmitButton'
 
 const TicketImgBg = styled.div`
   width: 660px;
@@ -15,12 +16,16 @@ export const ShareButton = styled(GlobalButton)`
   margin: 10vw 2vw;
 `
 export const TicketPage = styled.div`
+  border: 0px solid white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 25px 45px;
-  padding: 40px 0px;
-  border: 0px solid aqua;
+  margin: 10px 45px;
+  padding: 0px 0px 10px 0px;
+
+  @media (max-width: 800px) {
+    padding: 1vw 0px;
+  }
 `
 
 export const TicketContainer = styled.div`
@@ -78,7 +83,7 @@ export const FormSection = styled.div`
   }
   @media (max-width: 680px) {
     width: 68vw;
-    min-height: 40vw;
+    min-height: 35vw;
   }
   @media (max-width: 450px) {
     height: 64vw;
@@ -98,7 +103,7 @@ export const Input = styled.input`
   background: linear-gradient(0deg, rgba(225, 225, 225, 0.06), rgba(225, 225, 225, 0.06));
   height: 19px;
   padding: 10px;
-  margin: 5px 0px 20px 0px;
+  margin: 5px 0px 15px 0px;
   border-radius: 11px;
   border: 1.8px solid #e88eff33;
 
@@ -117,6 +122,9 @@ export const Input = styled.input`
   @media (max-width: 460px) {
     height: 6px;
   }
+`
+export const UpdateButton = styled(SubmitButton)`
+  margin-inline: auto;
 `
 
 export const PreviewBg = styled.div`
@@ -233,6 +241,7 @@ export const TicketCompontent = styled(TicketImgBg)`
 
 export const ArrayHolder = styled.div`
   width: 100%;
+  height: 40px;
   border: 0px solid white;
   display: flex;
   flex-direction: row;
@@ -279,7 +288,7 @@ export const PreviewButton = styled.button`
   cursor: pointer;
   border: none;
   border-radius: 35px;
-  margin: 1.2vw 2vw;
+  margin: 1vw 2vw;
   padding: 0vw 2vw;
   background: linear-gradient(
     97.1deg,

@@ -41,7 +41,7 @@ export const StyledNavbar = styled.nav`
 `
 
 export const NavItem = styled.li`
-  padding: 1.3vw 4vw;
+  padding: 1.2vw 4vw;
   border: 0px solid pink;
   list-style: none;
   color: white;
