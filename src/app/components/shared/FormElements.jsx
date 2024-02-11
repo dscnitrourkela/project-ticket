@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Input = styled.input`
   background: linear-gradient(0deg, rgba(225, 225, 225, 0.06), rgba(225, 225, 225, 0.06));
   height: 19px;
+  width: 90%;
   padding: 10px;
   margin: 5px 0px 20px 0px;
   border-radius: 11px;

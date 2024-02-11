@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 
 'use client'
-import './Footer.css'
 
 import Image from 'next/image'
 import React from 'react'

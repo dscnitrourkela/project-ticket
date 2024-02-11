@@ -8,6 +8,9 @@ import React, { useState } from 'react'
 
 import { Input, FormText } from './shared/FormElements'
 import { SubmitButton } from './shared/SubmitButton'
+import { AuthButton, CenterText, AuthLogoImg } from './signup.styles'
+
+import { AuthLogoLinks } from '../../config/AuthProviders'
 
 import {
   signUpWithEmailAndPassword,
@@ -16,7 +19,7 @@ import {
 } from '../../firebase/signupAuth'
 
 const SignUp = () => {
-  const [loginFormLeft, setLoginFormLeft] = useState('4.5vw')
+  const [loginFormLeft, setLoginFormLeft] = useState('18%')
   const [registerFormLeft, setRegisterFormLeft] = useState('-80vw')
   const [zStyle, setZStyle] = useState({ left: '0' })
   const [name, setName] = useState('')
@@ -55,12 +58,12 @@ const SignUp = () => {
 
   const switchToRegister = () => {
     setLoginFormLeft('-80vw')
-    setRegisterFormLeft('4.5vw')
+    setRegisterFormLeft('18%')
     setZStyle({ left: '50%' })
   }
 
   const switchToLogin = () => {
-    setLoginFormLeft('4.5vw')
+    setLoginFormLeft('18%')
     setRegisterFormLeft('450px')
     setZStyle({ left: '0' })
   }
@@ -69,13 +72,13 @@ const SignUp = () => {
     <div className="hero">
       <div className="cards_a">
         <img
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1705344262/card.png"
+          src="https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png"
           alt="Card A"
         />
       </div>
       <div className="cards_b">
         <img
-          src="https://res.cloudinary.com/dra96qhox/image/upload/v1705344262/card.png"
+          src="https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/magenta_dgiq85.png"
           alt="Card B"
         />
       </div>
@@ -89,13 +92,17 @@ const SignUp = () => {
             Sign In
           </button>
         </div>
+
         <div id="login" className="input-group" style={{ left: loginFormLeft }}>
-          <button className="extsign" type="submit" onClick={handleGoogleSignup}>
+          <AuthButton className="extsign" type="submit" onClick={handleGoogleSignup}>
+            <AuthLogoImg src={AuthLogoLinks[0].url} alt="Google" />
             Sign up with Google
-          </button>
-          <button className="extsign" type="submit" onClick={signUpWithGitHub}>
+          </AuthButton>
+          <AuthButton className="extsign" type="submit" onClick={signUpWithGitHub}>
+            <AuthLogoImg src={AuthLogoLinks[1].url} alt="Github" />
             Sign up with Github
-          </button>
+          </AuthButton>
+          <CenterText>Or</CenterText>
           <FormText>Your Name:</FormText>
           <Input
             className="holder"
@@ -124,13 +131,17 @@ const SignUp = () => {
             Sign up
           </SubmitButton>
         </div>
+
         <div id="register" className="input-group" style={{ left: registerFormLeft }}>
-          <button className="extsign" type="submit" onClick={handleGoogleSignup}>
+          <AuthButton className="extsign" type="submit" onClick={handleGoogleSignup}>
+            <AuthLogoImg src={AuthLogoLinks[0].url} alt="Google" />
             Sign in with Google
-          </button>
-          <button className="extsign" type="submit" onClick={signUpWithGitHub}>
+          </AuthButton>
+          <AuthButton className="extsign" type="submit" onClick={signUpWithGitHub}>
+            <AuthLogoImg src={AuthLogoLinks[1].url} alt="Github" />
             Continue with Github
-          </button>
+          </AuthButton>
+          <CenterText>Or</CenterText>
           <FormText>Email:</FormText>
           <Input
             className="holder"
