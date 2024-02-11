@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
-import './signup.css'
 import '../styles/globals.css'
 
 import { useRouter } from 'next/navigation'
@@ -8,7 +7,21 @@ import React, { useState } from 'react'
 
 import { Input, FormText } from './shared/FormElements'
 import { SubmitButton } from './shared/SubmitButton'
-import { AuthButton, CenterText, AuthLogoImg } from './signup.styles'
+import {
+  AuthButton,
+  CenterText,
+  AuthLogoImg,
+  Hero,
+  FormBox,
+  ButtonBox,
+  ToggleButton,
+  Btn,
+  Login,
+  Register,
+  CardsA,
+  CardsB,
+  CardImage
+} from './signup.styles'
 
 import { AuthLogoLinks } from '../../config/AuthProviders'
 
@@ -69,43 +82,39 @@ const SignUp = () => {
   }
 
   return (
-    <div className="hero">
-      <div className="cards_a">
-        <img
+    <Hero>
+      <CardsA>
+        <CardImage
           src="https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png"
           alt="Card A"
         />
-      </div>
-      <div className="cards_b">
-        <img
+      </CardsA>
+      <CardsB>
+        <CardImage
           src="https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/magenta_dgiq85.png"
           alt="Card B"
         />
-      </div>
-      <div className="form-box">
-        <div className="button-box">
-          <div id="btn" style={zStyle}></div>
-          <button type="button" className="toggle-btn" onClick={switchToLogin}>
-            Sign Up
-          </button>
-          <button type="button" className="toggle-btn" onClick={switchToRegister}>
-            Sign In
-          </button>
-        </div>
+      </CardsB>
+      <FormBox>
+        <ButtonBox>
+          <Btn style={zStyle}></Btn>
+          <ToggleButton onClick={switchToLogin}>Sign Up</ToggleButton>
+          <ToggleButton onClick={switchToRegister}>Sign In</ToggleButton>
+        </ButtonBox>
 
-        <div id="login" className="input-group" style={{ left: loginFormLeft }}>
-          <AuthButton className="extsign" type="submit" onClick={handleGoogleSignup}>
+        <Login loginFormLeft={loginFormLeft}>
+          <AuthButton type="submit" onClick={handleGoogleSignup}>
             <AuthLogoImg src={AuthLogoLinks[0].url} alt="Google" />
             Sign up with Google
           </AuthButton>
-          <AuthButton className="extsign" type="submit" onClick={signUpWithGitHub}>
+          <AuthButton type="submit" onClick={signUpWithGitHub}>
             <AuthLogoImg src={AuthLogoLinks[1].url} alt="Github" />
             Sign up with Github
           </AuthButton>
+
           <CenterText>Or</CenterText>
           <FormText>Your Name:</FormText>
           <Input
-            className="holder"
             type="text"
             placeholder="Enter your name"
             value={name}
@@ -113,7 +122,6 @@ const SignUp = () => {
           />
           <FormText>Email:</FormText>
           <Input
-            className="holder"
             type="email"
             placeholder="Enter your email"
             value={email}
@@ -121,30 +129,27 @@ const SignUp = () => {
           />
           <FormText>Password:</FormText>
           <Input
-            className="holder"
             type="password"
             placeholder="Enter your password"
             value={password}
             onChange={handlePasswordChange}
           />
-          <SubmitButton className="signupbutton" type="submit" onClick={handleSignUp}>
-            Sign up
-          </SubmitButton>
-        </div>
+          <SubmitButton onClick={handleSignUp}>Sign up</SubmitButton>
+        </Login>
 
-        <div id="register" className="input-group" style={{ left: registerFormLeft }}>
-          <AuthButton className="extsign" type="submit" onClick={handleGoogleSignup}>
+        <Register registerFormLeft={registerFormLeft}>
+          <AuthButton type="submit" onClick={handleGoogleSignup}>
             <AuthLogoImg src={AuthLogoLinks[0].url} alt="Google" />
             Sign in with Google
           </AuthButton>
-          <AuthButton className="extsign" type="submit" onClick={signUpWithGitHub}>
+          <AuthButton type="submit" onClick={signUpWithGitHub}>
             <AuthLogoImg src={AuthLogoLinks[1].url} alt="Github" />
             Continue with Github
           </AuthButton>
+
           <CenterText>Or</CenterText>
           <FormText>Email:</FormText>
           <Input
-            className="holder"
             type="email"
             placeholder="Enter your email"
             value={email}
@@ -152,18 +157,15 @@ const SignUp = () => {
           />
           <FormText>Password:</FormText>
           <Input
-            className="holder"
             type="password"
             placeholder="Enter your password"
             value={password}
             onChange={handlePasswordChange}
           />
-          <SubmitButton className="signupbutton" type="submit" onClick={handleSignUp}>
-            Sign in
-          </SubmitButton>
-        </div>
-      </div>
-    </div>
+          <SubmitButton onClick={handleSignUp}>Sign in</SubmitButton>
+        </Register>
+      </FormBox>
+    </Hero>
   )
 }
 
