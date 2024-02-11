@@ -16,4 +16,8 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: #04040d;
+  background-image: url('https://res.cloudinary.com/djl2ulktr/image/upload/v1707655518/output-onlinepngtools_l7yvvn.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

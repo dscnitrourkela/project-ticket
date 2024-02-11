@@ -116,45 +116,6 @@ export const InputGroup = styled.div`
   }
 `
 
-export const SubmitButton = styled.button`
-  padding: 2px 20px;
-  cursor: pointer;
-  display: block;
-  margin: auto;
-  outline: none;
-  width: 30%;
-  border-radius: 2.25rem;
-  border: 1.8px solid rgba(232, 142, 255, 0.2);
-  background: #bc00fe;
-  backdrop-filter: blur(25px);
-  color: white;
-`
-
-export const SignupButton = styled.button`
-  padding: 10px 20px;
-  cursor: pointer;
-  display: block;
-  margin: auto;
-  outline: none;
-  width: 60%;
-  border-radius: 2.25rem;
-  border: 1.8px solid rgba(232, 142, 255, 0.2);
-  background: #bc00fe;
-  backdrop-filter: blur(25px);
-  color: white;
-`
-
-export const Holder = styled.div`
-  width: 100%;
-  padding: 10px 0;
-  margin: 5px 0;
-  outline: none;
-  border-radius: 0.6875rem;
-  border: 1.8px solid rgba(232, 142, 255, 0.2);
-  background: rgba(225, 225, 225, 0.06);
-  backdrop-filter: blur(25px);
-`
-
 export const Login = styled(InputGroup)`
   left: ${({ loginFormLeft }) => loginFormLeft || '50px'};
 `
