@@ -10,9 +10,9 @@
 }
 .form-box {
   width: 400px;
-  height: 480px;
+  height: 540px;
   position: relative;
-  margin: 6% auto;
+  margin: 2vw auto;
   padding: 5px;
   overflow: hidden;
   backdrop-filter: blur(16px) saturate(180%);
@@ -21,18 +21,30 @@
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.125);
   gap: 40px;
+
+  @media screen and (max-width: 500px) {
+    width: 70vw;
+    padding: 2px;
+    height: 120vw;
+  }
 }
 .button-box {
   width: 220px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 35px auto;
   position: relative;
   border: solid rgba(232, 142, 255, 0.2);
   border-radius: 30px;
-  color: white;
+  @media screen and (max-width: 400px) {
+    width: 100px;
+    height: 8vw;
+  }
 }
 .toggle-btn {
-  padding: 10px 30px;
-  margin: 1px;
+  width: 50%;
   cursor: pointer;
   background: transparent;
   border: 0;
@@ -41,10 +53,10 @@
   color: white;
 }
 #btn {
-  top: 0;
+  top: 0vw;
   left: 0;
   position: absolute;
-  width: 110px;
+  width: 50%;
   height: 100%;
   background: rgba(225, 225, 225, 0.06);
   border: solid rgba(232, 142, 255, 0.2);
@@ -58,6 +70,10 @@
   width: 280px;
   transition: 0.5s;
   color: white;
+  @media screen and (max-width: 500px) {
+    top: 25vw;
+    width: 50vw;
+  }
 }
 .input-field {
   width: 100%;

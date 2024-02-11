@@ -1,10 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import './signup.css'
+import '../styles/globals.css'
 
 import { useRouter } from 'next/navigation'
-// import React from 'react';
 import React, { useState } from 'react'
+
+import { Input, FormText } from './shared/FormElements'
+import { SubmitButton } from './shared/SubmitButton'
 
 import {
   signUpWithEmailAndPassword,
@@ -13,8 +16,8 @@ import {
 } from '../../firebase/signupAuth'
 
 const SignUp = () => {
-  const [loginFormLeft, setLoginFormLeft] = useState('50px')
-  const [registerFormLeft, setRegisterFormLeft] = useState('-400px')
+  const [loginFormLeft, setLoginFormLeft] = useState('4.5vw')
+  const [registerFormLeft, setRegisterFormLeft] = useState('-80vw')
   const [zStyle, setZStyle] = useState({ left: '0' })
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -51,13 +54,13 @@ const SignUp = () => {
   }
 
   const switchToRegister = () => {
-    setLoginFormLeft('-400px')
-    setRegisterFormLeft('50px')
-    setZStyle({ left: '110px' })
+    setLoginFormLeft('-80vw')
+    setRegisterFormLeft('4.5vw')
+    setZStyle({ left: '50%' })
   }
 
   const switchToLogin = () => {
-    setLoginFormLeft('50px')
+    setLoginFormLeft('4.5vw')
     setRegisterFormLeft('450px')
     setZStyle({ left: '0' })
   }
@@ -86,68 +89,68 @@ const SignUp = () => {
             Sign In
           </button>
         </div>
-        <form id="login" className="input-group" style={{ left: loginFormLeft }}>
-          Your Name:
-          <input
-            className="holder"
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={handleNameChange}
-          />
-          Email:
-          <input
-            className="holder"
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-          Password:
-          <input
-            className="holder"
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-          <button className="signupbutton" type="submit" onClick={handleSignUp}>
-            Sign up
-          </button>
+        <div id="login" className="input-group" style={{ left: loginFormLeft }}>
           <button className="extsign" type="submit" onClick={handleGoogleSignup}>
             Sign up with Google
           </button>
           <button className="extsign" type="submit" onClick={signUpWithGitHub}>
             Sign up with Github
           </button>
-        </form>
-        <form id="register" className="input-group" style={{ left: registerFormLeft }}>
-          Email:
-          <input
+          <FormText>Your Name:</FormText>
+          <Input
+            className="holder"
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={handleNameChange}
+          />
+          <FormText>Email:</FormText>
+          <Input
             className="holder"
             type="email"
             placeholder="Enter your email"
             value={email}
             onChange={handleEmailChange}
           />
-          Password:
-          <input
+          <FormText>Password:</FormText>
+          <Input
             className="holder"
             type="password"
             placeholder="Enter your password"
             value={password}
             onChange={handlePasswordChange}
           />
-          <button className="signupbutton" type="submit" onClick={handleSignUp}>
-            Sign in
-          </button>
+          <SubmitButton className="signupbutton" type="submit" onClick={handleSignUp}>
+            Sign up
+          </SubmitButton>
+        </div>
+        <div id="register" className="input-group" style={{ left: registerFormLeft }}>
           <button className="extsign" type="submit" onClick={handleGoogleSignup}>
-            Continue with Google
+            Sign in with Google
           </button>
           <button className="extsign" type="submit" onClick={signUpWithGitHub}>
             Continue with Github
           </button>
-        </form>
+          <FormText>Email:</FormText>
+          <Input
+            className="holder"
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <FormText>Password:</FormText>
+          <Input
+            className="holder"
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          <SubmitButton className="signupbutton" type="submit" onClick={handleSignUp}>
+            Sign in
+          </SubmitButton>
+        </div>
       </div>
     </div>
   )
