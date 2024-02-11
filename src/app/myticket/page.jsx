@@ -151,7 +151,7 @@ const MyTicketPage = () => {
               <></>
               <UpdateButton
                 onClick={() => {
-                  generateTicket
+                  generateTicket()
                   existingTicketKey ? setShowModal(true) : null
                 }}
               >
