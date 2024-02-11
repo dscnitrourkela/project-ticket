@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import styled from 'styled-components'
-import { ticketUrls } from '../../../config/TicketBackgrounds'
+import { ticketUrls } from '../../config/TicketBackgrounds'
 
 const TicketImage = styled.img`
   width: 100%;

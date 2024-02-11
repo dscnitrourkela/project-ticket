@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { GlobalButton } from '.../components/shared/GlobalButton'
+import { GlobalButton } from '../../components/shared/GlobalButton'
 
 const TicketImgBg = styled.div`
   width: 660px;
