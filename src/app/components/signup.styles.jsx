@@ -104,6 +104,7 @@ export const Btn = styled.div`
 `
 
 export const InputGroup = styled.div`
+  border: 1px solid rgba(255, 255, 255, 0.125);
   top: 100px;
   position: absolute;
   width: 65%;
@@ -115,17 +116,6 @@ export const InputGroup = styled.div`
     top: 18vw;
     width: 50vw;
   }
-`
-
-export const InputField = styled.input`
-  width: 100%;
-  padding: 0 0 40px 0;
-  margin: 5px 0;
-  outline: none;
-  border-radius: 0.6875rem;
-  border: 1.8px solid rgba(232, 142, 255, 0.2);
-  background: rgba(225, 225, 225, 0.06);
-  backdrop-filter: blur(25px);
 `
 
 export const SubmitButton = styled.button`
@@ -197,6 +187,7 @@ export const CardsB = styled.div`
   transform: rotate(20deg);
 
   @media screen and (max-width: 650px) {
+    left: 35%;
     width: 55vw;
     bottom: 8vw;
   }

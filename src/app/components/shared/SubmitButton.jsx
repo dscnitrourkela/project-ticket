@@ -12,17 +12,17 @@ export const SubmitButton = styled.button`
   text-decoration: none;
   font-size: 16px;
   cursor: pointer;
-  margin: 10px auto;
+  margin: 10px 20%;
 
   @media (max-width: 680px) {
     height: 8vw;
-    margin: 3vw auto;
+    margin: 3vw 20%;
     width: 30vw;
     padding: 0px 1vw;
   }
 
   @media (max-width: 450px) {
-    margin: 5vw auto;
+    margin: 5vw 20%;
     font-size: small;
   }
 `

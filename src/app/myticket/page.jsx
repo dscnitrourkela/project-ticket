@@ -144,7 +144,8 @@ const MyTicketPage = () => {
               <></>
               <SubmitButton
                 onClick={() => {
-                  generateTicket()(existingTicketKey ? setShowModal(true) : null)
+                  generateTicket
+                  existingTicketKey ? setShowModal(true) : null
                 }}
               >
                 {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}

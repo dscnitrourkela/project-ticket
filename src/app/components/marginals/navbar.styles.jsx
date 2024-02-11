@@ -1,6 +1,12 @@
 import styled from 'styled-components'
 
+export const LogoContainer = styled.a`
+  padding: 0px;
+`
 export const LogoImg = styled.img`
+  padding: 0px;
+  box-shadow: 0px 0px 14px 6px rgba(196, 100, 255, 0.25);
+  border-radius: 50%;
   width: 77px;
   height: 77px;
   @media (max-width: 680px) {
@@ -11,6 +17,9 @@ export const LogoImg = styled.img`
     width: 40px;
     height: 40px;
   }
+  &:hover {
+    box-shadow: 0px 0px 14px 8px rgba(196, 100, 255, 0.28);
+  }
 `
 export const StyledNavbar = styled.nav`
   display: flex;
@@ -18,7 +27,7 @@ export const StyledNavbar = styled.nav`
   justify-content: space-between;
   align-items: center;
   margin: 2vw 0vw;
-  padding: 0vw 4vw;
+  padding: 0vw 1vw 0vw 4vw;
   overflow: hidden;
   border: 2px solid;
   border-image-source: linear-gradient(
@@ -32,6 +41,7 @@ export const StyledNavbar = styled.nav`
 `
 
 export const NavItem = styled.li`
+  padding: 1.3vw 4vw;
   border: 0px solid pink;
   list-style: none;
   color: white;
@@ -40,7 +50,15 @@ export const NavItem = styled.li`
   margin: 0vw 2vw;
 
   &:hover {
-    border-bottom: 2px solid rgba(218, 115, 255, 0.8);
+    border: 1.85px solid;
+    border-image-source: linear-gradient(
+      270deg,
+      rgba(221, 221, 221, 0) 0%,
+      rgba(237, 194, 252, 0.38) 40.35%,
+      rgba(239, 192, 255, 0.464552) 60.36%,
+      rgba(221, 221, 221, 0) 96.88%
+    );
+    border-image-slice: 1;
   }
 
   a {

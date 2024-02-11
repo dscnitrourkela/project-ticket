@@ -19,9 +19,11 @@ export const Input = styled.input`
     margin: 1vw 2vw;
   }
   @media (max-width: 680px) {
+    margin: 1vw 0vw;
     height: 10px;
   }
   @media (max-width: 460px) {
+    width: 87%;
     height: 6px;
   }
 `
