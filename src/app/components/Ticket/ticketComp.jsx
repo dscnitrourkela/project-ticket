@@ -12,6 +12,7 @@ import {
   DarkTeamName,
   DarkTicketNum
 } from './ticket.styles'
+
 const InnerTicket = ({ user_name, team_name, ticket_num, ticket_img, lightBg }) => {
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
 
