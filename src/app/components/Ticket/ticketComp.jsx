@@ -19,17 +19,18 @@ const TicketText = styled.div`
 `
 
 const Names = styled.div`
+  border: 0px solid white;
   position: absolute;
-  bottom: 2vw;
-  left: 1.5vw;
+  bottom: 5%;
+  left: 8%;
   color: white;
-  border: 0px solid red;
   position: absolute;
   width: 40%;
-  max-height: 40%;
+  max-height: 50%;
   padding: 1vw;
 `
 const UserName = styled.h1`
+  font-size: 50px;
   background: -webkit-linear-gradient(97.42deg, #e0e0e0 6.54%, rgba(174, 171, 171, 0.78) 124.9%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -40,7 +41,6 @@ const UserName = styled.h1`
   }
 `
 const TeamName = styled.h2`
-  border: 0px solid red;
   background: -webkit-linear-gradient(
     91.7deg,
     rgba(253, 253, 253, 0.03) 4.11%,
@@ -62,7 +62,6 @@ const TeamName = styled.h2`
   }
 `
 const TicketNum = styled.span`
-  border: 0px solid red;
   transform: rotate(-90deg);
   position: absolute;
   right: -1vw;
