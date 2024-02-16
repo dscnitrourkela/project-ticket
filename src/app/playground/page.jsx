@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 'use client'
 import { get, push, ref, update } from 'firebase/database'
-import html2canvas from 'html2canvas'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
@@ -318,8 +317,7 @@ const MyTicketPage = () => {
     name: '',
     teamName: '',
     email: '',
-    bgcolor: '',
-    ticketImage: ''
+    bgcolor: '#206EA6'
   })
 
   const [selectedColor, setSelectedColor] = useState(0)
@@ -348,8 +346,7 @@ const MyTicketPage = () => {
           name: tickets[lastTicketKey].name,
           teamName: tickets[lastTicketKey].teamName,
           email: tickets[lastTicketKey].email,
-          bgcolor: tickets[lastTicketKey].bgcolor,
-          ticketImage: tickets[lastTicketKey].ticketImage
+          bgcolor: tickets[lastTicketKey].bgcolor
         })
         setExistingTicketKey(lastTicketKey)
         setShowModal(true)
@@ -362,24 +359,18 @@ const MyTicketPage = () => {
   }
 
   const generateTicket = () => {
-    const ticketElement = document.getElementById('ticketPreview')
-    html2canvas(ticketElement).then((canvas) => {
-      const image = canvas.toDataURL('image/png')
-
-      if (currentUser) {
-        const ticketRef = ref(database, `tickets/${currentUser.uid}`)
-        const updateRef = existingTicketKey
-          ? ref(database, `tickets/${currentUser.uid}/${existingTicketKey}`)
-          : push(ticketRef)
-        update(updateRef, {
-          ...ticketInfo,
-          ticketImage: image
-        }).then(() => {
-          setTicketInfo({ ...ticketInfo, ticketImage: image })
-          setShowModal(true)
-        })
-      }
-    })
+    if (currentUser) {
+      const ticketRef = ref(database, `tickets/${currentUser.uid}`)
+      const updateRef = existingTicketKey
+        ? ref(database, `tickets/${currentUser.uid}/${existingTicketKey}`)
+        : push(ticketRef)
+      update(updateRef, {
+        ...ticketInfo
+      }).then(() => {
+        setTicketInfo({ ...ticketInfo })
+        setShowModal(true)
+      })
+    }
   }
 
   return (
