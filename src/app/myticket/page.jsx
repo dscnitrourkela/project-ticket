@@ -12,7 +12,7 @@ import { Headings, HeadBox } from '../../components/shared/Heading'
 import Modal from '../../components/Ticket/modal'
 import InnerTicket from '../../components/Ticket/ticketComp'
 import { Navbar } from '../../components/marginals/Navbar'
-import { Footer } from '../components/marginals/Footer'
+import { Footer } from '../../components/marginals/Footer'
 import { AuthContext } from '../../context/AuthContext'
 import { GlobalButton } from '../../components/shared/GlobalButton'
 import {
