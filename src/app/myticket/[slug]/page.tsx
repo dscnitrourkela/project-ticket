@@ -1,31 +1,15 @@
-import { database } from '@/firebase/firebase'
-import { get, ref } from 'firebase/database'
 import { GridCont, GridLines, PreviewBg, PreviewCont, TicketCompontent } from '../ticket.styles'
 import InnerTicket from '@/components/Ticket/ticketComp'
 import { PreviewTicketContainer } from './styles'
 import '../../../styles/globals.css'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+import { getTicketData } from '@/firebase/getTicket'
 
 export interface TicketPageProps {
   params: {
     slug: string
   }
-}
-
-export async function getTicketData(slug: string) {
-  const ticketRef = ref(database, `tickets/${slug}`)
-  const snapshot = await get(ticketRef)
-  const value = await snapshot.val()
-  const ticket = Object.values(value)[0] as {
-    name: string
-    teamName: string
-    email: string
-    bgcolor: string
-    ticketId: string
-  }
-
-  return ticket
 }
 
 export const generateMetadata = async ({ params }: TicketPageProps): Promise<Metadata> => {

@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 import { ImageResponse } from '@vercel/og'
-import { TicketPageProps, getTicketData } from './page'
+import { TicketPageProps } from './page'
 import { ticketUrls } from '@/config/TicketBackgrounds'
+import { getTicketData } from '@/firebase/getTicket'
 
 export const size = {
   width: 1200,
