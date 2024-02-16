@@ -69,8 +69,6 @@ export default async function Image({ params }: TicketPageProps): Promise<ImageR
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
   const { name, bgcolor, teamName, ticketId } = ticket
 
-  console.log('ticket', bgcolor)
-
   return new ImageResponse(
     (
       <div
