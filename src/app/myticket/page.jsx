@@ -192,7 +192,7 @@ const MyTicketPage = () => {
         <PreviewButton onClick={() => setShowModal(true)}>Preview your Ticket</PreviewButton>
         <ButtonsContainer>
           <Link
-            href={`https://twitter.com/intent/post?text=I%20just%20created%20my%20ticket%20for%20HackNITR%205.0%20at%20https://ticket.hacknitr.com.%20You%20can%20view%20it%20at%20${process.env.VERCEL_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
+            href={`https://twitter.com/intent/post?text=I%20just%20created%20my%20ticket%20for%20HackNITR%205.0%20at%20https://ticket.hacknitr.com.%20You%20can%20view%20it%20at%20${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
             referrerPolicy="no-referrer"
             target="_blank"
           >
@@ -201,7 +201,7 @@ const MyTicketPage = () => {
             </IconButton>
           </Link>
           <Link
-            href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.VERCEL_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
             referrerPolicy="no-referrer"
             target="_blank"
           >
@@ -210,7 +210,7 @@ const MyTicketPage = () => {
             </IconButton>
           </Link>
           <Link
-            href={`https://wa.me/?text=I%20just%20created%20my%20ticket%20for%20HackNITR%205.0%20at%20https://ticket.hacknitr.com.%20You%20can%20view%20it%20at%20${process.env.VERCEL_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
+            href={`https://wa.me/?text=I%20just%20created%20my%20ticket%20for%20HackNITR%205.0%20at%20https://ticket.hacknitr.com.%20You%20can%20view%20it%20at%20${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
             referrerPolicy="no-referrer"
             target="_blank"
           >
@@ -219,7 +219,7 @@ const MyTicketPage = () => {
             </IconButton>
           </Link>
           <Link
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.VERCEL_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
             referrerPolicy="no-referrer"
             target="_blank"
           >
@@ -230,7 +230,7 @@ const MyTicketPage = () => {
           <IconButton
             onClick={() => {
               navigator.clipboard.writeText(
-                `${process.env.VERCEL_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`
+                `${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`
               )
               alert('Link copied to clipboard')
             }}
