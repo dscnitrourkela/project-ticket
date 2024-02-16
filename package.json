@@ -23,6 +23,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@vercel/og": "^0.6.2",
     "babel-plugin-styled-components": "^2.1.4",
     "firebase": "^10.7.1",
     "html2canvas": "^1.4.1",
