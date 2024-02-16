@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import '../../styles/globals.css'
 import { GlobalButton } from '../shared/GlobalButton'
 
-import { auth } from '../../../firebase/firebase'
+import { auth } from '../../firebase/firebase'
 import { AuthContext } from '../../context/AuthContext'
 import { StyledNavbar, NavItem, LogoImg, LogoContainer } from './navbar.styles'
 

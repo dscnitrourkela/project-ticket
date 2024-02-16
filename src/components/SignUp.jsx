@@ -24,13 +24,13 @@ import {
   CardImage
 } from './signup.styles'
 
-import { AuthLogoLinks } from '../../config/AuthProviders'
+import { AuthLogoLinks } from '../config/AuthProviders'
 
 import {
   signUpWithEmailAndPassword,
   signUpWithGitHub,
   signUpWithGoogle
-} from '../../firebase/signupAuth'
+} from '../firebase/signupAuth'
 
 const SignUp = () => {
   const [loginFormLeft, setLoginFormLeft] = useState('18%')

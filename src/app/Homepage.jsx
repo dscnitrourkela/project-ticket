@@ -1,9 +1,9 @@
 import React from 'react'
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider } from '../context/AuthContext'
 
-import { Navbar } from './components/marginals/Navbar'
-import { Footer } from './components/marginals/Footer'
-import SignUp from './components/SignUp'
+import { Footer } from '../components/marginals/Footer'
+import { Navbar } from '../components/marginals/Navbar'
+import SignUp from '../components/SignUp'
 
 function Homepage() {
   return (

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { ticketUrls } from '../../../config/TicketBackgrounds'
+import { ticketUrls } from '../../config/TicketBackgrounds'
 import {
   TicketImage,
   TicketText,
