@@ -92,10 +92,10 @@ export default async function Image({ params }: TicketPageProps): Promise<ImageR
         />
         <div style={{ ...ticketTextStyle } as React.CSSProperties}>
           <div style={{ ...namesStyle } as React.CSSProperties}>
-            <h1 style={userNameStyle}>{name}</h1>
-            <h2 style={{ ...teamNameStyle } as React.CSSProperties}>{teamName}</h2>
+            <h1 style={userNameStyle}>{name || ''}</h1>
+            <h2 style={{ ...teamNameStyle } as React.CSSProperties}>{teamName || ''}</h2>
           </div>
-          <span style={{ ...ticketNumStyle } as React.CSSProperties}>{ticketId}</span>
+          <span style={{ ...ticketNumStyle } as React.CSSProperties}>{ticketId || '550000'}</span>
         </div>
       </div>
     ),

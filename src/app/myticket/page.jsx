@@ -111,6 +111,7 @@ const MyTicketPage = () => {
       // Use a promise to wait for the update operation to complete
       const updatePromise = update(updateRef, {
         ...ticketInfo,
+        bgcolor: ticketInfo.bgcolor || colors[0],
         email: currentUser.email,
         ticketId: existingTicketKey ? ticketInfo.ticketId : ticketInfo.ticketId + 1
       })
