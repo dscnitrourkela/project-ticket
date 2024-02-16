@@ -43,5 +43,5 @@ jobs:
         run: yarn install
 
       - name: Prettier Check
-        run: yarn prettier:check
+        run: yarn prettier
         continue-on-error: ${{ !inputs.fail-on-error }}
