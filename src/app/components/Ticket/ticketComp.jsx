@@ -7,13 +7,16 @@ import {
   Names,
   UserName,
   TeamName,
-  TicketNum,
   DarkUserName,
   DarkTeamName,
-  DarkTicketNum
+  ModalNames,
+  ModalUserNm,
+  ModalTeamName,
+  DarkModalUserNm,
+  DarkModalTeamName
 } from './ticket.styles'
 
-const InnerTicket = ({ user_name, team_name, ticket_num, ticket_img, lightBg }) => {
+const InnerTicket = ({ user_name, team_name, ticket_img, lightBg, modalView }) => {
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
 
   return (
@@ -26,19 +29,31 @@ const InnerTicket = ({ user_name, team_name, ticket_num, ticket_img, lightBg }) 
       />
       {!lightBg ? (
         <TicketText>
-          <Names>
-            <UserName>{user_name}</UserName>
-            <TeamName>{team_name}</TeamName>
-          </Names>
-          <TicketNum>{ticket_num}</TicketNum>
+          {modalView ? (
+            <ModalNames>
+              <ModalUserNm>{user_name}</ModalUserNm>
+              <ModalTeamName>{team_name}</ModalTeamName>
+            </ModalNames>
+          ) : (
+            <Names>
+              <UserName>{user_name}</UserName>
+              <TeamName>{team_name}</TeamName>
+            </Names>
+          )}
         </TicketText>
       ) : (
         <TicketText>
-          <Names>
-            <DarkUserName>{user_name}</DarkUserName>
-            <DarkTeamName>{team_name}</DarkTeamName>
-          </Names>
-          <DarkTicketNum>{ticket_num}</DarkTicketNum>
+          {modalView ? (
+            <ModalNames>
+              <DarkModalUserNm>{user_name}</DarkModalUserNm>
+              <DarkModalTeamName>{team_name}</DarkModalTeamName>
+            </ModalNames>
+          ) : (
+            <Names>
+              <DarkUserName>{user_name}</DarkUserName>
+              <DarkTeamName>{team_name}</DarkTeamName>
+            </Names>
+          )}
         </TicketText>
       )}
     </>

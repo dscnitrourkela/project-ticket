@@ -16,7 +16,6 @@ export const TicketText = styled.div`
 `
 
 export const Names = styled.div`
-  border: 0px solid white;
   position: absolute;
   bottom: 5%;
   left: 8%;
@@ -166,4 +165,69 @@ export const CloseButton = styled.button`
 export const CloseImg = styled.img`
   width: 100%;
   height: 100%;
+`
+// For Modal View
+
+export const ModalNames = styled.div`
+  position: absolute;
+  bottom: 11%;
+  left: 9%;
+  color: white;
+  position: absolute;
+  width: 40%;
+  max-height: 70%;
+  padding: 1.5vw;
+  @media (max-width: 680px) {
+    left: 11%;
+    bottom: 15%;
+  }
+`
+export const ModalUserNm = styled.h1`
+  background: -webkit-linear-gradient(97.42deg, #e0e0e0 6.54%, rgba(174, 171, 171, 0.78) 124.9%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.2vw;
+  @media (max-width: 980px) {
+    font-size: 3vw;
+  }
+  @media (max-width: 680px) {
+    font-size: 4.5vw;
+  }
+`
+
+export const ModalTeamName = styled.h2`
+  background: -webkit-linear-gradient(
+    91.7deg,
+    rgba(253, 253, 253, 0.3) 0.11%,
+    rgba(253, 253, 253, 0.9) 140.31%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-family: Montserrat;
+  font-size: 2.3vw;
+  font-weight: 500;
+  line-height: 1.2vw;
+
+  @media (max-width: 980px) {
+    font-size: 2.8vw;
+  }
+  @media (max-width: 680px) {
+    font-size: 3.5vw;
+  }
+`
+
+export const DarkModalUserNm = styled(ModalUserNm)`
+  background: -webkit-linear-gradient(97.42deg, #010101 6.54%, rgba(79, 82, 82, 0.78) 124.9%);
+  background-clip: text;
+`
+export const DarkModalTeamName = styled(ModalTeamName)`
+  background: -webkit-linear-gradient(
+    91.7deg,
+    rgba(0, 0, 0, 0.03) 0.11%,
+    rgba(0, 0, 0, 0.9) 107.31%
+  );
+  background-clip: text;
 `

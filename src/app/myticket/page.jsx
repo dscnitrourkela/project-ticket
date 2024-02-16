@@ -12,6 +12,7 @@ import { database } from '../../firebase/firebase'
 import Modal from '../components/Ticket/modal'
 import InnerTicket from '../components/Ticket/ticketComp'
 import { Navbar } from '../components/marginals/Navbar'
+import { Footer } from '../components/marginals/Footer'
 import { AuthContext } from '../context/AuthContext'
 import { GlobalButton } from '../components/shared/GlobalButton'
 import { Headings, HeadBox } from '../components/shared/Heading'
@@ -95,7 +96,7 @@ const MyTicketPage = () => {
     })
   }, [currentUser, router])
 
-  const [showModal, setShowModal] = existingTicketKey ? useState(true) : useState(false)
+  const [showModal, setShowModal] = useState(existingTicketKey ? true : false)
 
   const handleChange = (e) => {
     setTicketInfo({ ...ticketInfo, [e.target.name]: e.target.value })
@@ -207,10 +208,12 @@ const MyTicketPage = () => {
               ticket_num={ticketInfo.ticketId || 550000}
               ticket_img={ticketInfo.bgcolor || '#206EA6'}
               lightBg={colors.indexOf(ticketInfo.bgcolor) === 1 ? true : false}
+              modalView={showModal}
             />
           </Modal>
         </ModalPage>
       )}
+      <Footer />
     </div>
   )
 }
