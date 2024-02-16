@@ -1,10 +1,10 @@
-'use client'
-
 import { database } from '@/firebase/firebase'
-import { onValue, ref } from 'firebase/database'
-import { useEffect, useState } from 'react'
+import { get, ref } from 'firebase/database'
 import { GridCont, GridLines, PreviewBg, PreviewCont, TicketCompontent } from '../ticket.styles'
 import InnerTicket from '@/components/Ticket/ticketComp'
+import { PreviewTicketContainer } from './styles'
+import '../../../styles/globals.css'
+import { notFound } from 'next/navigation'
 
 interface TicketPageProps {
   params: {
@@ -12,30 +12,35 @@ interface TicketPageProps {
   }
 }
 
-export default function TicketPage({ params }: TicketPageProps) {
-  const [ticket, setTicket] = useState({
-    name: '',
-    teamName: '',
-    email: '',
-    bgcolor: '',
-    ticketId: ''
-  })
+export default async function TicketPage({ params }: TicketPageProps) {
+  // const [ticket, setTicket] = useState({
+  //   name: '',
+  //   teamName: '',
+  //   email: '',
+  //   bgcolor: '',
+  //   ticketId: ''
+  // })
 
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
 
   const rows = 1
   const columns = 16
 
-  useEffect(() => {
-    const ticketRef = ref(database, `tickets/${params.slug}`)
-    onValue(ticketRef, (snapshot) => {
-      const data = snapshot.val()
-      setTicket(Object.values(data)[0] as any)
-    })
-  }, [params.slug])
+  const ticketRef = ref(database, `tickets/${params.slug}`)
+  const snapshot = await get(ticketRef)
+  const value = await snapshot.val()
+  const ticket = Object.values(value)[0] as {
+    name: string
+    teamName: string
+    email: string
+    bgcolor: string
+    ticketId: string
+  }
+
+  if (!ticket) return notFound()
 
   return (
-    <div>
+    <PreviewTicketContainer>
       <PreviewBg>
         <PreviewCont>
           <GridCont>
@@ -54,6 +59,6 @@ export default function TicketPage({ params }: TicketPageProps) {
           </GridCont>
         </PreviewCont>
       </PreviewBg>
-    </div>
+    </PreviewTicketContainer>
   )
 }

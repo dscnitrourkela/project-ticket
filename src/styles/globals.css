@@ -13,10 +13,6 @@
   }
 }
 
-body {
-  background-color: #04040d;
-}
-
 *,
 *:before,
 *:after {
@@ -188,4 +184,8 @@ a {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #04040d;
 }
