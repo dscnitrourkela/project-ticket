@@ -1,4 +1,10 @@
-import { GridCont, GridLines, PreviewBg, PreviewCont, TicketCompontent } from '../ticket.styles'
+import {
+  GridCont,
+  GridLines,
+  PreviewBg,
+  PreviewCont,
+  TicketCompontent
+} from '../../myticket/ticket.styles'
 import InnerTicket from '@/components/Ticket/ticketComp'
 import { PreviewTicketContainer } from './styles'
 import '../../../styles/globals.css'

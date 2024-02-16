@@ -16,6 +16,24 @@ export const ShareButton = styled(GlobalButton)`
   background-color: pink;
   margin: 10vw 2vw;
 `
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px 20px 0px;
+  border: 0px solid pink;
+`
+
+export const IconButton = styled.button`
+  padding: 10px;
+  border: none;
+  background: black;
+  cursor: pointer;
+  border-radius: 50%;
+`
+
 export const TicketPage = styled.div`
   display: flex;
   flex-direction: column;
