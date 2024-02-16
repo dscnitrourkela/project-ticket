@@ -2,21 +2,19 @@
 'use client'
 import { get, push, ref, update } from 'firebase/database'
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../../firebase/firebase'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
-import '../styles/globals.css'
-import { SubmitButton } from '../components/shared/SubmitButton'
+import '../../styles/globals.css'
+import { SubmitButton } from '../../components/shared/SubmitButton'
 
-import { database } from '../../firebase/firebase'
-import Modal from '../components/Ticket/modal'
-import InnerTicket from '../components/Ticket/ticketComp'
-import { Navbar } from '../components/marginals/Navbar'
+import { database, auth } from '../../firebase/firebase'
+import { Headings, HeadBox } from '../../components/shared/Heading'
+import Modal from '../../components/Ticket/modal'
+import InnerTicket from '../../components/Ticket/ticketComp'
+import { Navbar } from '../../components/marginals/Navbar'
 import { Footer } from '../components/marginals/Footer'
-import { AuthContext } from '../context/AuthContext'
-import { GlobalButton } from '../components/shared/GlobalButton'
-import { Headings, HeadBox } from '../components/shared/Heading'
-
+import { AuthContext } from '../../context/AuthContext'
+import { GlobalButton } from '../../components/shared/GlobalButton'
 import {
   TicketPage,
   TicketContainer,
