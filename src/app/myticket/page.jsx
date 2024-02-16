@@ -34,8 +34,12 @@ import {
   UpdateButton,
   PreviewButton,
   ShareButton,
-  ModalPage
+  ModalPage,
+  ButtonsContainer,
+  IconButton
 } from './ticket.styles'
+import Link from 'next/link'
+import { Icon } from '@iconify/react'
 
 const MyTicketPage = () => {
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
@@ -110,6 +114,7 @@ const MyTicketPage = () => {
       // Use a promise to wait for the update operation to complete
       const updatePromise = update(updateRef, {
         ...ticketInfo,
+        bgcolor: ticketInfo.bgcolor || colors[0],
         email: currentUser.email,
         ticketId: existingTicketKey ? ticketInfo.ticketId : ticketInfo.ticketId + 1
       })
@@ -194,7 +199,54 @@ const MyTicketPage = () => {
         </ArrayHolder>
 
         <PreviewButton onClick={() => setShowModal(true)}>Preview your Ticket</PreviewButton>
-        <ShareButton>Share your Ticket</ShareButton>
+        <ButtonsContainer>
+          <Link
+            href={`https://twitter.com/intent/post?text=I%20just%20created%20my%20ticket%20for%20HackNITR%205.0%20at%20https://ticket.hacknitr.com.%20You%20can%20view%20it%20at%20${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
+            referrerPolicy="no-referrer"
+            target="_blank"
+          >
+            <IconButton>
+              <Icon icon="fa6-brands:x-twitter" color="#1DA1F2" width="2.5em" height="2.5em" />
+            </IconButton>
+          </Link>
+          <Link
+            href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
+            referrerPolicy="no-referrer"
+            target="_blank"
+          >
+            <IconButton>
+              <Icon icon="fa-brands:facebook" color="#4267B2" width="2.5em" height="2.5em" />
+            </IconButton>
+          </Link>
+          <Link
+            href={`https://wa.me/?text=I%20just%20created%20my%20ticket%20for%20HackNITR%205.0%20at%20https://ticket.hacknitr.com.%20You%20can%20view%20it%20at%20${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
+            referrerPolicy="no-referrer"
+            target="_blank"
+          >
+            <IconButton>
+              <Icon icon="fa-brands:whatsapp" color="#25D366" width="2.5em" height="2.5em" />
+            </IconButton>
+          </Link>
+          <Link
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`}
+            referrerPolicy="no-referrer"
+            target="_blank"
+          >
+            <IconButton>
+              <Icon icon="fa-brands:linkedin" color="#0A66C2" width="2.5em" height="2.5em" />
+            </IconButton>
+          </Link>
+          <IconButton
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/preview/${currentUser?.uid}`
+              )
+              alert('Link copied to clipboard')
+            }}
+          >
+            <Icon icon="solar:copy-linear" color="#000" width="2.5em" height="2.5em" />
+          </IconButton>
+        </ButtonsContainer>
       </TicketPage>
       {showModal && (
         <ModalPage>

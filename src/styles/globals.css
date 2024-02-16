@@ -13,6 +13,7 @@
   }
 }
 
+
 body {
   background-color: #04040d;
   background-image: url('https://res.cloudinary.com/djl2ulktr/image/upload/v1707655518/output-onlinepngtools_l7yvvn.png');
@@ -54,4 +55,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #04040d;
 }
