@@ -13,7 +13,7 @@ import {
   signUpWithEmailAndPassword,
   signUpWithGitHub,
   signUpWithGoogle
-} from '../../firebase/signupAuth'
+} from '../firebase/signupAuth'
 
 const SignUp = () => {
   const [loginFormLeft, setLoginFormLeft] = useState('4.5vw')
