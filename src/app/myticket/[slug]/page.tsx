@@ -5,28 +5,16 @@ import InnerTicket from '@/components/Ticket/ticketComp'
 import { PreviewTicketContainer } from './styles'
 import '../../../styles/globals.css'
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
 
-interface TicketPageProps {
+export interface TicketPageProps {
   params: {
     slug: string
   }
 }
 
-export default async function TicketPage({ params }: TicketPageProps) {
-  // const [ticket, setTicket] = useState({
-  //   name: '',
-  //   teamName: '',
-  //   email: '',
-  //   bgcolor: '',
-  //   ticketId: ''
-  // })
-
-  const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
-
-  const rows = 1
-  const columns = 16
-
-  const ticketRef = ref(database, `tickets/${params.slug}`)
+export async function getTicketData(slug: string) {
+  const ticketRef = ref(database, `tickets/${slug}`)
   const snapshot = await get(ticketRef)
   const value = await snapshot.val()
   const ticket = Object.values(value)[0] as {
@@ -36,6 +24,36 @@ export default async function TicketPage({ params }: TicketPageProps) {
     bgcolor: string
     ticketId: string
   }
+
+  return ticket
+}
+
+export const generateMetadata = async ({ params }: TicketPageProps): Promise<Metadata> => {
+  const ticket = await getTicketData(params.slug)
+
+  return {
+    title: `${ticket.name}'s Ticket | HackNITR 5.0`,
+    description: `Ticket for ${ticket.name} from ${ticket.teamName} for HackNITR 5.0`,
+    icons: {
+      icon: '/favicon.ico'
+    },
+    applicationName: 'HackNITR 5.0',
+    openGraph: {
+      title: `${ticket.name}'s Ticket | HackNITR 5.0`,
+      description: `Ticket for ${ticket.name} from ${ticket.teamName} for HackNITR 5.0`,
+      siteName: 'Ticket | HackNITR 5.0',
+      type: 'website'
+    }
+  }
+}
+
+export default async function TicketPage({ params }: TicketPageProps) {
+  const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
+
+  const rows = 1
+  const columns = 16
+
+  const ticket = await getTicketData(params.slug)
 
   if (!ticket) return notFound()
 
