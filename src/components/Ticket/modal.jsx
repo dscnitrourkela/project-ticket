@@ -12,7 +12,7 @@ const Modal = ({ show, onClose, children }) => {
     <StyledModal>
       <CloseButton onClick={onClose}>
         <CloseImg
-          src="https://res.cloudinary.com/djl2ulktr/image/upload/v1706404927/Close_round_duotone_rryxiz.png"
+          src="https://res.cloudinary.com/djl2ulktr/image/upload/v1708880021/close-icon_oxrtdy.png"
           width={100}
           height={100}
           alt="close"

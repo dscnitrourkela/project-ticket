@@ -134,8 +134,8 @@ export const ModalContent = styled.div`
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 4vw;
-  right: 5vw;
+  top: 6vw;
+  right: 14vw;
   cursor: pointer;
   border-radius: 50%;
   border: 1px solid rgba(200, 200, 200, 0.2);
@@ -157,7 +157,8 @@ export const CloseButton = styled.button`
   }
 
   @media (max-width: 550px) {
-    top: 20vw;
+    right: 14vw;
+    top: 30vw;
     width: 40px;
     height: 40px;
   }
