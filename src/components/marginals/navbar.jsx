@@ -41,7 +41,7 @@ export const Navbar = () => {
           </GlobalButton>
         </>
       ) : (
-        <GlobalButton href="/signup">Signup</GlobalButton>
+        <GlobalButton href="/">Signup</GlobalButton>
       )}
     </StyledNavbar>
   )

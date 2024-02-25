@@ -26,8 +26,8 @@ export const StyledNavbar = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0.3vw 0vw 0.2vw 0vw;
-  padding: 0vw 1vw 0vw 4vw;
+  margin: 0vw;
+  padding: 0vw 1vw 0vw 1vw;
   overflow: hidden;
   border: 2px solid;
   border-image-source: linear-gradient(
@@ -47,7 +47,8 @@ export const NavItem = styled.li`
   color: white;
   text-align: center;
   text-decoration: none;
-  margin: 0vw 2vw;
+  margin: 0vw 0vw 0vw 5vw;
+  padding: 0vw 0vw 0vw 2vw;
 
   &:hover {
     border: 1.85px solid;
