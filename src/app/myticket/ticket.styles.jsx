@@ -144,7 +144,11 @@ export const Input = styled.input`
   }
 `
 export const UpdateButton = styled(SubmitButton)`
+  min-width: 12vw;
   margin-inline: auto;
+  @media (max-width: 680px) {
+    width: 30vw;
+  }
 `
 
 export const PreviewBg = styled.div`

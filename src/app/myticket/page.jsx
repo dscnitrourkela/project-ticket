@@ -33,7 +33,6 @@ import {
   ClrButton,
   UpdateButton,
   PreviewButton,
-  ShareButton,
   ModalPage,
   ButtonsContainer,
   IconButton

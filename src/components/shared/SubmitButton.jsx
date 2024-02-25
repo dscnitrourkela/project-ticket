@@ -20,10 +20,15 @@ export const SubmitButton = styled.button`
     margin-block: 3vw;
     width: 30vw;
     padding: 0px 1vw;
+    font-size: small;
   }
 
   @media (max-width: 450px) {
     margin-block: 4vw;
     font-size: small;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 8px;
   }
 `

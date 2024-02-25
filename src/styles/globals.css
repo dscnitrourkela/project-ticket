@@ -47,6 +47,12 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  @media (max-width: 680px) {
+    font-size: small;
+  }
+  @media (max-width: 400px) {
+    font-size: 8px;
+  }
 
   /* color-scheme: light dark; */
 
@@ -54,8 +60,4 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  background-color: #04040d;
 }
