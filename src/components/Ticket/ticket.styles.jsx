@@ -17,7 +17,7 @@ export const TicketText = styled.div`
 
 export const Names = styled.div`
   position: absolute;
-  bottom: 5%;
+  bottom: 6%;
   left: 8%;
   color: white;
   position: absolute;
@@ -32,6 +32,7 @@ export const UserName = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 1.8vw;
+  line-height: 1.8vw;
   @media (max-width: 980px) {
     font-size: 3vw;
   }
@@ -49,7 +50,7 @@ export const TeamName = styled.h2`
   font-family: Montserrat;
   font-size: 1.5vw;
   font-weight: 500;
-  line-height: 1.2vw;
+  line-height: 1.4vw;
   letter-spacing: 0em;
   text-align: left;
 
@@ -171,7 +172,7 @@ export const CloseImg = styled.img`
 
 export const ModalNames = styled.div`
   position: absolute;
-  bottom: 11%;
+  bottom: 12%;
   left: 9%;
   color: white;
   position: absolute;
@@ -189,6 +190,7 @@ export const ModalUserNm = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 3.2vw;
+  line-height: 3.2vw;
   @media (max-width: 980px) {
     font-size: 3vw;
   }
@@ -210,7 +212,7 @@ export const ModalTeamName = styled.h2`
   font-family: Montserrat;
   font-size: 2.3vw;
   font-weight: 500;
-  line-height: 1.2vw;
+  line-height: 1.6vw;
 
   @media (max-width: 980px) {
     font-size: 2.8vw;
