@@ -61,7 +61,7 @@ export default async function TicketPage({ params }: TicketPageProps) {
                 team_name={ticket.teamName}
                 ticket_img={ticket.bgcolor || '#206EA6'}
                 lightBg={colors.indexOf(ticket.bgcolor) === 1 ? true : false}
-                modalView={true}
+                modalView={false}
               />
             </TicketCompontent>
           </GridCont>

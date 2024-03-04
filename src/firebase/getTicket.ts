@@ -10,7 +10,6 @@ export async function getTicketData(slug: string) {
     teamName: string
     email: string
     bgcolor: string
-    ticketId: string
   }
 
   return ticket
