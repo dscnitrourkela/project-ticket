@@ -3,13 +3,13 @@
 import React from 'react'
 import { StyledModal, CloseButton, CloseImg, ModalContent } from './ticket.styles'
 
-const Modal = ({ show, onClose, children }) => {
+const Modal = ({ show, onClick, onClose, children }) => {
   if (!show) {
     return null
   }
 
   return (
-    <StyledModal>
+    <StyledModal onClick={onClick}>
       <CloseButton onClick={onClose}>
         <CloseImg
           src="https://res.cloudinary.com/djl2ulktr/image/upload/v1708880021/close-icon_oxrtdy.png"

@@ -140,8 +140,8 @@ export const CloseButton = styled.button`
   cursor: pointer;
   border-radius: 50%;
   border: 1px solid rgba(200, 200, 200, 0.2);
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   font-size: 20px;
   background: linear-gradient(
     97.1deg,
@@ -160,8 +160,8 @@ export const CloseButton = styled.button`
   @media (max-width: 550px) {
     right: 14vw;
     top: 30vw;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
 `
 export const CloseImg = styled.img`

@@ -250,7 +250,13 @@ const MyTicketPage = () => {
       {showModal && (
         <ModalPage>
           <GlobalButton onClick={() => setShowModal(false)}>Edit Ticket</GlobalButton>
-          <Modal show={showModal} onClose={() => setShowModal(false)}>
+          <Modal
+            show={showModal}
+            onClick={() => {
+              setShowModal(false)
+            }}
+            onClose={() => setShowModal(false)}
+          >
             <InnerTicket
               user_name={ticketInfo.name || 'Your Name'}
               team_name={ticketInfo.teamName || 'Your Team Name'}
