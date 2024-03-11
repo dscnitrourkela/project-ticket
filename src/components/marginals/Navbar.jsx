@@ -5,7 +5,7 @@ import { GlobalButton } from '../shared/GlobalButton'
 
 import { auth } from '../../firebase/firebase'
 import { AuthContext } from '../../context/AuthContext'
-import { StyledNavbar, NavItem, LogoImg } from './navbar.styles'
+import { StyledNavbar, NavItem, LogoImg, LogoContainer } from './navbar.styles'
 
 export const Navbar = () => {
   const { currentUser } = useContext(AuthContext)
@@ -16,14 +16,12 @@ export const Navbar = () => {
 
   return (
     <StyledNavbar>
-      <NavItem>
-        <a href="/">
-          <LogoImg
-            src="https://res.cloudinary.com/djl2ulktr/image/upload/v1706421438/HN_logo_bswqp2.png"
-            alt="Home"
-          />
-        </a>
-      </NavItem>
+      <LogoContainer href="/">
+        <LogoImg
+          src="https://res.cloudinary.com/djl2ulktr/image/upload/v1706421438/HN_logo_bswqp2.png"
+          alt="Home"
+        />
+      </LogoContainer>
 
       {currentUser ? (
         <>
@@ -43,7 +41,7 @@ export const Navbar = () => {
           </GlobalButton>
         </>
       ) : (
-        <GlobalButton href="/signup">Signup</GlobalButton>
+        <GlobalButton href="/">Signup</GlobalButton>
       )}
     </StyledNavbar>
   )

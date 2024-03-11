@@ -9,6 +9,7 @@ import { SubmitButton } from '../../components/shared/SubmitButton'
 
 import { database } from '../../firebase/firebase'
 import Modal from '../../components/Ticket/modal'
+import { ticketUrls } from '../../config/TicketBackgrounds'
 import InnerTicket from '../../components/Ticket/ticketComp'
 import { Navbar } from '../../components/marginals/Navbar'
 import { AuthContext } from '../../context/AuthContext'
@@ -302,13 +303,7 @@ const PreviewButton = styled.button`
 
 const MyTicketPage = () => {
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
-  const ticketUrls = [
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/light_izvbcd.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/magenta_dgiq85.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/green_zgppwy.png'
-  ]
+
   const rows = 1
   const columns = 16
   const { currentUser } = useContext(AuthContext)

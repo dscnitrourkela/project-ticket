@@ -59,9 +59,9 @@ export default async function TicketPage({ params }: TicketPageProps) {
               <InnerTicket
                 user_name={ticket.name}
                 team_name={ticket.teamName}
-                ticket_num={ticket.ticketId || 550000}
                 ticket_img={ticket.bgcolor || '#206EA6'}
                 lightBg={colors.indexOf(ticket.bgcolor) === 1 ? true : false}
+                modalView={false}
               />
             </TicketCompontent>
           </GridCont>

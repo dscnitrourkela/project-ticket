@@ -67,7 +67,7 @@ const ticketNumStyle = {
 export default async function Image({ params }: TicketPageProps): Promise<ImageResponse> {
   const ticket = await getTicketData(params.slug)
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
-  const { name, bgcolor, teamName, ticketId } = ticket
+  const { name, bgcolor, teamName } = ticket
 
   return new ImageResponse(
     (
@@ -95,7 +95,7 @@ export default async function Image({ params }: TicketPageProps): Promise<ImageR
             <h1 style={userNameStyle}>{name || ''}</h1>
             <h2 style={{ ...teamNameStyle } as React.CSSProperties}>{teamName || ''}</h2>
           </div>
-          <span style={{ ...ticketNumStyle } as React.CSSProperties}>{ticketId || '550000'}</span>
+          <span style={{ ...ticketNumStyle } as React.CSSProperties}>550000</span>
         </div>
       </div>
     ),

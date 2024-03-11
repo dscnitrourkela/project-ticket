@@ -8,9 +8,11 @@ import '../../styles/globals.css'
 import { SubmitButton } from '../../components/shared/SubmitButton'
 
 import { database, auth } from '../../firebase/firebase'
+import { Headings, HeadBox } from '../../components/shared/Heading'
 import Modal from '../../components/Ticket/modal'
 import InnerTicket from '../../components/Ticket/ticketComp'
 import { Navbar } from '../../components/marginals/Navbar'
+import { Footer } from '../../components/marginals/Footer'
 import { AuthContext } from '../../context/AuthContext'
 import { GlobalButton } from '../../components/shared/GlobalButton'
 import {
@@ -29,8 +31,8 @@ import {
   ColorText,
   ColorArray,
   ClrButton,
+  UpdateButton,
   PreviewButton,
-  ShareButton,
   ModalPage,
   ButtonsContainer,
   IconButton
@@ -95,7 +97,7 @@ const MyTicketPage = () => {
     })
   }, [currentUser, router])
 
-  const [showModal, setShowModal] = existingTicketKey ? useState(true) : useState(false)
+  const [showModal, setShowModal] = useState(existingTicketKey ? true : false)
 
   const handleChange = (e) => {
     setTicketInfo({ ...ticketInfo, [e.target.name]: e.target.value })
@@ -122,8 +124,12 @@ const MyTicketPage = () => {
   }
 
   return (
-    <>
+    <div>
       <Navbar />
+      <HeadBox>
+        <Headings>Generate Your Ticket</Headings>
+      </HeadBox>
+
       <TicketPage>
         <TicketContainer>
           <FormBg>
@@ -146,13 +152,14 @@ const MyTicketPage = () => {
               />
 
               <></>
-              <SubmitButton
+              <UpdateButton
                 onClick={() => {
-                  generateTicket()(existingTicketKey ? setShowModal(true) : null)
+                  generateTicket()
+                  existingTicketKey ? setShowModal(true) : null
                 }}
               >
                 {existingTicketKey ? 'Update Ticket' : 'Generate Ticket'}
-              </SubmitButton>
+              </UpdateButton>
             </FormSection>
           </FormBg>
 
@@ -243,18 +250,26 @@ const MyTicketPage = () => {
       {showModal && (
         <ModalPage>
           <GlobalButton onClick={() => setShowModal(false)}>Edit Ticket</GlobalButton>
-          <Modal show={showModal} onClose={() => setShowModal(false)}>
+          <Modal
+            show={showModal}
+            onClick={() => {
+              setShowModal(false)
+            }}
+            onClose={() => setShowModal(false)}
+          >
             <InnerTicket
               user_name={ticketInfo.name || 'Your Name'}
               team_name={ticketInfo.teamName || 'Your Team Name'}
               ticket_num={ticketInfo.ticketId || 550000}
               ticket_img={ticketInfo.bgcolor || '#206EA6'}
               lightBg={colors.indexOf(ticketInfo.bgcolor) === 1 ? true : false}
+              modalView={showModal}
             />
           </Modal>
         </ModalPage>
       )}
-    </>
+      <Footer />
+    </div>
   )
 }
 export default MyTicketPage
