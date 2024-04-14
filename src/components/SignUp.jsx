@@ -17,11 +17,10 @@ import {
   ButtonBox,
   ToggleButton,
   Btn,
-  Login,
-  Register,
   CardsA,
   CardsB,
-  CardImage
+  CardImage,
+  InputGroup
 } from './signup.styles'
 
 import { AuthLogoLinks } from '../config/AuthProviders'
@@ -131,7 +130,7 @@ const SignUp = () => {
           <ToggleButton onClick={switchToRegister}>Sign In</ToggleButton>
         </ButtonBox>
 
-        <Login loginFormLeft={loginFormLeft}>
+        <InputGroup style={{ left: loginFormLeft }}>
           <AuthButton type="submit" onClick={handleGoogleSignup}>
             <AuthLogoImg src={AuthLogoLinks[0].url} alt="Google" />
             Sign up with Google
@@ -166,9 +165,9 @@ const SignUp = () => {
             onChange={handlePasswordChange}
           />
           <SubmitButton onClick={handleSignUp}>Sign up</SubmitButton>
-        </Login>
+        </InputGroup>
 
-        <Register registerFormLeft={registerFormLeft}>
+        <InputGroup style={{ left: registerFormLeft }}>
           <AuthButton type="submit" onClick={handleGoogleSignup}>
             <AuthLogoImg src={AuthLogoLinks[0].url} alt="Google" />
             Sign in with Google
@@ -196,7 +195,7 @@ const SignUp = () => {
             onChange={handlePasswordChange}
           />
           <SubmitButton onClick={handleSignIn}>Sign in</SubmitButton>
-        </Register>
+        </InputGroup>
       </FormBox>
     </Hero>
   )
