@@ -5,7 +5,6 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import '../../styles/globals.css'
-import { SubmitButton } from '../../components/shared/SubmitButton'
 
 import { database, auth } from '../../firebase/firebase'
 import { Headings, HeadBox } from '../../components/shared/Heading'
@@ -49,7 +48,7 @@ const MyTicketPage = () => {
   const router = useRouter()
 
   const [ticketInfo, setTicketInfo] = useState({
-    name: '',
+    name: currentUser?.displayName || '',
     teamName: '',
     email: '',
     bgcolor: '',
@@ -65,7 +64,7 @@ const MyTicketPage = () => {
       }
     })
     return () => {
-      unsubscribe() // Unsubscribe from the event when the component unmounts
+      unsubscribe()
     }
   }, [currentUser, router])
 
@@ -85,6 +84,9 @@ const MyTicketPage = () => {
       if (snapshot.exists()) {
         const tickets = snapshot.val()
         const lastTicketKey = Object.keys(tickets).pop()
+        const previousTicket = Object.keys(tickets)[Object.keys(tickets).length - 1]
+        console.log('Last Ticket Key:', lastTicketKey)
+        console.log('Previous Ticket:', previousTicket)
         setTicketInfo({
           name: tickets[lastTicketKey].name || currentUser.displayName,
           teamName: tickets[lastTicketKey].teamName,
@@ -110,15 +112,19 @@ const MyTicketPage = () => {
         ? ref(database, `tickets/${currentUser.uid}/${existingTicketKey}`)
         : push(ticketRef)
 
-      // Use a promise to wait for the update operation to complete
+      // promise for the update
       const updatePromise = update(updateRef, {
         ...ticketInfo,
         bgcolor: ticketInfo.bgcolor || colors[0],
-        email: currentUser.email,
+        gmail: currentUser.email,
+        googleName: currentUser.displayName,
         ticketId: existingTicketKey ? ticketInfo.ticketId : ticketInfo.ticketId + 1
       })
       updatePromise.then(() => {
+        const newTicketKey = existingTicketKey || updateRef.key
         setShowModal(true)
+        console.log('Ticket generated successfully', ticketInfo)
+        console.log('with ID', newTicketKey, 'for User', currentUser.uid)
       })
     }
   }
@@ -138,7 +144,7 @@ const MyTicketPage = () => {
               <Input
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder={ticketInfo.name ? ticketInfo.name : 'Name'}
                 value={ticketInfo.name}
                 onChange={handleChange}
               />

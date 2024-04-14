@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ButtonCont = styled.button`
+const ButtonCont = styled.span`
   height: 52px;
   cursor: pointer;
   border: none;
