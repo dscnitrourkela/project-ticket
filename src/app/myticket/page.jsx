@@ -64,7 +64,7 @@ const MyTicketPage = () => {
       }
     })
     return () => {
-      unsubscribe() // Unsubscribe from the event when the component unmounts
+      unsubscribe()
     }
   }, [currentUser, router])
 
@@ -112,7 +112,7 @@ const MyTicketPage = () => {
         ? ref(database, `tickets/${currentUser.uid}/${existingTicketKey}`)
         : push(ticketRef)
 
-      // promise to wait for the update operation to complete
+      // promise for the update
       const updatePromise = update(updateRef, {
         ...ticketInfo,
         bgcolor: ticketInfo.bgcolor || colors[0],

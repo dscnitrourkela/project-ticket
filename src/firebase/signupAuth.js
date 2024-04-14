@@ -73,10 +73,8 @@ export const signUpWithGitHub = async () => {
 
   try {
     await signInWithPopup(auth, provider)
-    // Handle the successful sign-up
     //console.log('User signed up with GitHub:', result.user)
   } catch (error) {
-    // Handle errors
     //console.error('Error signing up with GitHub:', error.message)
   }
 }
