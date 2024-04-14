@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   GithubAuthProvider,
   GoogleAuthProvider,
   signInWithPopup
@@ -16,6 +17,7 @@ export const signUpWithEmailAndPassword = async (email, password, name) => {
 
     // adding name to db
     const userRef = ref(database, `users/${user.uid}`)
+    console.log('adding name to db', user.uid)
     await set(userRef, {
       name: name,
       email: user.email
