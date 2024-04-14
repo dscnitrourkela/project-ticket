@@ -22,7 +22,6 @@ export const signUpWithEmailAndPassword = async (email, password, name) => {
       name: name,
       email: user.email
     })
-
     return user
   } catch (error) {
     //console.error('Error signing up:', error.message)
@@ -30,21 +29,30 @@ export const signUpWithEmailAndPassword = async (email, password, name) => {
   }
 }
 
+export const signInWithEmailAndPass = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password)
+    const user = userCredential.user
+
+    return user
+  } catch (error) {
+    throw error
+  }
+}
+
 // signup with google function
 export const signUpWithGoogle = async () => {
   try {
-    // Configure Google provider
     const provider = new GoogleAuthProvider()
 
     // Sign in with Google
     const userCredential = await signInWithPopup(auth, provider)
     const user = userCredential.user
 
-    // Check if user already exists in the database
     const userRef = ref(database, `users/${user.uid}`)
     const snapshot = await get(userRef)
 
-    // If user doesn't exist, add them to the database
+    // adding user to db in users/
     if (!snapshot.exists()) {
       await set(userRef, {
         name: user.displayName,

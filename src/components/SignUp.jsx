@@ -29,7 +29,8 @@ import { AuthLogoLinks } from '../config/AuthProviders'
 import {
   signUpWithEmailAndPassword,
   signUpWithGitHub,
-  signUpWithGoogle
+  signUpWithGoogle,
+  signInWithEmailAndPass
 } from '../firebase/signupAuth'
 
 const SignUp = () => {
@@ -43,10 +44,29 @@ const SignUp = () => {
 
   const handleSignUp = async () => {
     try {
-      await signUpWithEmailAndPassword(email, password, name)
-      router.push('/myticket')
+      const user = await signUpWithEmailAndPassword(email, password, name)
+      if (user) {
+        router.push('/myticket')
+      }
     } catch (error) {
       console.error('Signup error:', error.message)
+      if (error.code === 'auth/invalid-email') {
+        document.getElementById('signup-email').style.border = '1px solid red'
+      } else if (error.code === 'auth/weak-password') {
+        document.getElementById('signup-password').style.border = '1px solid yellow'
+      }
+    }
+  }
+  const handleSignIn = async () => {
+    try {
+      const user = await signInWithEmailAndPass(email, password)
+      if (user) {
+        router.push('/myticket')
+      }
+    } catch (error) {
+      console.error('Signin error:', error.message)
+      document.getElementById('signin-password').style.border = '1px solid red'
+      document.getElementById('signin-email').style.border = '1px solid red'
     }
   }
   const handleGoogleSignup = async () => {
@@ -131,6 +151,7 @@ const SignUp = () => {
           />
           <FormText>Email:</FormText>
           <Input
+            id="signup-email"
             type="email"
             placeholder="Enter your email"
             value={email}
@@ -138,6 +159,7 @@ const SignUp = () => {
           />
           <FormText>Password:</FormText>
           <Input
+            id="signup-password"
             type="password"
             placeholder="Enter your password"
             value={password}
@@ -159,6 +181,7 @@ const SignUp = () => {
           <CenterText>Or</CenterText>
           <FormText>Email:</FormText>
           <Input
+            id="signin-email"
             type="email"
             placeholder="Enter your email"
             value={email}
@@ -166,12 +189,13 @@ const SignUp = () => {
           />
           <FormText>Password:</FormText>
           <Input
+            id="signin-password"
             type="password"
             placeholder="Enter your password"
             value={password}
             onChange={handlePasswordChange}
           />
-          <SubmitButton onClick={handleSignUp}>Sign in</SubmitButton>
+          <SubmitButton onClick={handleSignIn}>Sign in</SubmitButton>
         </Register>
       </FormBox>
     </Hero>
