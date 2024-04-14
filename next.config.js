@@ -1,11 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    domains: ['res.cloudinary.com']
-  }
-}
-module.exports = nextConfig
 module.exports = {
+  compiler: {
+    styledComponents: true
+  },
   images: {
     domains: ['res.cloudinary.com']
   }

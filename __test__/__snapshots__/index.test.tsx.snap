@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Index /> Snapshots 1`] = `
-<div>
-  <main>
-    Home
-  </main>
-</div>
-`;

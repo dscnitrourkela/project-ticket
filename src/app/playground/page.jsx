@@ -1,19 +1,19 @@
 /* eslint-disable max-len */
 'use client'
 import { get, push, ref, update } from 'firebase/database'
-import html2canvas from 'html2canvas'
 import { useRouter } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import '../styles/globals.css'
-import { SubmitButton } from '../components/shared/SubmitButton'
+import '../../styles/globals.css'
+import { SubmitButton } from '../../components/shared/SubmitButton'
 
 import { database } from '../../firebase/firebase'
-import Modal from '../components/Ticket/modal'
-import InnerTicket from '../components/Ticket/ticketComp'
-import { Navbar } from '../components/marginals/Navbar'
-import { AuthContext } from '../context/AuthContext'
-import { GlobalButton } from '../components/shared/GlobalButton'
+import Modal from '../../components/Ticket/modal'
+import { ticketUrls } from '../../config/TicketBackgrounds'
+import InnerTicket from '../../components/Ticket/ticketComp'
+import { Navbar } from '../../components/marginals/Navbar'
+import { AuthContext } from '../../context/AuthContext'
+import { GlobalButton } from '../../components/shared/GlobalButton'
 
 const TicketImgBg = styled.div`
   width: 660px;
@@ -303,13 +303,7 @@ const PreviewButton = styled.button`
 
 const MyTicketPage = () => {
   const colors = ['#206EA6', '#BBD3D9', '#4C1077', '#FECF29', '#14F195']
-  const ticketUrls = [
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/blue_zpasbi.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/light_izvbcd.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/magenta_dgiq85.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706380517/ejsd4w2xsqhowanwxjvz.png',
-    'https://res.cloudinary.com/djl2ulktr/image/upload/v1706382432/green_zgppwy.png'
-  ]
+
   const rows = 1
   const columns = 16
   const { currentUser } = useContext(AuthContext)
@@ -318,8 +312,7 @@ const MyTicketPage = () => {
     name: '',
     teamName: '',
     email: '',
-    bgcolor: '',
-    ticketImage: ''
+    bgcolor: '#206EA6'
   })
 
   const [selectedColor, setSelectedColor] = useState(0)
@@ -348,8 +341,7 @@ const MyTicketPage = () => {
           name: tickets[lastTicketKey].name,
           teamName: tickets[lastTicketKey].teamName,
           email: tickets[lastTicketKey].email,
-          bgcolor: tickets[lastTicketKey].bgcolor,
-          ticketImage: tickets[lastTicketKey].ticketImage
+          bgcolor: tickets[lastTicketKey].bgcolor
         })
         setExistingTicketKey(lastTicketKey)
         setShowModal(true)
@@ -362,24 +354,18 @@ const MyTicketPage = () => {
   }
 
   const generateTicket = () => {
-    const ticketElement = document.getElementById('ticketPreview')
-    html2canvas(ticketElement).then((canvas) => {
-      const image = canvas.toDataURL('image/png')
-
-      if (currentUser) {
-        const ticketRef = ref(database, `tickets/${currentUser.uid}`)
-        const updateRef = existingTicketKey
-          ? ref(database, `tickets/${currentUser.uid}/${existingTicketKey}`)
-          : push(ticketRef)
-        update(updateRef, {
-          ...ticketInfo,
-          ticketImage: image
-        }).then(() => {
-          setTicketInfo({ ...ticketInfo, ticketImage: image })
-          setShowModal(true)
-        })
-      }
-    })
+    if (currentUser) {
+      const ticketRef = ref(database, `tickets/${currentUser.uid}`)
+      const updateRef = existingTicketKey
+        ? ref(database, `tickets/${currentUser.uid}/${existingTicketKey}`)
+        : push(ticketRef)
+      update(updateRef, {
+        ...ticketInfo
+      }).then(() => {
+        setTicketInfo({ ...ticketInfo })
+        setShowModal(true)
+      })
+    }
   }
 
   return (

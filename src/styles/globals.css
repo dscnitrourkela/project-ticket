@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  color: white;
+  font-family: 'Montserrat';
+  font-weight: 500;
+
+  @media (max-width: 680px) {
+    font-size: small;
+  }
+  @media (max-width: 400px) {
+    font-size: 8px;
+  }
+}
+
+body {
+  background-color: #04040d;
+  background-image: url('https://res.cloudinary.com/djl2ulktr/image/upload/v1707655518/output-onlinepngtools_l7yvvn.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #372449;
+  height: 100px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #5f5670;
+  border-radius: 5px;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  @media (max-width: 680px) {
+    font-size: small;
+  }
+  @media (max-width: 400px) {
+    font-size: 8px;
+  }
+
+  /* color-scheme: light dark; */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

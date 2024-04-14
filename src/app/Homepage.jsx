@@ -1,12 +1,9 @@
 import React from 'react'
-import { AuthProvider } from './context/AuthContext'
+import { AuthProvider } from '../context/AuthContext'
 
-import { Navbar } from './components/marginals/Navbar'
-//import CreateTicket from './components/CreateTicket'
-import SignUp from './components/SignUp'
-import { AuthProvider } from './context/AuthContext'
-
-//import Link from 'next/link'
+import { Footer } from '../components/marginals/Footer'
+import { Navbar } from '../components/marginals/Navbar'
+import SignUp from '../components/SignUp'
 
 function Homepage() {
   return (
@@ -14,6 +11,7 @@ function Homepage() {
       <AuthProvider>
         <Navbar />
         <SignUp />
+        <Footer />
       </AuthProvider>
     </>
   )
